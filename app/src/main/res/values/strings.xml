@@ -1,0 +1,83 @@
+<resources>
+    <!--　アプリ名　-->
+    <string name="app_name">スマート点呼</string>
+    <string name="title_activity_auth"></string>
+
+    <!-- 共通アクションボタン名 -->
+    <string name="action_log_in">ログイン</string>
+    <string name="action_next">次へ</string>
+    <string name="action_menu">メニュー</string>
+    <string name="action_no_exception">異常なし</string>
+    <string name="action_need_confirm">要確認</string>
+    <string name="action_ok">OK</string>
+    <string name="action_ng">NG</string>
+    <string name="action_back">戻る</string>
+    <string name="action_diag">診断開始</string>
+
+    <!--　共通点検項目　-->
+    <string name="check_brake_pedal_title">ブレーキペダル</string>
+    <string name="check_brake_pedal_info">踏みしろ、ブレーキのきき</string>
+
+    <string name="check_park_title">駐車ブレーキ.レバー</string>
+    <string name="check_park_info">引きしろ（踏みしろ）</string>
+
+    <string name="check_prime_mover_title">原動機</string>
+    <string name="check_prime_mover_info">かかり具合、異音</string>
+
+    <string name="check_prime_mover_speed_title">原動機</string>
+    <string name="check_prime_mover_speed_info">低速・加速の状態</string>
+
+    <string name="check_window_washer_title">ウィンド・ウォッシャ</string>
+    <string name="check_window_washer_info">噴射状態</string>
+
+    <string name="check_wiper_title">ワイパー</string>
+    <string name="check_wiper_info">拭き取りの状態</string>
+
+    <!-- ログイン画面　-->
+    <string name="login_title">ログイン</string>
+    <string name="login_prompt_jgsid">事業者ID</string>
+    <string name="login_prompt_car_number">車両番号</string>
+    <string name="login_prompt_userid">ユーザーID</string>
+
+    <!-- 認証画面　-->
+    <string name="auth_title">認証のために免許証を撮影してください</string>
+    <string name="auth_camera">バックカメラ映像</string>
+    <string name="auth_camera_result">免許証確認の結果表示</string>
+
+    <!--　メニュー画面　-->
+    <string name="menu_title">メニュー</string>
+    <string name="menu_call">点呼</string>
+    <string name="menu_day_call"><Data><![CDATA[<font color="#000000"><b>日常点呼</b></font>]]></Data></string>
+    <string name="menu_before_biz_call"><Data><![CDATA[<font color="#892C6A"><b>業務前</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
+    <string name="menu_after_biz_call"><Data><![CDATA[<font color="#1F6BCC"><b>業務後</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
+
+    <!--　点呼画面　-->
+    <string name="call_menu_title">点呼メニュー</string>
+    <string name="call_menu_start">日常点呼開始</string>
+    <string name="call_menu_history">履歴</string>
+
+    <!--　エンジンの始動画面-->
+    <string name="engine_title">エンジンの始動</string>
+    <string name="engine_start_info">「エンジンを始動してください。」\n等を表示する</string>
+
+    <!--　車両選択画面　-->
+    <string name="car_title">車両選択</string>
+    <string name="car_spinner_label">車両</string>
+    <string name="car_diag_info">OBDとのペアリング結果を表示する。\n「データ取得中。目視点検を開始してくださ\nい」\n等の表示を行う。</string>
+
+    <!--　目視点検画面　-->
+    <string name="visual_check_title">運転席での点検</string>
+
+    <!--　日常点検画面　-->
+    <string name="day_check_title">日常点検結果</string>
+    <string name="car_number">車両番号</string>
+    <string name="day_before_yesterday_status">前日の状態</string>
+    <string name="visual_check">目視点検</string>
+    <string name="system_diag">システム診断</string>
+    <string name="engine_status">エンジン</string>
+    <string name="input_completed">入力は全て完了しました。</string>
+
+    <!--　日常点検確認画面　-->
+    <string name="day_check_confirm_title">入力完了</string>
+
+</resources>
