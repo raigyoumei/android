@@ -224,7 +224,7 @@
 
         <Button
             android:id="@+id/back_button"
-            style="?android:textAppearanceSmall"
+            style="?android:textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/bottom_button_height"
             android:layout_gravity="left"
@@ -239,7 +239,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/bottom_button_height"
             android:layout_gravity="right"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/round_corner_btn"
             android:text="@string/action_next"
             android:textStyle="bold" />

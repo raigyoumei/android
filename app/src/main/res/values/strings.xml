@@ -1,7 +1,7 @@
 <resources>
     <!--　アプリ名　-->
     <string name="app_name">スマート点呼</string>
-    <string name="title_activity_auth"></string>
+    <string name="title_activity_auth">abc</string>
 
     <!-- 共通アクションボタン名 -->
     <string name="action_log_in">ログイン</string>
@@ -47,9 +47,9 @@
     <!--　メニュー画面　-->
     <string name="menu_title">メニュー</string>
     <string name="menu_call">点呼</string>
-    <string name="menu_day_call"><Data><![CDATA[<font color="#000000"><b>日常点呼</b></font>]]></Data></string>
-    <string name="menu_before_biz_call"><Data><![CDATA[<font color="#892C6A"><b>業務前</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
-    <string name="menu_after_biz_call"><Data><![CDATA[<font color="#1F6BCC"><b>業務後</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
+    <string name="menu_day_call">日常点呼</string>
+    <string name="menu_before_biz_call">業務前点呼</string>
+    <string name="menu_after_biz_call">業務後点呼</string>
 
     <!--　点呼画面　-->
     <string name="call_menu_title">点呼メニュー</string>
