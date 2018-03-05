@@ -3,18 +3,14 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    >
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/health_status_reg_title"
-        android:textSize="@dimen/title_text_size"
-        android:textStyle="bold" />
+        />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,47 +20,70 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/bg_border_line"
-                android:layerType="software"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
-                        android:text="@string/check_fatigue_title"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
+                        android:layout_weight="3"
+                        android:text="ああああああああああああああああいいいいいいいいあああああああああああ"
+                        android:textSize="16sp" />
                     <Button
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
-                        android:text="@string/action_ok"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="16sp"
+                        android:background="#dd0000"
+                        android:textColor="#ffffff"
+                        android:text="@string/action_ng"
+                        />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="@string/check_fatigue_title"
+                        android:textSize="16sp"
+                        />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#dddddd"
+                        android:textSize="16sp"
+                        android:text="@string/action_ok"
+                        />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="5dp"
                     android:background="@android:color/black" />
 
                 <RelativeLayout
@@ -76,7 +95,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp"
                         android:paddingLeft="10dp"
                         android:text="@string/check_feeling_title"
                         android:textSize="12sp"
