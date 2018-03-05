@@ -1,6 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
@@ -14,10 +12,9 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/car_title"
         android:textSize="@dimen/title_text_size"
-        android:textStyle="bold"
-        tools:text="@string/car_title" />
+        android:textStyle="bold" />
 
     <ScrollView
         android:id="@+id/login_form"
@@ -39,23 +36,23 @@
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textSize="14sp"
-                    tools:text="@string/car_spinner_label" />
+                    android:text="@string/car_spinner_label"
+                    android:textSize="14sp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bg_spinner">
+
                     <Spinner
+                        android:id="@+id/sign_up_country"
                         style="@style/Widget.AppCompat.DropDownItem.Spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:id="@+id/sign_up_country"
-                        />
+                        android:layout_height="50dp" />
                 </RelativeLayout>
             </RelativeLayout>
+
             <Button
                 android:id="@+id/diag_button"
                 style="?android:textAppearanceSmall"
@@ -70,20 +67,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layerType="software"
-                android:background="@drawable/bg_solid_line">
+                android:background="@drawable/bg_solid_line"
+                android:layerType="software">
 
                 <TextView
                     android:id="@+id/picture"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:gravity="center_vertical"
-                    android:text="TextView"
-                    android:textSize="14sp"
-                    tools:text="@string/car_diag_info" />
+                    android:text="@string/car_diag_info"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -91,7 +88,7 @@
         android:gravity="center_horizontal">
 
         <Button
-            android:id="@+id/log_in_button"
+            android:id="@+id/next_button"
             style="?android:textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/bottom_button_height"

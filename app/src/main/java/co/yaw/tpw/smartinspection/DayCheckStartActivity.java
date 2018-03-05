@@ -9,22 +9,22 @@ import android.widget.Button;
 
 import com.yaw.tpw.smartinspection.R;
 
-public class CallMenuActivity extends AppCompatActivity {
+public class DayCheckStartActivity extends AppCompatActivity {
 
     final Context context = this;
-    private Button dayCallBtn;
+    private Button startBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_call_menu);
+        setContentView(R.layout.activity_day_check_start);
 
-        dayCallBtn = findViewById(R.id.day_call_button);
+        startBtn = findViewById(R.id.day_check_start_button);
 
-        dayCallBtn.setOnClickListener(new View.OnClickListener() {
+        startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context , DayCheckActivity.class);
+                Intent intent = new Intent(context , EngineActivity.class);
                 startActivity(intent);
             }
         });

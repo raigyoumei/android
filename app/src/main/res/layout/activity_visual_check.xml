@@ -14,14 +14,14 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textSize="@dimen/title_text_size"
         android:textStyle="bold"
-        tools:text="@string/visual_check_title" />
+        android:text="@string/visual_check_title" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,6 +30,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/item_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -52,17 +53,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/brake_pedal_title"
+                            android:text="@string/check_brake_pedal_title"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/brake_pedal_info"/>
+                            android:text="@string/check_brake_pedal_info"/>
                     </LinearLayout>
 
                     <Button
@@ -92,17 +91,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/park_title"
+                            android:text="@string/check_park_title"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/park_info"/>
+                            android:text="@string/check_park_info"/>
                     </LinearLayout>
 
                     <Button
@@ -131,17 +128,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/prime_mover_title"
+                            android:text="@string/check_prime_mover_title"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/prime_mover_info"/>
+                            android:text="@string/check_prime_mover_info"/>
                     </LinearLayout>
 
                     <Button
@@ -170,17 +165,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/prime_mover_speed_title"
+                            android:text="@string/check_prime_mover_speed_title"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/prime_mover_speed_info"/>
+                            android:text="@string/check_prime_mover_speed_info"/>
                     </LinearLayout>
 
                     <Button
@@ -209,17 +202,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/window_washer_title"
+                            android:text="@string/check_window_washer_title"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/window_washer_info"/>
+                            android:text="@string/check_window_washer_info"/>
                     </LinearLayout>
 
                     <Button
@@ -248,17 +239,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/wiper_title"
+                            android:text="@string/check_wiper_title"
                             android:textStyle="bold"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:text="TextView"
                             android:textSize="12sp"
-                            tools:text="@string/wiper_info"/>
+                            android:text="@string/check_wiper_info"/>
                     </LinearLayout>
 
                     <Button
@@ -268,36 +257,35 @@
                         android:textSize="10sp"
                         android:text="@string/action_ng" />
                 </RelativeLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="10dp">
-                <Button
-                    android:id="@+id/back_button"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/bottom_button_height"
-                    android:layout_gravity="left"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/round_corner_btn"
-                    android:text="@string/action_back"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/next_button"
-                    style="?android:textAppearanceSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/bottom_button_height"
-                    android:layout_gravity="right"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/round_corner_btn"
-                    android:text="@string/action_next"
-                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+        <Button
+            android:id="@+id/back_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/bottom_button_height"
+            android:layout_gravity="left"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/round_corner_btn"
+            android:text="@string/action_back"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/next_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/bottom_button_height"
+            android:layout_gravity="right"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/round_corner_btn"
+            android:text="@string/action_next"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

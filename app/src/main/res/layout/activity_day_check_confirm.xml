@@ -13,13 +13,11 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/day_check_confirm_title"
         android:textSize="@dimen/title_text_size"
-        android:textStyle="bold"
-        tools:text="@string/day_check_confirm_title" />
+        android:textStyle="bold" />
 
     <ScrollView
-        android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
@@ -47,12 +45,128 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/car_number"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="10dp"
+                        android:text="XXXXX"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="@string/day_before_yesterday_status"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
                         android:layout_centerInParent="true"
                         android:paddingLeft="10dp"
-                        android:text="TextView"
+                        android:text="@string/visual_check"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:text="@string/visual_check" />
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/dby_visual_check_button"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round_corner_btn"
+                        android:text="@string/action_no_exception"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/system_diag"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/dby_system_check_button"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round_corner_btn"
+                        android:text="@string/action_no_exception"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="@string/engine_status"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/visual_check"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/egn_visual_check_button"
@@ -65,10 +179,12 @@
                         android:text="@string/action_no_exception"
                         android:textStyle="bold" />
                 </RelativeLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/black" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -80,10 +196,9 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerInParent="true"
                         android:paddingLeft="10dp"
-                        android:text="TextView"
+                        android:text="@string/system_diag"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:text="@string/system_diag" />
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/egn_system_check_button"
@@ -98,14 +213,9 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="80dp"
-                android:text="@string/input_completed"
-                android:gravity="center"/>
         </LinearLayout>
     </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -113,14 +223,25 @@
         android:gravity="center_horizontal">
 
         <Button
+            android:id="@+id/back_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/bottom_button_height"
+            android:layout_gravity="left"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/round_corner_btn"
+            android:text="@string/action_back"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/next_button"
             style="?android:textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/bottom_button_height"
-            android:layout_gravity="center"
+            android:layout_gravity="right"
             android:layout_marginLeft="15dp"
             android:background="@drawable/round_corner_btn"
-            android:text="@string/action_menu"
+            android:text="@string/action_next"
             android:textStyle="bold" />
     </LinearLayout>
 

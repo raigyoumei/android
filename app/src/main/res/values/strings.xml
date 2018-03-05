@@ -1,7 +1,6 @@
 <resources>
     <!--　アプリ名　-->
     <string name="app_name">スマート点呼</string>
-    <string name="title_activity_auth"></string>
 
     <!-- 共通アクションボタン名 -->
     <string name="action_log_in">ログイン</string>
@@ -13,6 +12,9 @@
     <string name="action_ng">NG</string>
     <string name="action_back">戻る</string>
     <string name="action_diag">診断開始</string>
+    <string name="action_measure">測定開始</string>
+    <string name="action_normal">平常</string>
+    <string name="action_go_up">高め</string>
 
     <!--　共通点検項目　-->
     <string name="check_brake_pedal_title">ブレーキペダル</string>
@@ -33,6 +35,17 @@
     <string name="check_wiper_title">ワイパー</string>
     <string name="check_wiper_info">拭き取りの状態</string>
 
+    <string name="check_body_temperature_title">体温</string>
+    <string name="check_ｂlood_pressure_title">血圧</string>
+    <string name="check_heartbeat_title">心拍</string>
+
+    <string name="check_fatigue_title">疲れは感じないか</string>
+    <string name="check_feeling_title">気分が悪くないか</string>
+    <string name="check_intestine_title">腹痛・吐き気・下痢</string>
+    <string name="check_drawsiness_title">眠気を感じないか</string>
+    <string name="check_pain_title">怪我などの痛み</string>
+    <string name="check_take_medicine_title"> 運転に悪影響のある\n薬を服用していくか</string>
+
     <!-- ログイン画面　-->
     <string name="login_title">ログイン</string>
     <string name="login_prompt_jgsid">事業者ID</string>
@@ -47,14 +60,13 @@
     <!--　メニュー画面　-->
     <string name="menu_title">メニュー</string>
     <string name="menu_call">点呼</string>
-    <string name="menu_day_call"><Data><![CDATA[<font color="#000000"><b>日常点呼</b></font>]]></Data></string>
+    <string name="menu_day_check"><Data><![CDATA[<font color="#000000"><b>日常点検</b></font>]]></Data></string>
     <string name="menu_before_biz_call"><Data><![CDATA[<font color="#892C6A"><b>業務前</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
     <string name="menu_after_biz_call"><Data><![CDATA[<font color="#1F6BCC"><b>業務後</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
 
-    <!--　点呼画面　-->
-    <string name="call_menu_title">点呼メニュー</string>
-    <string name="call_menu_start">日常点呼開始</string>
-    <string name="call_menu_history">履歴</string>
+    <!--　日常点検開始画面　-->
+    <string name="day_check_start_title">点検メニュー</string>
+    <string name="day_check_start_button">日常点検開始</string>
 
     <!--　エンジンの始動画面-->
     <string name="engine_title">エンジンの始動</string>
@@ -63,13 +75,13 @@
     <!--　車両選択画面　-->
     <string name="car_title">車両選択</string>
     <string name="car_spinner_label">車両</string>
-    <string name="car_diag_info">OBDとのペアリング結果を表示する。\n「データ取得中。目視点検を開始してくださ\nい」\n等の表示を行う。</string>
+    <string name="car_diag_info">OBDとのペアリング結果を表示する。\n\n「データ取得中。\n目視点検を開始してください」\n\n等の表示を行う。</string>
 
     <!--　目視点検画面　-->
     <string name="visual_check_title">運転席での点検</string>
 
-    <!--　日常点検画面　-->
-    <string name="day_check_title">日常点検結果</string>
+    <!--　日常点検結果確認画面　-->
+    <string name="day_check_confirm_title">日常点検結果</string>
     <string name="car_number">車両番号</string>
     <string name="day_before_yesterday_status">前日の状態</string>
     <string name="visual_check">目視点検</string>
@@ -77,7 +89,27 @@
     <string name="engine_status">エンジン</string>
     <string name="input_completed">入力は全て完了しました。</string>
 
-    <!--　日常点検確認画面　-->
-    <string name="day_check_confirm_title">入力完了</string>
+    <!--　日常点検結果表示画面　-->
+    <string name="day_check_show_title">入力完了</string>
+
+    <!--　アルコールデータ測定画面　-->
+    <string name="alcohol_measure_title">アルコールチェック</string>
+    <string name="alcohol_measure_title_before_biz">アルコールチェック（業務前）</string>
+    <string name="alcohol_measure_title_after_biz">アルコールチェック（業務後）</string>
+    <string name="alcohol_sensor_spinner_label">アルコールセンター選択</string>
+    <string name="alcohol_measure_info">測定結果を表示する。\n\n表示項目\n    ・撮影画像\n    ・アルコールデータ\n    ・チェック日時</string>
+
+    <!-- （業務後）点呼結果確認画面　-->
+    <string name="call_confirm_title">入力完了</string>
+    <string name="alcohol_check">アルコールチェック</string>
+    <!-- （業務前）点呼結果確認画面　-->
+    <string name="vital_sign_check">バイタルチェック</string>
+    <string name="health_status_check">健康状態</string>
+
+    <!--　バイタルチェックデータ測定画面　-->
+    <string name="vital_sign_measure_title">バイタルチェックの申告</string>
+
+    <!--　健康状態登録画面　-->
+    <string name="health_status_reg_title">健康状態の申告</string>
 
 </resources>

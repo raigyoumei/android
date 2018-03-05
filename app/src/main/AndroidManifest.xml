@@ -24,12 +24,16 @@
             </intent-filter>
         </activity>
         <activity android:name="co.yaw.tpw.smartinspection.MenuActivity" />
-        <activity android:name="co.yaw.tpw.smartinspection.CallMenuActivity" />
+        <activity android:name="co.yaw.tpw.smartinspection.DayCheckStartActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.EngineActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.CarActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.VisualCheckActivity" />
-        <activity android:name="co.yaw.tpw.smartinspection.DayCheckActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.DayCheckConfirmActivity" />
+        <activity android:name="co.yaw.tpw.smartinspection.DayCheckShowActivity" />
+        <activity android:name="co.yaw.tpw.smartinspection.AlcoholMeasureActivity" />
+        <activity android:name="co.yaw.tpw.smartinspection.CallConfirmActivity" />
+        <activity android:name="co.yaw.tpw.smartinspection.VitalSignMeasureActivity" />
+        <activity android:name="co.yaw.tpw.smartinspection.HealthStatusRegActivity"></activity>
     </application>
 
 </manifest>

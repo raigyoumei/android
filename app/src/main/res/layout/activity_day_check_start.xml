@@ -14,7 +14,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/call_menu_title"
+        android:text="@string/day_check_start_title"
         android:textSize="@dimen/title_text_size"
         android:textStyle="bold" />
 
@@ -28,25 +28,14 @@
             android:layout_marginTop="20dp"
             android:orientation="vertical">
             <Button
-                android:id="@+id/day_call_button"
+                android:id="@+id/day_check_start_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/round_corner_btn"
-                android:text="@string/call_menu_start"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-            <Button
-                android:id="@+id/call_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/round_corner_btn"
-                android:text="@string/call_menu_history"
+                android:text="@string/day_check_start_button"
                 android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>

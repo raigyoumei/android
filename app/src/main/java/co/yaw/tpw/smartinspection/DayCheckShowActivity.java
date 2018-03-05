@@ -9,22 +9,21 @@ import android.widget.Button;
 
 import com.yaw.tpw.smartinspection.R;
 
-public class CarActivity extends AppCompatActivity {
-
+public class DayCheckShowActivity extends AppCompatActivity {
     final Context context = this;
-    private Button nextBtn;
+    private Button menuBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_car);
+        setContentView(R.layout.activity_day_check_show);
 
-        nextBtn = findViewById(R.id.next_button);
+        menuBtn = findViewById(R.id.menu_button);
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
+        menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context , VisualCheckActivity.class);
+                Intent intent = new Intent(context, MenuActivity.class);
                 startActivity(intent);
             }
         });
