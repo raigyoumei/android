@@ -1,6 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
@@ -14,9 +12,9 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textStyle="bold"
-        tools:text="@string/auth_title" />
+        android:text="@string/call_confirm_title"
+        android:textSize="@dimen/title_text_size"
+        android:textStyle="bold" />
 
     <ScrollView
         android:id="@+id/login_form"
@@ -27,40 +25,111 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_border_line"
                 android:layerType="software"
-                android:background="@drawable/bg_dash_line">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/picture"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:gravity="center"
-                    android:text="TextView"
-                    android:textSize="14sp"
-                    tools:text="@string/auth_camera" />
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/alcohol_check"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round_corner_btn"
+                        android:text="@string/action_no_exception"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/vital_sign_check"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round_corner_btn"
+                        android:text="@string/action_no_exception"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:paddingLeft="10dp"
+                        android:text="@string/health_status_check"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round_corner_btn_highlight"
+                        android:text="@string/action_need_confirm"
+                        android:textStyle="bold" />
+                </RelativeLayout>
             </LinearLayout>
-            <LinearLayout
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layerType="software"
-                android:background="@drawable/bg_dash_line">
-
-                <TextView
-                    android:id="@+id/result"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="TextView"
-                    android:textSize="24sp"
-                    tools:text="@string/auth_camera_result" />
-            </LinearLayout>
+                android:gravity="center"
+                android:paddingTop="80dp"
+                android:text="@string/input_completed" />
         </LinearLayout>
     </ScrollView>
 
@@ -71,14 +140,13 @@
         android:gravity="center_horizontal">
 
         <Button
-            android:id="@+id/log_in_button"
-            style="?android:textAppearanceLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/bottom_button_height"
-            android:layout_gravity="center"
-            android:background="@drawable/round_corner_btn"
-            android:text="@string/action_next"
-            android:textStyle="bold" />
+            android:id="@+id/menu_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="@string/action_menu" />
+
     </LinearLayout>
 
 </LinearLayout>

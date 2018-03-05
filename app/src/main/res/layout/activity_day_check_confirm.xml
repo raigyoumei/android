@@ -226,10 +226,9 @@
             android:id="@+id/back_button"
             style="?android:textAppearanceSmall"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/bottom_button_height"
+            android:layout_height="50dp"
             android:layout_gravity="left"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/round_corner_btn"
+            android:layout_weight="1"
             android:text="@string/action_back"
             android:textStyle="bold" />
 
@@ -237,10 +236,9 @@
             android:id="@+id/next_button"
             style="?android:textAppearanceSmall"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/bottom_button_height"
+            android:layout_height="50dp"
             android:layout_gravity="right"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/round_corner_btn"
+            android:layout_weight="1"
             android:text="@string/action_next"
             android:textStyle="bold" />
     </LinearLayout>

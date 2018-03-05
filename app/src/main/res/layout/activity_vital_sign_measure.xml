@@ -137,11 +137,10 @@
 
         <Button
             android:id="@+id/next_button"
-            style="?android:textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/bottom_button_height"
-            android:background="@drawable/round_corner_btn"
-            android:text="@string/action_next"
-            android:textStyle="bold" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="@string/action_next" />
     </LinearLayout>
 </LinearLayout>
