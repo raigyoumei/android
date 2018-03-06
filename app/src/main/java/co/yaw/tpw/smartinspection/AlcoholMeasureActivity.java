@@ -14,12 +14,22 @@ public class AlcoholMeasureActivity extends AppCompatActivity {
     final Context context = this;
     private Button backBtn;
     private Button nextBtn;
+    private Class<?> forwardCls = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alcohol_measure);
 
+        final Bundle b = getIntent().getExtras();
+        if(b != null) {
+            String forward = b.getString("forward");
+            if(forward.equals("beforeBiz")) {
+                forwardCls = VitalSignMeasureActivity.class;
+            } else {
+                forwardCls = CallConfirmActivity.class;
+            }
+        }
         backBtn = findViewById(R.id.back_button);
         nextBtn = findViewById(R.id.next_button);
 
@@ -35,7 +45,8 @@ public class AlcoholMeasureActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, VitalSignMeasureActivity.class);
+                Intent intent = new Intent(context, forwardCls);
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });

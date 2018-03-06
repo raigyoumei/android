@@ -40,16 +40,22 @@ public class MenuActivity extends AppCompatActivity {
         beforeBizCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context , AlcoholMeasureActivity.class);
-                startActivity(intent);
+                startNextActivity("beforeBiz");
             }
         });
         afterBizCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context , EngineActivity.class);
-                startActivity(intent);
+                startNextActivity("afterBiz");
             }
         });
+    }
+
+    protected void startNextActivity(String forward) {
+        Intent intent = new Intent(context , AlcoholMeasureActivity.class);
+        Bundle b = new Bundle();
+        b.putString("forward", forward);
+        intent.putExtras(b);
+        startActivity(intent);
     }
 }

@@ -68,6 +68,7 @@
                     android:background="@android:color/black" />
 
                 <RelativeLayout
+                    android:id="@+id/vital_sign_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="5dp">
@@ -93,11 +94,13 @@
                         android:textStyle="bold" />
                 </RelativeLayout>
                 <View
+                    android:id="@+id/vital_sign_separator"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/black" />
 
                 <RelativeLayout
+                    android:id="@+id/health_status_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="5dp">

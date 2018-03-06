@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.yaw.tpw.smartinspection.R;
@@ -18,8 +19,23 @@ public class CallConfirmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_confirm);
-        menuBtn = findViewById(R.id.menu_button);
 
+        final Bundle b = getIntent().getExtras();
+        if(b != null) {
+            String forward = b.getString("forward");
+            if(forward != null && forward.equals("afterBiz")) {
+                View vitalSignLayout = findViewById(R.id.vital_sign_layout);
+                View vitalSignSeparator = findViewById(R.id.vital_sign_separator);
+                View healthStatusLayout = findViewById(R.id.health_status_layout);
+
+                ViewGroup vg = (ViewGroup)(vitalSignLayout.getParent());
+                vg.removeView(vitalSignLayout);
+                vg.removeView(vitalSignSeparator);
+                vg.removeView(healthStatusLayout);
+            }
+        }
+
+        menuBtn = findViewById(R.id.menu_button);
         menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
