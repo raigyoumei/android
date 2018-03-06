@@ -242,8 +242,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="#dddddd"
-                        android:text="@string/action_ok"
+                        android:background="#dd0000"
+                        android:text="@string/action_ng"
+                        android:textColor="#ffffff"
                         android:textSize="16sp" />
                 </LinearLayout>
 
