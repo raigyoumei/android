@@ -20,285 +20,186 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingVertical="5dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
+                    style="@style/ListViewSeparator"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp" >
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_brake_pedal_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_brake_pedal_title" />
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_brake_pedal_info"
-                            android:textSize="12sp" />
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_brake_pedal_info"/>
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#dddddd"
-                        android:text="@string/action_ok"
-                        android:textSize="16sp" />
+                        style="@style/ListOkButtonStyle" />
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
+                    style="@style/ListViewSeparator"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_park_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_park_title"/>
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_park_info"
-                            android:textSize="12sp" />
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_park_info"/>
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#dddddd"
-                        android:text="@string/action_ok"
-                        android:textSize="16sp" />
+                        style="@style/ListOkButtonStyle" />
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
+                    style="@style/ListViewSeparator"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_prime_mover_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_prime_mover_title"/>
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_prime_mover_info"
-                            android:textSize="12sp" />
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_prime_mover_info" />
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#dddddd"
-                        android:text="@string/action_ok"
-                        android:textSize="16sp" />
+                        style="@style/ListOkButtonStyle" />
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
+                    style="@style/ListViewSeparator"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_prime_mover_speed_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_prime_mover_speed_title"/>
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_prime_mover_speed_info"
-                            android:textSize="12sp" />
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_prime_mover_speed_info"/>
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#dddddd"
-                        android:text="@string/action_ok"
-                        android:textSize="16sp" />
+                        style="@style/ListOkButtonStyle" />
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
-
+                    style="@style/ListViewSeparator"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_window_washer_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_window_washer_title"/>
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_window_washer_info"
-                            android:textSize="12sp" />
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_window_washer_info"/>
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#dd0000"
-                        android:text="@string/action_ng"
-                        android:textColor="#ffffff"
-                        android:textSize="16sp" />
+                        style="@style/ListNgButtonStyle" />
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
-
+                    style="@style/ListViewSeparator"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_wiper_title"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_wiper_title"/>
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="@string/check_wiper_info"
-                            android:textSize="12sp" />
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_wiper_info"/>
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#dd0000"
-                        android:text="@string/action_ng"
-                        android:textColor="#ffffff"
-                        android:textSize="16sp" />
+                        style="@style/ListNgButtonStyle" />
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
+                    style="@style/ListViewSeparator"/>
             </LinearLayout>
-        </LinearLayout>
     </ScrollView>
 
     <LinearLayout

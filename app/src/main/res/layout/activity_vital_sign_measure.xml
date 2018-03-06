@@ -24,105 +24,67 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingVertical="5dp">
+            android:orientation="vertical">
+
+            <View
+                style="@style/ListViewSeparator" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
+                <TextView
+                    style="@style/ListTextViewStyle"
+                    android:text="@string/check_body_temperature_title" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:text="@string/check_body_temperature_title"
-                        android:textSize="16sp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#dddddd"
-                        android:text="@string/action_normal"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:text="@string/check_ｂlood_pressure_title"
-                        android:textSize="16sp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#dddddd"
-                        android:text="@string/action_normal"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:text="@string/check_heartbeat_title"
-                        android:textSize="16sp" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#dd0000"
-                        android:text="@string/action_go_up"
-                        android:textColor="#ffffff"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="5dp"
-                    android:background="@android:color/black" />
-
+                <Button
+                    style="@style/ListOkButtonStyle"
+                    android:text="@string/action_normal" />
             </LinearLayout>
 
+            <View
+                style="@style/ListViewSeparator" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/ListTextViewStyle"
+                    android:text="@string/check_ｂlood_pressure_title" />
+
+                <Button
+                    style="@style/ListOkButtonStyle"
+                    android:text="@string/action_normal" />
+            </LinearLayout>
+
+            <View
+                style="@style/ListViewSeparator" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/ListTextViewStyle"
+                    android:text="@string/check_heartbeat_title" />
+
+                <Button
+                    style="@style/ListNgButtonStyle"
+                    android:text="@string/action_go_up" />
+            </LinearLayout>
+
+            <View
+                style="@style/ListViewSeparator" />
+
         </LinearLayout>
+
     </ScrollView>
 
     <LinearLayout

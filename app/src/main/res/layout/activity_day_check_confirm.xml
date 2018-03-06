@@ -24,193 +24,114 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:paddingLeft="10dp"
-                        android:text="@string/car_number"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/car_number" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:paddingRight="10dp"
-                        android:text="XXXXX"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                        style="@style/ListTextViewStyle"
+                        android:gravity="right"
+                        android:text="XXXXX" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/ListTitleTextViewStyle"
                 android:paddingLeft="20dp"
-                android:text="@string/day_before_yesterday_status"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:text="@string/day_before_yesterday_status" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
                 android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
                     android:paddingVertical="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
-                        android:text="@string/visual_check"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
 
-                    <Button
-                        android:id="@+id/dby_visual_check_button"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
-                        android:text="@string/action_no_exception"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                    <Button style="@style/ListNoExceptionButtonStyle" />
+                </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black" />
+                    style="@style/ListViewSeparator" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
                     android:paddingVertical="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
-                        android:text="@string/system_diag"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
 
-                    <Button
-                        android:id="@+id/dby_system_check_button"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
-                        android:text="@string/action_no_exception"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                    <Button style="@style/ListNoExceptionButtonStyle" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/ListTitleTextViewStyle"
                 android:paddingLeft="20dp"
-                android:text="@string/engine_status"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:text="@string/engine_status" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
                     android:paddingVertical="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
-                        android:text="@string/visual_check"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
 
-                    <Button
-                        android:id="@+id/egn_visual_check_button"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
-                        android:text="@string/action_no_exception"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                    <Button style="@style/ListNoExceptionButtonStyle" />
+                </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black" />
+                    style="@style/ListViewSeparator" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
                     android:paddingVertical="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
-                        android:text="@string/system_diag"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
 
-                    <Button
-                        android:id="@+id/egn_system_check_button"
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn_highlight"
-                        android:text="@string/action_need_confirm"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                    <Button style="@style/ListNeedConfirmButtonStyle" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
