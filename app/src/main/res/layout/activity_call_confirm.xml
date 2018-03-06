@@ -25,75 +25,53 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:paddingVertical="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/bg_border_line"
-                android:layerType="software"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
-                        android:text="@string/alcohol_check"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
-                        android:text="@string/action_no_exception"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                android:orientation="vertical"
+                android:paddingVertical="5dp">
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/alcohol_check" />
+
+                    <Button
+                        style="@style/ListNoExceptionButtonStyle"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black" />
+
+                <LinearLayout
                     android:id="@+id/vital_sign_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
-                        android:text="@string/vital_sign_check"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/vital_sign_check" />
 
                     <Button
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
-                        android:text="@string/action_no_exception"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                        style="@style/ListNoExceptionButtonStyle"/>
+
+                </LinearLayout>
 
                 <View
                     android:id="@+id/vital_sign_separator"
@@ -101,32 +79,26 @@
                     android:layout_height="1dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/health_status_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
-                        android:text="@string/health_status_check"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/health_status_check" />
 
                     <Button
-                        style="?android:textAppearanceSmall"
-                        android:layout_width="70dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn_highlight"
-                        android:text="@string/action_need_confirm"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                        style="@style/ListNeedConfirmButtonStyle" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/health_status_separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black" />
             </LinearLayout>
 
             <TextView

@@ -44,6 +44,12 @@
 
 
     <!-- list view style -->
+    <style name="ListTitleTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
     <style name="ListTextViewStyle" parent="android:Widget.TextView">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">3</item>
@@ -82,6 +88,17 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:text">@string/action_ng</item>
     </style>
+
+    <style name="ListNoExceptionButtonStyle" parent="ListOkButtonStyle">
+        <item name="android:layout_width">70dp</item>
+        <item name="android:text">@string/action_no_exception</item>
+    </style>
+
+    <style name="ListNeedConfirmButtonStyle" parent="ListNgButtonStyle">
+        <item name="android:layout_width">70dp</item>
+        <item name="android:text">@string/action_need_confirm</item>
+    </style>
+    <!-- list view style end -->
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:buttonStyle">@style/MyButtonStyle</item>

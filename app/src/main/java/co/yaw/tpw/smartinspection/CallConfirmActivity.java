@@ -27,11 +27,13 @@ public class CallConfirmActivity extends AppCompatActivity {
                 View vitalSignLayout = findViewById(R.id.vital_sign_layout);
                 View vitalSignSeparator = findViewById(R.id.vital_sign_separator);
                 View healthStatusLayout = findViewById(R.id.health_status_layout);
+                View healthStatusSeparator = findViewById(R.id.health_status_separator);
 
                 ViewGroup vg = (ViewGroup)(vitalSignLayout.getParent());
                 vg.removeView(vitalSignLayout);
                 vg.removeView(vitalSignSeparator);
                 vg.removeView(healthStatusLayout);
+                vg.removeView(healthStatusSeparator);
             }
         }
 
