@@ -76,9 +76,7 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black" />
+                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -120,9 +118,7 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black" />
+                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
