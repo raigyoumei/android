@@ -24,7 +24,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:paddingVertical="5dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -36,16 +36,16 @@
                 android:layerType="software"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="85dp">
 
                     <LinearLayout
                         android:id="@+id/brake_label"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
@@ -65,12 +65,14 @@
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_alignParentRight="true"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ok"
-                        android:textSize="10sp" />
-                </RelativeLayout>
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -78,15 +80,15 @@
                     android:layout_margin="10dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="85dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
@@ -106,12 +108,14 @@
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_alignParentRight="true"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ok"
-                        android:textSize="10sp" />
-                </RelativeLayout>
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -119,15 +123,15 @@
                     android:layout_margin="10dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="85dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
@@ -147,12 +151,14 @@
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_alignParentRight="true"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ok"
-                        android:textSize="10sp" />
-                </RelativeLayout>
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -160,15 +166,15 @@
                     android:layout_margin="10dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="85dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
@@ -188,12 +194,14 @@
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_alignParentRight="true"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ok"
-                        android:textSize="10sp" />
-                </RelativeLayout>
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -201,15 +209,15 @@
                     android:layout_margin="10dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="85dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
@@ -229,12 +237,14 @@
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_alignParentRight="true"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ok"
-                        android:textSize="10sp" />
-                </RelativeLayout>
+                        android:textStyle="bold" />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -242,15 +252,15 @@
                     android:layout_margin="10dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="85dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
                         android:orientation="vertical">
 
                         <TextView
@@ -270,12 +280,14 @@
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_alignParentRight="true"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ng"
-                        android:textSize="10sp" />
-                </RelativeLayout>
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

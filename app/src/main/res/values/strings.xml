@@ -11,7 +11,6 @@
     <string name="action_ok">OK</string>
     <string name="action_ng">NG</string>
     <string name="action_back">戻る</string>
-    <string name="action_diag">診断開始</string>
     <string name="action_measure">測定開始</string>
     <string name="action_normal">平常</string>
     <string name="action_go_up">高め</string>
@@ -75,7 +74,14 @@
     <!--　車両選択画面　-->
     <string name="car_title">車両選択</string>
     <string name="car_spinner_label">車両</string>
+    <string name="car_spinner_prompt">OBD端末に設定した車両番号</string>
     <string name="car_diag_info">OBDとのペアリング結果を表示する。\n\n「データ取得中。\n目視点検を開始してください」\n\n等の表示を行う。</string>
+
+    <!-- 車両確認ポップアップ画面-->
+    <string name="car_selector_title">以下の車両を選択します。\nよろしいですか？</string>
+    <string name="car_selector_content">車両番号：xxxx\nが選択されています。</string>
+    <string name="car_selector_cancle">キャンセル</string>
+    <string name="car_selector_ok">OK</string>
 
     <!--　目視点検画面　-->
     <string name="visual_check_title">運転席での点検</string>
@@ -97,6 +103,9 @@
     <string name="alcohol_measure_title_before_biz">アルコールチェック（業務前）</string>
     <string name="alcohol_measure_title_after_biz">アルコールチェック（業務後）</string>
     <string name="alcohol_sensor_spinner_label">アルコールセンター選択</string>
+    <string name="alcohol_sensor_spinner_prompt">アルコールセンサーの任意番号</string>
+    <string name="alcohol_measure_times">1/3回目</string>
+
     <string name="alcohol_measure_info">測定結果を表示する。\n\n表示項目\n    ・撮影画像\n    ・アルコールデータ\n    ・チェック日時</string>
 
     <!-- （業務後）点呼結果確認画面　-->

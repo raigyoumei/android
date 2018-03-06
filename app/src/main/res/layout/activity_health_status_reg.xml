@@ -35,196 +35,179 @@
                 android:layerType="software"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="65dp"
+                    android:paddingTop="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
                         android:text="@string/check_fatigue_title"
-                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <Button
                         style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ok"
                         android:textStyle="bold" />
-                </RelativeLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginHorizontal="10dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="65dp"
+                    android:paddingTop="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
                         android:text="@string/check_feeling_title"
-                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <Button
                         style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ok"
                         android:textStyle="bold" />
-                </RelativeLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginHorizontal="10dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="65dp"
+                    android:paddingTop="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
                         android:text="@string/check_intestine_title"
-                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <Button
                         style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ng"
                         android:textStyle="bold" />
-                </RelativeLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginHorizontal="10dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="65dp"
+                    android:paddingTop="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
                         android:text="@string/check_drawsiness_title"
-                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <Button
                         style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ok"
                         android:textStyle="bold" />
-                </RelativeLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginHorizontal="10dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="65dp"
+                    android:paddingTop="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
                         android:text="@string/check_pain_title"
-                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <Button
                         style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ng"
                         android:textStyle="bold" />
-                </RelativeLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginHorizontal="10dp"
                     android:background="@android:color/black" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="65dp"
+                    android:paddingTop="5dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:paddingLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2"
                         android:text="@string/check_take_medicine_title"
-                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <Button
                         style="?android:textAppearanceSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/round_corner_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:text="@string/action_ok"
                         android:textStyle="bold" />
-                </RelativeLayout>
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
