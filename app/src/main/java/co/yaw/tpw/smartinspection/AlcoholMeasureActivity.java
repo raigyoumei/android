@@ -32,7 +32,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         final Bundle b = getIntent().getExtras();
         if(b != null) {
             String forward = b.getString("forward");
-            if(forward.equals("beforeBiz")) {
+            if(forward.equals("beforeCrew")) {
                 forwardCls = VitalSignMeasureActivity.class;
             } else {
                 forwardCls = CallConfirmActivity.class;

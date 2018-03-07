@@ -23,7 +23,7 @@ public class CallConfirmActivity extends AppCompatActivity {
         final Bundle b = getIntent().getExtras();
         if(b != null) {
             String forward = b.getString("forward");
-            if(forward != null && forward.equals("afterBiz")) {
+            if(forward != null && forward.equals("afterCrew")) {
                 View vitalSignLayout = findViewById(R.id.vital_sign_layout);
                 View vitalSignSeparator = findViewById(R.id.vital_sign_separator);
                 View healthStatusLayout = findViewById(R.id.health_status_layout);
