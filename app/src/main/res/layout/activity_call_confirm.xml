@@ -40,8 +40,8 @@
                         style="@style/ListTextViewStyle"
                         android:text="@string/alcohol_check" />
 
-                    <Button
-                        style="@style/ListNoExceptionButtonStyle"/>
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
 
                 </LinearLayout>
 
@@ -58,8 +58,8 @@
                         style="@style/ListTextViewStyle"
                         android:text="@string/vital_sign_check" />
 
-                    <Button
-                        style="@style/ListNoExceptionButtonStyle"/>
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
 
                 </LinearLayout>
 
@@ -77,8 +77,9 @@
                         style="@style/ListTextViewStyle"
                         android:text="@string/health_status_check" />
 
-                    <Button
-                        style="@style/ListNeedConfirmButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="true"/>
 
                 </LinearLayout>
 

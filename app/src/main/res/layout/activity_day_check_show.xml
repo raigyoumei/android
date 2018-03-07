@@ -41,8 +41,8 @@
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <Button
-                        style="@style/ListNoExceptionButtonStyle"/>
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
 
                 <View
@@ -58,8 +58,9 @@
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <Button
-                        style="@style/ListNeedConfirmButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="true"/>
                 </LinearLayout>
 
                 <View

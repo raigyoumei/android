@@ -27,6 +27,7 @@
         <item name="android:paddingRight">5pt</item>
         -->
     </style>
+
     <style name="MyEditTextStyle" parent="android:Widget.EditText">
         <item name="android:textSize">40sp</item>
         <item name="android:paddingTop">5pt</item>
@@ -34,6 +35,7 @@
         <item name="android:paddingLeft">5pt</item>
         <item name="android:paddingRight">5pt</item>
     </style>
+
     <style name="MyTextViewStyle" parent="android:Widget.TextView">
         <item name="android:textSize">16sp</item>
         <item name="android:paddingTop">5pt</item>
@@ -64,6 +66,7 @@
         <item name="android:textSize">@dimen/text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="ListSubTextViewStyle" parent="android:Widget.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_weight">1</item>
@@ -76,27 +79,24 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:background">@drawable/toggle_btn_background</item>
+        <item name="android:textColor">@drawable/toggle_btn_text</item>
     </style>
 
-    <style name="ListOkButtonStyle" parent="ListButtonStyle">
-        <item name="android:background">#DDDDDD</item>
-        <item name="android:text">@string/action_ok</item>
+    <style name="ListNormalGoupButtonStyle" parent="ListButtonStyle">
+        <item name="android:textOff">@string/action_normal</item>
+        <item name="android:textOn">@string/action_go_up</item>
     </style>
 
-    <style name="ListNgButtonStyle" parent="ListButtonStyle">
-        <item name="android:background">#DD0000</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:text">@string/action_ng</item>
+    <style name="ListOkNgButtonStyle" parent="ListButtonStyle">
+        <item name="android:textOff">@string/action_ok</item>
+        <item name="android:textOn">@string/action_ng</item>
     </style>
 
-    <style name="ListNoExceptionButtonStyle" parent="ListOkButtonStyle">
+    <style name="ListNeedConfirmOrNotButtonStyle" parent="ListButtonStyle">
         <item name="android:layout_width">70dp</item>
-        <item name="android:text">@string/action_no_exception</item>
-    </style>
-
-    <style name="ListNeedConfirmButtonStyle" parent="ListNgButtonStyle">
-        <item name="android:layout_width">70dp</item>
-        <item name="android:text">@string/action_need_confirm</item>
+        <item name="android:textOff">@string/action_no_exception</item>
+        <item name="android:textOn">@string/action_need_confirm</item>
     </style>
 
     <style name="ListViewSeparator">

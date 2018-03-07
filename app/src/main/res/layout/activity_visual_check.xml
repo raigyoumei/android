@@ -46,8 +46,8 @@
                             android:text="@string/check_brake_pedal_info"/>
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListOkButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"/>
                 </LinearLayout>
 
                 <View
@@ -75,8 +75,8 @@
                             android:text="@string/check_park_info"/>
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListOkButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"/>
                 </LinearLayout>
 
                 <View
@@ -104,8 +104,8 @@
                             android:text="@string/check_prime_mover_info" />
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListOkButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"/>
                 </LinearLayout>
 
                 <View
@@ -133,8 +133,8 @@
                             android:text="@string/check_prime_mover_speed_info"/>
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListOkButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"/>
                 </LinearLayout>
 
                 <View
@@ -161,8 +161,9 @@
                             android:text="@string/check_window_washer_info"/>
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListNgButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
                 </LinearLayout>
 
                 <View
@@ -189,8 +190,9 @@
                             android:text="@string/check_wiper_info"/>
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListNgButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
                 </LinearLayout>
 
                 <View

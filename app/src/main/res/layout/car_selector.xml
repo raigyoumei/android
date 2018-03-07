@@ -18,10 +18,12 @@
         android:background="@color/colorGreen" />
 
     <TextView
+        android:id="@+id/car_selector_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:text="@string/car_selector_content"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <View
