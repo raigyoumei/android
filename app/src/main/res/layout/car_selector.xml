@@ -10,19 +10,18 @@
         android:layout_height="wrap_content"
         android:text="@string/car_selector_title"
         android:textColor="@color/colorGreen"
-        android:textSize="@dimen/title_text_size"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
+        style="@style/ListViewSeparator"
         android:background="@color/colorGreen" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/car_selector_content"
-        android:textSize="@dimen/title_text_size"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <View

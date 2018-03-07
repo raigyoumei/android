@@ -47,21 +47,21 @@
     <style name="ListTitleTextViewStyle" parent="android:Widget.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/text_size</item>
     </style>
 
     <style name="ListTextViewStyle" parent="android:Widget.TextView">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">3</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/text_size</item>
     </style>
 
     <style name="ListMainTextViewStyle" parent="android:Widget.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">0dp</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
     <style name="ListSubTextViewStyle" parent="android:Widget.TextView">
@@ -75,7 +75,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/text_size</item>
     </style>
 
     <style name="ListOkButtonStyle" parent="ListButtonStyle">
@@ -105,13 +105,25 @@
         <item name="android:background">@android:color/black</item>
     </style>
 
+    <style name="spinnerTheme" parent="android:Widget.Spinner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="titleTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <!-- list view style end -->
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:buttonStyle">@style/MyButtonStyle</item>
         <item name="editTextStyle">@style/MyEditTextStyle</item>
         <item name="android:textViewStyle">@style/MyTextViewStyle</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/text_size</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>

@@ -5,11 +5,8 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/menu_title"
-        android:textStyle="bold" />
+        style="@style/titleTextViewStyle"
+        android:text="@string/menu_title" />
 
     <ScrollView
         android:layout_width="match_parent"
