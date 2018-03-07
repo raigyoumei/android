@@ -60,8 +60,8 @@
     <string name="menu_title">メニュー</string>
     <string name="menu_call">点呼</string>
     <string name="menu_day_check"><Data><![CDATA[<font color="#000000"><b>日常点検</b></font>]]></Data></string>
-    <string name="menu_before_biz_call"><Data><![CDATA[<font color="#892C6A"><b>業務前</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
-    <string name="menu_after_biz_call"><Data><![CDATA[<font color="#1F6BCC"><b>業務後</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
+    <string name="menu_before_crew_call"><Data><![CDATA[<font color="#892C6A"><b>乗務前</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
+    <string name="menu_after_crew_call"><Data><![CDATA[<font color="#1F6BCC"><b>乗務後</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
 
     <!--　日常点検開始画面　-->
     <string name="day_check_start_title">点検メニュー</string>
@@ -100,18 +100,18 @@
 
     <!--　アルコールデータ測定画面　-->
     <string name="alcohol_measure_title">アルコールチェック</string>
-    <string name="alcohol_measure_title_before_biz">アルコールチェック（業務前）</string>
-    <string name="alcohol_measure_title_after_biz">アルコールチェック（業務後）</string>
+    <string name="alcohol_measure_title_before_crew">アルコールチェック（乗務前）</string>
+    <string name="alcohol_measure_title_after_crew">アルコールチェック（乗務後）</string>
     <string name="alcohol_sensor_spinner_label">アルコールセンター選択</string>
     <string name="alcohol_sensor_spinner_prompt">アルコールセンサーの任意番号</string>
     <string name="alcohol_measure_times">1/3回目</string>
 
     <string name="alcohol_measure_info">測定結果を表示する。\n\n表示項目\n    ・撮影画像\n    ・アルコールデータ\n    ・チェック日時</string>
 
-    <!-- （業務後）点呼結果確認画面　-->
+    <!-- （乗務後）点呼結果確認画面　-->
     <string name="call_confirm_title">入力完了</string>
     <string name="alcohol_check">アルコールチェック</string>
-    <!-- （業務前）点呼結果確認画面　-->
+    <!-- （乗務前）点呼結果確認画面　-->
     <string name="vital_sign_check">バイタルチェック</string>
     <string name="health_status_check">健康状態</string>
 

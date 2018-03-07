@@ -5,11 +5,8 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/menu_title"
-        android:textStyle="bold" />
+        style="@style/titleTextViewStyle"
+        android:text="@string/menu_title" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,20 +27,20 @@
                 android:text="@string/menu_day_check" />
 
             <Button
-                android:id="@+id/before_biz_call_button"
+                android:id="@+id/before_crew_call_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
-                android:text="@string/menu_before_biz_call" />
+                android:text="@string/menu_before_crew_call" />
 
             <Button
-                android:id="@+id/after_biz_call_button"
+                android:id="@+id/after_crew_call_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
-                android:text="@string/menu_after_biz_call" />
+                android:text="@string/menu_after_crew_call" />
         </LinearLayout>
     </ScrollView>
 

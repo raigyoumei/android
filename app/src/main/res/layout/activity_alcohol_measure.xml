@@ -9,12 +9,8 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/alcohol_measure_title"
-        android:textSize="@dimen/title_text_size"
-        android:textStyle="bold" />
+        style="@style/titleTextViewStyle"
+        android:text="@string/alcohol_measure_title"/>
 
     <LinearLayout
         android:id="@+id/spinner"
@@ -31,9 +27,7 @@
 
         <Spinner
             android:id="@+id/alcohol_sensor_spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/alcohol_sensor_spinner_prompt" />
+            style="@style/spinnerTheme" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +62,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -80,7 +73,7 @@
                 <TextView
                     android:id="@+id/result"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="200dp"
                     android:gravity="center_vertical"
                     android:text="@string/alcohol_measure_info"
                     android:textSize="14sp" />

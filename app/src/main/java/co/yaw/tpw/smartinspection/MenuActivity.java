@@ -14,8 +14,8 @@ public class MenuActivity extends AppCompatActivity {
 
     final Context context = this;
     private TextView dayCheckBtn;
-    private TextView beforeBizCallBtn;
-    private TextView afterBizCallBtn;
+    private TextView beforeCrewCallBtn;
+    private TextView afterCrewCallBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +23,12 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         dayCheckBtn = findViewById(R.id.day_check_button);
-        beforeBizCallBtn = findViewById(R.id.before_biz_call_button);
-        afterBizCallBtn = findViewById(R.id.after_biz_call_button);
+        beforeCrewCallBtn = findViewById(R.id.before_crew_call_button);
+        afterCrewCallBtn = findViewById(R.id.after_crew_call_button);
 
         dayCheckBtn.setText(Html.fromHtml(getResources().getString(R.string.menu_day_check)));
-        beforeBizCallBtn.setText(Html.fromHtml(getResources().getString(R.string.menu_before_biz_call)));
-        afterBizCallBtn.setText(Html.fromHtml(getResources().getString(R.string.menu_after_biz_call)));
+        beforeCrewCallBtn.setText(Html.fromHtml(getResources().getString(R.string.menu_before_crew_call)));
+        afterCrewCallBtn.setText(Html.fromHtml(getResources().getString(R.string.menu_after_crew_call)));
 
         dayCheckBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,16 +37,16 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        beforeBizCallBtn.setOnClickListener(new View.OnClickListener() {
+        beforeCrewCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startNextActivity("beforeBiz");
+                startNextActivity("beforeCrew");
             }
         });
-        afterBizCallBtn.setOnClickListener(new View.OnClickListener() {
+        afterCrewCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startNextActivity("afterBiz");
+                startNextActivity("afterCrew");
             }
         });
     }
