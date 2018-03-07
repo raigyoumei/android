@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yaw.tpw.smartinspection.R;
 
@@ -63,7 +64,8 @@ public class CarActivity extends AppCompatActivity implements AdapterView.OnItem
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (position > 0) {
-            popup();
+            String item = parent.getItemAtPosition(position).toString();
+            popup(item);
         }
     }
 
@@ -72,9 +74,11 @@ public class CarActivity extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
-    public void popup() {
+    public void popup(String carNumber) {
         LayoutInflater inflater = getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.car_selector, null);
+        TextView carSelectorContent = alertLayout.findViewById(R.id.car_selector_content);
+        carSelectorContent.setText("車両番号：" + carNumber + "\nが選択されています。");
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setView(alertLayout);
         alert.setCancelable(false);

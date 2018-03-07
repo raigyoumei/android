@@ -2,11 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:orientation="vertical">
 
     <TextView
         style="@style/titleTextViewStyle"
@@ -46,8 +42,8 @@
                             android:text="@string/check_brake_pedal_info"/>
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListOkButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"/>
                 </LinearLayout>
 
                 <View
@@ -75,8 +71,8 @@
                             android:text="@string/check_park_info"/>
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListOkButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"/>
                 </LinearLayout>
 
                 <View
@@ -104,8 +100,8 @@
                             android:text="@string/check_prime_mover_info" />
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListOkButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"/>
                 </LinearLayout>
 
                 <View
@@ -133,8 +129,8 @@
                             android:text="@string/check_prime_mover_speed_info"/>
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListOkButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"/>
                 </LinearLayout>
 
                 <View
@@ -161,8 +157,9 @@
                             android:text="@string/check_window_washer_info"/>
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListNgButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
                 </LinearLayout>
 
                 <View
@@ -189,8 +186,9 @@
                             android:text="@string/check_wiper_info"/>
                     </LinearLayout>
 
-                    <Button
-                        style="@style/ListNgButtonStyle" />
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
                 </LinearLayout>
 
                 <View
