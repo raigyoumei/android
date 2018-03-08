@@ -43,7 +43,8 @@
                     </LinearLayout>
 
                     <ToggleButton
-                        style="@style/ListOkNgButtonStyle"/>
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
                 </LinearLayout>
 
                 <View
@@ -72,7 +73,8 @@
                     </LinearLayout>
 
                     <ToggleButton
-                        style="@style/ListOkNgButtonStyle"/>
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
                 </LinearLayout>
 
                 <View
@@ -101,7 +103,8 @@
                     </LinearLayout>
 
                     <ToggleButton
-                        style="@style/ListOkNgButtonStyle"/>
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
                 </LinearLayout>
 
                 <View
@@ -130,7 +133,8 @@
                     </LinearLayout>
 
                     <ToggleButton
-                        style="@style/ListOkNgButtonStyle"/>
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
                 </LinearLayout>
 
                 <View
@@ -193,6 +197,534 @@
 
                 <View
                     style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_air_brake_stroke_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_air_brake_stroke_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_air_brake_drum_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_air_brake_drum_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_air_pressure_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_air_pressure_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_brake_valve_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_brake_valve_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_wind_washer_tank_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_wind_washer_tank_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_brake_reservoir_tank_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_brake_reservoir_tank_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_battery_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_battery_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_radiator_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_radiator_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_engine_oil_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_engine_oil_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_fan_belt_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_fan_belt_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_light_device_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_light_device_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_tire_air_pressure_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_tire_air_pressure_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_tire_crack_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_tire_crack_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_tire_degrade_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_tire_degrade_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_tire_groove_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_tire_groove_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_tire_nut_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_tire_nut_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_air_tank_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_air_tank_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/ListMainTextViewStyle"
+                            android:text="@string/check_warning_light_title"/>
+
+                        <TextView
+                            style="@style/ListSubTextViewStyle"
+                            android:text="@string/check_warning_light_info"/>
+                    </LinearLayout>
+
+                    <ToggleButton
+                        style="@style/ListOkNgButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator"/>
+
+
             </LinearLayout>
     </ScrollView>
 

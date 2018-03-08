@@ -34,6 +34,64 @@
     <string name="check_wiper_title">ワイパー</string>
     <string name="check_wiper_info">拭き取りの状態</string>
 
+    <!--add sato-->
+    <string name="check_air_brake_stroke_title">エアブレーキ・ペダル</string>
+    <string name="check_air_brake_stroke_info">ブレーキ・チャンバのロッドのストローク</string>
+
+    <string name="check_air_brake_drum_title">エアブレーキ・ペダル</string>
+    <string name="check_air_brake_drum_info">ドラムとライニングとのすき間</string>
+
+    <string name="check_air_pressure_title">空気圧力計</string>
+    <string name="check_air_pressure_info">空気圧力の上がり具合</string>
+
+    <string name="check_brake_valve_title">ブレーキ・バルブ</string>
+    <string name="check_brake_valve_info">排気音</string>
+
+    <string name="check_wind_washer_tank_title">ウインド・ウォッシャ・タンク</string>
+    <string name="check_wind_washer_tank_info">液量</string>
+
+    <string name="check_brake_reservoir_tank_title">ブレーキのリザーバ・タンク</string>
+    <string name="check_brake_reservoir_tank_info">液量</string>
+
+    <string name="check_battery_title">バッテリ</string>
+    <string name="check_battery_info">液量</string>
+
+    <string name="check_radiator_title">ラジエータなどの冷却装置</string>
+    <string name="check_radiator_info">水量</string>
+
+    <string name="check_engine_oil_title">潤滑装置</string>
+    <string name="check_engine_oil_info">エンジン・オイルの量</string>
+
+    <string name="check_fan_belt_title">ファン・ベルト</string>
+    <string name="check_fan_belt_info">張り具合、損傷</string>
+
+    <string name="check_light_device_title">灯火装置、方向指示器</string>
+    <string name="check_light_device_info">点灯・点灯具合、汚れ、損傷</string>
+
+    <string name="check_tire_air_pressure_title">タイヤ</string>
+    <string name="check_tire_air_pressure_info">空気圧</string>
+
+    <string name="check_tire_crack_title">タイヤ</string>
+    <string name="check_tire_crack_info">亀裂、損傷</string>
+
+    <string name="check_tire_degrade_title">タイヤ</string>
+    <string name="check_tire_degrade_info">異常な摩耗</string>
+
+    <string name="check_tire_groove_title">タイヤ</string>
+    <string name="check_tire_groove_info">溝の深さ</string>
+
+    <string name="check_tire_nut_title">タイヤ</string>
+    <string name="check_tire_nut_info">ホイール・ナット取付状態</string>
+
+    <string name="check_air_tank_title">エアタンク</string>
+    <string name="check_air_tank_info">タンク内の凝水</string>
+
+    <string name="check_warning_light_title">警告灯</string>
+    <string name="check_warning_light_info">点灯</string>
+
+
+    <!--ここまで-->
+
     <string name="check_body_temperature_title">体温</string>
     <string name="check_ｂlood_pressure_title">血圧</string>
     <string name="check_heartbeat_title">心拍</string>
@@ -67,7 +125,7 @@
     <!--　日常点検開始画面　-->
     <string name="day_check_start_title">点検メニュー</string>
     <string name="day_check_start_button">日常点検開始</string>
-    <string name="day_check_history_button"></string>
+    <string name="day_check_history_button">履歴</string>
 
     <!--　エンジンの始動画面-->
     <string name="engine_title">エンジンの始動</string>
