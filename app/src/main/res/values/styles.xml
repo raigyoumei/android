@@ -117,6 +117,29 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="bottomButtonStyle" parent="android:Widget.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
+
+    <style name="backButtonStyle" parent="android:Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:text">@string/action_back</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
+    <style name="nextButtonStyle" parent="android:Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:text">@string/action_next</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
     <!-- list view style end -->
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
