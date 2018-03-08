@@ -49,7 +49,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
@@ -90,6 +89,465 @@
                 style="@style/ListTitleTextViewStyle"
                 android:paddingLeft="20dp"
                 android:text="@string/engine_status" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/ListTitleTextViewStyle"
+                android:paddingLeft="20dp"
+                android:text="@string/brake_status" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/ListTitleTextViewStyle"
+                android:paddingLeft="20dp"
+                android:text="@string/battery_status" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/ListTitleTextViewStyle"
+                android:paddingLeft="20dp"
+                android:text="@string/tire_status" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/ListTitleTextViewStyle"
+                android:paddingLeft="20dp"
+                android:text="@string/transmission_status" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/ListTitleTextViewStyle"
+                android:paddingLeft="20dp"
+                android:text="@string/light_status" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="true"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/ListTitleTextViewStyle"
+                android:paddingLeft="20dp"
+                android:text="@string/wiper_status" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/ListTitleTextViewStyle"
+                android:paddingLeft="20dp"
+                android:text="@string/collision_avoidance_status" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/ListTitleTextViewStyle"
+                android:paddingLeft="20dp"
+                android:text="@string/air_bug_status" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/ListTitleTextViewStyle"
+                android:paddingLeft="20dp"
+                android:text="@string/air_conditioner_status" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_border_line"
+                android:layerType="software"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/visual_check" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="1dp"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/system_diag" />
+
+                    <ToggleButton
+                        style="@style/ListNeedConfirmOrNotButtonStyle"
+                        android:checked="false"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/ListTitleTextViewStyle"
+                android:paddingLeft="20dp"
+                android:text="@string/other_status" />
 
             <LinearLayout
                 android:layout_width="match_parent"
