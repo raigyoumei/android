@@ -8,6 +8,9 @@
         style="@style/titleTextViewStyle"
         android:text="@string/day_check_confirm_title"/>
 
+    <View
+        style="@style/ListViewSeparator" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,7 +24,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -46,10 +48,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/day_before_yesterday_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -67,8 +71,6 @@
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
 
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,10 +92,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/engine_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -110,9 +114,6 @@
                     <ToggleButton
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
-
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -135,10 +136,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/brake_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -155,9 +158,6 @@
                     <ToggleButton
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
-
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -180,10 +180,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/battery_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -200,9 +202,6 @@
                     <ToggleButton
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
-
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -226,10 +225,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/tire_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -246,9 +247,6 @@
                     <ToggleButton
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
-
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -272,10 +270,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/transmission_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -292,9 +292,6 @@
                     <ToggleButton
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
-
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -318,10 +315,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/light_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -340,8 +339,6 @@
                         android:checked="true"/>
                 </LinearLayout>
 
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -365,10 +362,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/wiper_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -385,9 +384,6 @@
                     <ToggleButton
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
-
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -411,10 +407,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/collision_avoidance_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -432,8 +430,6 @@
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
 
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -457,10 +453,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/air_bug_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -478,8 +476,6 @@
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
 
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -503,10 +499,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/air_conditioner_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -524,8 +522,6 @@
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
 
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -549,10 +545,12 @@
                 android:paddingLeft="20dp"
                 android:text="@string/other_status" />
 
+            <View
+                style="@style/ListViewSeparator" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_border_line"
                 android:layerType="software"
                 android:orientation="vertical">
 
@@ -569,9 +567,6 @@
                     <ToggleButton
                         style="@style/ListNeedConfirmOrNotButtonStyle"/>
                 </LinearLayout>
-
-                <View
-                    style="@style/ListViewSeparator" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
