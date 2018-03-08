@@ -29,6 +29,142 @@
 
                 <TextView
                     style="@style/ListTextViewStyle"
+                    android:text="@string/check_body_pain_title"/>
+
+                <ToggleButton
+                    style="@style/ListOkNgButtonStyle" />
+            </LinearLayout>
+
+            <View
+                style="@style/ListViewSeparator"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/ListTextViewStyle"
+                    android:text="@string/check_breath_title"/>
+
+                <ToggleButton
+                    style="@style/ListOkNgButtonStyle" />
+            </LinearLayout>
+
+            <View
+                style="@style/ListViewSeparator"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/ListTextViewStyle"
+                    android:text="@string/check_pules_title"/>
+
+                <ToggleButton
+                    style="@style/ListOkNgButtonStyle" />
+            </LinearLayout>
+
+            <View
+                style="@style/ListViewSeparator"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/ListTextViewStyle"
+                    android:text="@string/check_numbness_title"/>
+
+                <ToggleButton
+                    style="@style/ListOkNgButtonStyle" />
+            </LinearLayout>
+
+            <View
+                style="@style/ListViewSeparator"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/ListTextViewStyle"
+                    android:text="@string/check_talk_title"/>
+
+                <ToggleButton
+                    style="@style/ListOkNgButtonStyle" />
+            </LinearLayout>
+
+            <View
+                style="@style/ListViewSeparator"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/ListTextViewStyle"
+                    android:text="@string/check_eye_title"/>
+
+                <ToggleButton
+                    style="@style/ListOkNgButtonStyle" />
+            </LinearLayout>
+
+            <View
+                style="@style/ListViewSeparator"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/ListTextViewStyle"
+                    android:text="@string/check_headache_title"/>
+
+                <ToggleButton
+                    style="@style/ListOkNgButtonStyle" />
+            </LinearLayout>
+
+            <View
+                style="@style/ListViewSeparator"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/ListTextViewStyle"
+                    android:text="@string/check_heat_title"/>
+
+                <ToggleButton
+                    style="@style/ListOkNgButtonStyle" />
+            </LinearLayout>
+
+            <View
+                style="@style/ListViewSeparator"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    style="@style/ListTextViewStyle"
                     android:text="@string/check_fatigue_title"/>
 
                 <ToggleButton
@@ -66,8 +202,7 @@
                     android:text="@string/check_intestine_title"/>
 
                 <ToggleButton
-                    style="@style/ListOkNgButtonStyle"
-                    android:checked="true"/>
+                    style="@style/ListOkNgButtonStyle" />
             </LinearLayout>
 
             <View
@@ -100,8 +235,7 @@
                     android:text="@string/check_pain_title" />
 
                 <ToggleButton
-                    style="@style/ListOkNgButtonStyle"
-                    android:checked="true"/>
+                    style="@style/ListOkNgButtonStyle" />
             </LinearLayout>
 
             <View
