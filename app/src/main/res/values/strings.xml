@@ -67,6 +67,7 @@
     <!--　日常点検開始画面　-->
     <string name="day_check_start_title">点検メニュー</string>
     <string name="day_check_start_button">日常点検開始</string>
+    <string name="day_check_history_button"></string>
 
     <!--　エンジンの始動画面-->
     <string name="engine_title">エンジンの始動</string>

@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
+
             <Button
                 android:id="@+id/day_check_start_button"
                 android:layout_width="match_parent"
@@ -24,6 +25,16 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:text="@string/day_check_start_button" />
+
+            <Button
+                android:id="@+id/day_check_history_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="@string/day_check_history_button" />
+
+
         </LinearLayout>
     </ScrollView>
 
