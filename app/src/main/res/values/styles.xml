@@ -49,36 +49,39 @@
     <style name="ListTitleTextViewStyle" parent="android:Widget.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textSize">@dimen/list_title_text_size</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="ListTextViewStyle" parent="android:Widget.TextView">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">3</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textSize">@dimen/list_view_text_size</item>
     </style>
 
     <style name="ListMainTextViewStyle" parent="android:Widget.TextView">
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:textSize">@dimen/text_size</item>
+        <!--<item name="android:layout_height">0dp</item>-->
+        <item name="android:textSize">@dimen/list_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="ListSubTextViewStyle" parent="android:Widget.TextView">
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:textSize">12sp</item>
+        <!--<item name="android:layout_height">0dp</item>-->
+        <item name="android:textSize">@dimen/list_subtext_size</item>
     </style>
 
     <style name="ListButtonStyle" parent="android:Widget.Button">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textSize">@dimen/list_button_text_size</item>
         <item name="android:background">@drawable/toggle_btn_background</item>
         <item name="android:textColor">@drawable/toggle_btn_text</item>
     </style>

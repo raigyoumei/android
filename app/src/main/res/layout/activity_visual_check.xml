@@ -12,13 +12,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <View
-                    style="@style/ListViewSeparator"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_border_line"
+                    android:layerType="software"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="5dp">
+
+                        <TextView
+                            style="@style/ListTextViewStyle"
+                            android:text="@string/car_number" />
+
+                        <TextView
+                            style="@style/ListTextViewStyle"
+                            android:gravity="right"
+                            android:text="XXXXX" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--<View-->
+                    <!--style="@style/ListViewSeparator"/>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
