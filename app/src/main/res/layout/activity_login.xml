@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/login_text_view_height"
                     android:background="@drawable/edit_bg"
-                    android:hint="@string/login_prompt_car_number"
+                    android:hint="@string/login_prompt_jgsid"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -53,6 +53,25 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <!--add sato -->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/login_text_view_height"
+                    android:background="@drawable/edit_bg"
+                    android:hint="@string/login_prompt_password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"

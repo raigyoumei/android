@@ -50,6 +50,7 @@
     <string name="login_prompt_jgsid">事業者ID</string>
     <string name="login_prompt_car_number">車両番号</string>
     <string name="login_prompt_userid">ユーザーID</string>
+    <string name="login_prompt_password">パスワード</string>
 
     <!-- 認証画面　-->
     <string name="auth_title">認証のために免許証を撮影してください</string>
