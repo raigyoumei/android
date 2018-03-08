@@ -96,6 +96,17 @@
     <string name="check_ｂlood_pressure_title">血圧</string>
     <string name="check_heartbeat_title">心拍</string>
 
+    <!--add sato-->
+    <string name="check_body_pain_title">左胸、左肩から背中にかけて、痛みや圧迫感、締め付けられる感じがする</string>
+    <string name="check_breath_title">息切れ、呼吸がしにくい</string>
+    <string name="check_pules_title">脈が飛ぶ、胸部の不快感、動悸、めまいなどがある</string>
+    <string name="check_numbness_title">片方の手足、顔半分の麻痺、しびれを感じる</string>
+    <string name="check_talk_title">言語の障害が生じている</string>
+    <string name="check_eye_title">片方の目が見えない、物が二つに見える、視野の半分が欠けるなどの障害が生じている</string>
+    <string name="check_headache_title">強い頭痛がする</string>
+    <string name="check_heat_title">熱はないか</string>
+    <!--ここまで-->
+
     <string name="check_fatigue_title">疲れは感じないか</string>
     <string name="check_feeling_title">気分が悪くないか</string>
     <string name="check_intestine_title">腹痛・吐き気・下痢</string>
@@ -144,7 +155,7 @@
     <string name="car_selector_ok">OK</string>
 
     <!--　目視点検画面　-->
-    <string name="visual_check_title">運転席での点検</string>
+    <string name="visual_check_title">日常点検</string>
 
     <!--　日常点検結果確認画面　-->
     <string name="day_check_confirm_title">日常点検結果</string>
