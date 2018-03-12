@@ -25,10 +25,11 @@ public class CameraCom {
 
     private final static String TAG = CameraCom.class.getSimpleName();
 
+    public static final int MSG_IMAGE_CAPTURE = 2001;
+
     private CameraView mCameraView = null;
     private CameraKitEventCallback mCamerCallBack = null;
     private Activity mActivity = null;
-    private boolean mRandom = false;
     private byte[] mImageData = null;
     private String mImagePath = null;
     private long mRandomNum = 0;
@@ -46,14 +47,7 @@ public class CameraCom {
         mCameraView = cameraView;
 
         Random random=new Random();
-        mRandomNum = random.nextInt(50);
-    }
-
-
-    public void setRandom(boolean flag) {
-
-        Log.i(TAG, "setRandom");
-        mRandom = flag;
+        mRandomNum = random.nextInt(100);
     }
 
 
@@ -109,6 +103,8 @@ public class CameraCom {
                         null
                 );
 
+                mHandlerUtil.sendHandler(MSG_IMAGE_CAPTURE, mImageData);
+
             }
         };
 
@@ -146,37 +142,55 @@ public class CameraCom {
     }
 
 
-    public String captureImage() {
+    public String captureImageRandom() {
 
         long time = System.currentTimeMillis();
 
-        boolean capFlg = false;
-
-        if(!mRandom) {
-            capFlg = true;
-            mCapImage = false;
-        }
-
-        // ランダム撮影の場合
-        if((mRandom == true) && (time % mRandomNum == 0)){
-
-            if(!mCapImage) {
-                capFlg = true;
-                mCapImage = true;
-            }
-        }
-
-        // 最後の時、まだ撮影しない場合
-        if((mEndFlag) && (!mCapImage)){
-            capFlg = true;
-            mCapImage = true;
-        }
-
-        if(!capFlg){
+        if(mCapImage) {
             return null;
         }
 
-        String photoName = time + ".jpg";
+        // ランダム撮影、だ撮影しない場合
+        if((time% mRandomNum!= 0) &&(!mEndFlag)){
+            return null;
+        }
+
+        mCapImage = true;
+        mImagePath = getImageName();
+        if(mImagePath == null){
+            return null;
+        }
+
+        mCameraView.captureImage(mCamerCallBack);
+
+        return mImagePath;
+    }
+
+
+    public String captureImage() {
+
+        mImagePath = getImageName();
+        if(mImagePath == null){
+            return null;
+        }
+
+        mCameraView.captureImage(mCamerCallBack);
+
+        return mImagePath;
+    }
+
+
+
+    public byte[] getImageData() {
+        return mImageData;
+    }
+
+
+
+
+    private String getImageName(){
+
+        String name = System.currentTimeMillis() + ".jpg";
 
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "Camera");
         //カメラ画像を保存するディレクトリ
@@ -187,16 +201,9 @@ public class CameraCom {
             }
         }
 
-        mImagePath = mediaStorageDir.getPath() + File.separator + photoName;
-        mCameraView.captureImage(mCamerCallBack);
+        String path = mediaStorageDir.getPath() + File.separator + name;
 
-        return mImagePath;
-
-    }
-
-
-    public byte[] getImageData() {
-        return mImageData;
+        return path;
     }
 
 

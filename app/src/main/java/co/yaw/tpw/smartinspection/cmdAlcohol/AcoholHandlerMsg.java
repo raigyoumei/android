@@ -65,7 +65,6 @@ public class AcoholHandlerMsg extends Handler {
 
         mCameraView = cameraCom;
         mCameraView.initCameraCom(this);
-        mCameraView.setRandom(true);
     }
 
 
@@ -75,7 +74,7 @@ public class AcoholHandlerMsg extends Handler {
         Bundle ble = msg.getData();
         Object value = null;
 
-        Log.d(TAG, "handleMessage = " + msg.what);
+        Log.d(TAG, "handleMessage msg.what=" + msg.what);
 
         switch(msg.what){
             case AcoholCmd.MSG_COMMAND_STR:
@@ -120,6 +119,8 @@ public class AcoholHandlerMsg extends Handler {
                     mArulValue.setText((String) value);
                 }
 
+                mCameraView.captureImageRandom();
+
                 break;
 
             case AcoholCmd.MSG_COMMAND_VALUE_TEST_START:
@@ -139,7 +140,8 @@ public class AcoholHandlerMsg extends Handler {
                 }
 
                 mCameraView.setEndFlag(true);
-                mCameraView.captureImage();
+                mCameraView.captureImageRandom();
+                mCameraView.cameraStop();
 
                 break;
 
@@ -354,6 +356,16 @@ public class AcoholHandlerMsg extends Handler {
                 if(mTestStartBtn != null) {
                     mTestStartBtn.setEnabled(true);
                 }
+
+                break;
+
+
+            //撮影した写真データ
+            case CameraCom.MSG_IMAGE_CAPTURE:
+
+                Log.d(TAG, "CameraCom.MSG_IMAGE_CAPTURE msg.what=" + msg.what);
+
+                byte []image = ble.getByteArray(HandlerUtil.INFO);
 
                 break;
 
