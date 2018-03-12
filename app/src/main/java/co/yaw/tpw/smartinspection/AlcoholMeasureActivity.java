@@ -244,12 +244,12 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     // VIEW 初期化
     private void initView() {
 
-        TextView fwVersion = findViewById(R.id.fw_version);
+        //TextView fwVersion = findViewById(R.id.fw_version);
         TextView usageCount = findViewById(R.id.usge_count);
         TextView testMsg = findViewById(R.id.test_msg);
         TextView testValue = findViewById(R.id.test_value);
 
-        fwVersion.setText("");
+        //fwVersion.setText("");
         usageCount.setText("");
         testMsg.setText("");
         testValue.setText("");

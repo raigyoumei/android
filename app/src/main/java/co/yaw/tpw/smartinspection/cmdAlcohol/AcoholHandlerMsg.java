@@ -24,7 +24,7 @@ public class AcoholHandlerMsg extends Handler {
     private final static String TAG = AcoholHandlerMsg.class.getSimpleName();
 
     private TextView mMsgText = null;
-    private TextView mMsgVersion = null;
+    //private TextView mMsgVersion = null;
     private TextView mUsageCount = null;
     private TextView mArulValue = null;
     private Button mTestStartBtn = null;
@@ -42,7 +42,7 @@ public class AcoholHandlerMsg extends Handler {
 
         mActivity = activity;
 
-        mMsgVersion = mActivity.findViewById(R.id.fw_version);
+        //mMsgVersion = mActivity.findViewById(R.id.fw_version);
         mUsageCount = mActivity.findViewById(R.id.usge_count);
         mMsgText = mActivity.findViewById(R.id.test_msg);
         mArulValue = mActivity.findViewById(R.id.test_value);
@@ -97,9 +97,9 @@ public class AcoholHandlerMsg extends Handler {
                 value = ble.getString(HandlerUtil.INFO);
                 value = String.format(mActivity.getString(R.string.alcohol_test_FwVersion), (String)value);
 
-                if(mMsgVersion != null) {
-                    mMsgVersion.setText((String) value);
-                }
+                //if(mMsgVersion != null) {
+                //    mMsgVersion.setText((String) value);
+                //}
                 break
                         ;
 
@@ -194,9 +194,9 @@ public class AcoholHandlerMsg extends Handler {
                 value = ble.getString(HandlerUtil.INFO);
                 value = String.format(mActivity.getString(R.string.alcohol_test_voltage_ok), (String)value);
 
-                if(mMsgVersion != null) {
-                    mMsgVersion.append("\n" + value);
-                }
+                //if(mMsgVersion != null) {
+                //    mMsgVersion.append("\n" + value);
+                //}
                 break;
 
 
@@ -205,9 +205,9 @@ public class AcoholHandlerMsg extends Handler {
                 value = ble.getString(HandlerUtil.INFO);
                 value = String.format(mActivity.getString(R.string.alcohol_test_voltage_low), (String)value);
 
-                if(mMsgVersion != null) {
-                    mMsgVersion.append("\n" + value);
-                }
+                //if(mMsgVersion != null) {
+                //    mMsgVersion.append("\n" + value);
+                //}
 
                 break;
 
