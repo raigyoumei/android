@@ -214,6 +214,7 @@
     <string name="alcohol_test_scan_end">検索完了</string>
     <string name="alcohol_test_connect_ng">接続失敗</string>
     <string name="alcohol_test_connect">接続中</string>
+    <string name="alcohol_test_default_value">-.--</string>
 
     <!--　アルコールメッセージ（雷）add　end -->
 

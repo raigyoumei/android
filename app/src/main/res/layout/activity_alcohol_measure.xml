@@ -78,7 +78,7 @@
                 android:layout_weight="4"
                 android:gravity="right"
                 android:layout_height="match_parent"
-                android:text=""/>
+                android:text="@string/alcohol_test_default_value"/>
 
             <TextView
                 android:layout_width="wrap_content"
