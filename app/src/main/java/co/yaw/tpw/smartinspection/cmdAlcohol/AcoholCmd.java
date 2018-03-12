@@ -43,10 +43,11 @@ public class AcoholCmd extends BltComCmd {
 
     public static final int MSG_COMMAND_TEST_END = 119;
 
-        public static final int MSG_COMMAND_POWER_OFF = 120;
-
+    public static final int MSG_COMMAND_POWER_OFF = 120;
 
     private HandlerUtil mHandlerUtil = null;
+    private boolean mHowWarn = false;
+
 
     public AcoholCmd( Handler handler) {
         Log.i(TAG, "BaseAcoholCmd");
@@ -146,7 +147,7 @@ public class AcoholCmd extends BltComCmd {
 
         String data = hexStr.substring(6, hexStr.length() -2);
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_MSG_VERSION, data);
+        sendMassage(MSG_COMMAND_MSG_VERSION,data);
 
     }
 
@@ -193,7 +194,8 @@ public class AcoholCmd extends BltComCmd {
             waiteTime = "1";
         }
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_TEST_WAITE, waiteTime);
+        sendMassage(MSG_COMMAND_TEST_WAITE,waiteTime);
+
     }
 
 
@@ -217,7 +219,7 @@ public class AcoholCmd extends BltComCmd {
          加熱中の気圧検測値（P_Data）は0以外の時、警告必要
          */
         if (p_Data > 0){
-            mHandlerUtil.sendHandler(MSG_COMMAND_WARNNING_START_TEST_AL, p_Data + "");
+            sendMassage(MSG_COMMAND_WARNNING_START_TEST_AL,p_Data + "");
         }
 
     }
@@ -256,9 +258,9 @@ public class AcoholCmd extends BltComCmd {
         //気圧はp_Data <＝ 10  -> 0になる
         int p_Data = p_Data_1 > p_Data_1?p_Data_2:p_Data_1;
         if(p_Data <= 10){
-            mHandlerUtil.sendHandler(MSG_COMMAND_WARNNING_NO_BREATH);
+            sendMassage(MSG_COMMAND_WARNNING_NO_BREATH,null);
         }else{
-            mHandlerUtil.sendHandler(MSG_COMMAND_MSG_TEST);
+            sendMassage(MSG_COMMAND_MSG_TEST,null);
         }
 
         /*・アプリ側で表示必要
@@ -268,7 +270,7 @@ public class AcoholCmd extends BltComCmd {
         alcohol = alcohol <= 5 ? 0:alcohol;
         String alcoholStr = String.format("%.2f", alcohol/100.0).toString();
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_VALUE_TEST_AL, alcoholStr);
+        sendMassage(MSG_COMMAND_VALUE_TEST_AL, alcoholStr);
 
     }
 
@@ -292,9 +294,8 @@ public class AcoholCmd extends BltComCmd {
         alcohol = alcohol <= 5 ? 0:alcohol;
         String alcoholStr = String.format("%.2f", alcohol/100.0).toString();
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_VALUE_TEST_AL, alcoholStr);
-
-        mHandlerUtil.sendHandler(MSG_COMMAND_VALUE_TEST_END);
+        sendMassage(MSG_COMMAND_VALUE_TEST_AL, alcoholStr);
+        sendMassage(MSG_COMMAND_VALUE_TEST_END,null);
 
     }
 
@@ -309,11 +310,11 @@ public class AcoholCmd extends BltComCmd {
             return;
         }
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_VALUE_TEST_START);
-
+        sendMassage(MSG_COMMAND_VALUE_TEST_START, null);
     }
 
-    // 検測開始した後、気体が入らない場合に警告
+
+    // 検測開始した後、異常終了の警告
     private void acoholCmdProcEAE51B(byte[] value) {
 
         if(value.length < 11){
@@ -322,8 +323,8 @@ public class AcoholCmd extends BltComCmd {
             return;
         }
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_WARNNING_TEST_END);
-
+        sendMassage(MSG_COMMAND_WARNNING_TEST_END, null);
+        mHowWarn = false;
     }
 
 
@@ -348,8 +349,7 @@ public class AcoholCmd extends BltComCmd {
 
         Log.e(TAG, "acoholCmdProcEAE516 cnt ="+cnt);
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_MSG_TEST_COUNT, cnt+"");
-
+        sendMassage(MSG_COMMAND_MSG_TEST_COUNT, cnt+"");
     }
 
 
@@ -365,7 +365,7 @@ public class AcoholCmd extends BltComCmd {
         int cnt = value[3] & 0x00FF;
         cnt = cnt - 0x80;
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_WARNNING_TEST_START_AHL, cnt+"");
+        sendMassage(MSG_COMMAND_WARNNING_TEST_START_AHL, cnt+"");
 
     }
 
@@ -397,8 +397,13 @@ public class AcoholCmd extends BltComCmd {
 
         String voltageStr = String.format("%.2f", voltage/100.0).toString();
 
-        mHandlerUtil.sendHandler(msgType, voltageStr);
+        sendMassage(msgType, voltageStr);
 
+        if(flag == 1) {
+            mHowWarn = true;
+        }else {
+            mHowWarn = false;
+        }
     }
 
 
@@ -422,13 +427,13 @@ public class AcoholCmd extends BltComCmd {
         ※0X13～1F　→　未使用
          */
         if(flag == 0X10){
-            mHandlerUtil.sendHandler(MSG_COMMAND_WARNNING_BLOWING);
+            sendMassage(MSG_COMMAND_WARNNING_BLOWING, null);
         }
         else if(flag == 0X11){
-            mHandlerUtil.sendHandler(MSG_COMMAND_WARNNING_COUNT_OVER);
+            sendMassage(MSG_COMMAND_WARNNING_COUNT_OVER, null);
         }
         else if(flag == 0X12){
-            mHandlerUtil.sendHandler(MSG_COMMAND_WARNNING_IC_READ);
+            sendMassage(MSG_COMMAND_WARNNING_IC_READ, null);
         }else{}
 
     }
@@ -443,8 +448,8 @@ public class AcoholCmd extends BltComCmd {
             return;
         }
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_TEST_END);
-
+        sendMassage(MSG_COMMAND_TEST_END, null);
+        mHowWarn = false;
     }
 
 
@@ -457,15 +462,25 @@ public class AcoholCmd extends BltComCmd {
             return;
         }
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_POWER_OFF);
+        sendMassage(MSG_COMMAND_POWER_OFF, null);
+        mHowWarn = false;
 
     }
 
 
     public void sendMassage(int type, String msg) {
-        //Log.i(TAG, "AcoholCmdProc");
-        mHandlerUtil.sendHandler(type, msg);
-    }
 
+        if(mHowWarn){
+            Log.e(TAG, "Low warnning type="+type);
+            return;
+        }
+
+        if(msg == null) {
+            mHandlerUtil.sendHandler(type);
+        }else{
+            //Log.i(TAG, "AcoholCmdProc");
+            mHandlerUtil.sendHandler(type, msg);
+        }
+    }
 
 }
