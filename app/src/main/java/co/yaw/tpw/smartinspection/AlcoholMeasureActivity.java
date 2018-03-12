@@ -123,7 +123,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         alcoholSensorSpinner.setOnItemSelectedListener(this);
 
         List<String> categories = new ArrayList<String>();
-//        categories.add(getResources().getString(R.string.alcohol_sensor_spinner_prompt));
+        categories.add(getResources().getString(R.string.alcohol_sensor_spinner_label));
 //        categories.add("ES3256151SDF\n thidsdjslafdj");
 //        categories.add("FS3256151SDF");
 //        categories.add("GS3256151SDF");
@@ -149,11 +149,12 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         Log.d(TAG, "onItemSelected position="+position);
 
-        mSelectDevice = parent.getItemAtPosition(position).toString();
-
         if(position > 0){
-            //String name = parent.getItemAtPosition(position).toString();
-            //Toast.makeText(parent.getContext(), "選択: " + name, Toast.LENGTH_LONG).show();
+
+            mSelectDevice = parent.getItemAtPosition(position).toString();
+
+        }else{
+            mSelectDevice = null;
         }
     }
 

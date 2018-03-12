@@ -200,7 +200,7 @@
     <string name="alcohol_test_end_ok">計測が完了しました</string>
     <string name="alcohol_test_end_no_breath">異常終了しました</string>
     <string name="alcohol_test_testing">測定中</string>
-    <string name="alcohol_test_usage_count">使用回数:%1$s</string>
+    <string name="alcohol_test_usage_count">使用回数:%1$s回</string>
     <string name="alcohol_test_warnning_start_alcohol">準備中です。まだ息を吹きかけないで下さい</string>
 
     <string name="alcohol_test_voltage_ok">正常電圧:%1$sV</string>

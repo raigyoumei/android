@@ -284,7 +284,9 @@ public class AcoholHandlerMsg extends Handler {
                 }
 
                 if(mDeviceList != null) {
+                    String flag = mDeviceList.get(0);
                     mDeviceList.clear();
+                    mDeviceList.add(flag);
                     mArrayAdapter.notifyDataSetChanged();
                 }
 
