@@ -139,9 +139,7 @@ public class AcoholHandlerMsg extends Handler {
                     mMsgText.setText(mActivity.getString(R.string.alcohol_test_end_ok));
                 }
 
-                mCameraView.setEndFlag(true);
-                mCameraView.captureImageRandom();
-                mCameraView.cameraStop();
+                mCameraView.captureImageEnd();
 
                 break;
 
@@ -158,6 +156,8 @@ public class AcoholHandlerMsg extends Handler {
                 if(mMsgText != null) {
                     mMsgText.setText(mActivity.getString(R.string.alcohol_test_end_no_breath));
                 }
+
+                mCameraView.cameraStop();
 
                 break;
 
@@ -271,7 +271,7 @@ public class AcoholHandlerMsg extends Handler {
                     mTestStartBtn.setEnabled(true);
                 }
 
-                mCameraView.cameraStop();
+                //mCameraView.cameraStop();
 
                 break;
 

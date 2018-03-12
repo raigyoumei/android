@@ -137,6 +137,8 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         CameraView camera = (CameraView) findViewById(R.id.camera);
 
         mCameraCom= new CameraCom(this, camera);
+        mCameraCom.setStopFlag(true);
+
         mAcoholHandlerMsg = new AcoholHandlerMsg(this);
         mAcoholHandlerMsg.initDeviceAdapter(categories, dataAdapter);
         mAcoholHandlerMsg.setCameraView(mCameraCom);

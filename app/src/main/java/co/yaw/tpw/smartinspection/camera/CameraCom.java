@@ -34,7 +34,7 @@ public class CameraCom {
     private String mImagePath = null;
     private long mRandomNum = 0;
     private boolean mCapImage = false;
-    private boolean mEndFlag = false;
+    private boolean mStopFlag = false;
 
     private HandlerUtil mHandlerUtil = null;
 
@@ -48,6 +48,10 @@ public class CameraCom {
 
         Random random=new Random();
         mRandomNum = random.nextInt(100);
+    }
+
+    public void setStopFlag(boolean flag){
+        mStopFlag = flag;
     }
 
 
@@ -90,7 +94,7 @@ public class CameraCom {
                     fos.close();
                 } catch (Exception e) {
 
-                    Log.e(TAG, "Exception="+e.toString());
+                    Log.e(TAG, "Exception=" + e.toString());
 
                     e.printStackTrace();
                 }
@@ -105,6 +109,10 @@ public class CameraCom {
 
                 mHandlerUtil.sendHandler(MSG_IMAGE_CAPTURE, mImageData);
 
+                if (mStopFlag){
+                    mCameraView.stop();
+                }
+
             }
         };
 
@@ -116,8 +124,6 @@ public class CameraCom {
         Log.i(TAG, "cameraStart");
 
         mCapImage = false;
-        mEndFlag = false;
-
         mCameraView.start();
     }
 
@@ -127,18 +133,8 @@ public class CameraCom {
         Log.i(TAG, "cameraStop");
 
         mCapImage = false;
-        mEndFlag = false;
-
         mCameraView.stop();
 
-    }
-
-
-
-    public void setEndFlag(boolean endFlag) {
-
-        Log.i(TAG, "setEndFlag");
-        mEndFlag = endFlag;
     }
 
 
@@ -151,7 +147,7 @@ public class CameraCom {
         }
 
         // ランダム撮影、だ撮影しない場合
-        if((time% mRandomNum!= 0) &&(!mEndFlag)){
+        if(time% mRandomNum!= 0){
             return null;
         }
 
@@ -161,10 +157,40 @@ public class CameraCom {
             return null;
         }
 
-        mCameraView.captureImage(mCamerCallBack);
+        try{
+            mCameraView.captureImage(mCamerCallBack);
+
+        } catch (Exception e){
+            Log.e(TAG, "Exception="+e.toString());
+        }
 
         return mImagePath;
     }
+
+
+
+    public String captureImageEnd() {
+
+        if(mCapImage) {
+            return null;
+        }
+
+        mCapImage = true;
+        mImagePath = getImageName();
+        if(mImagePath == null){
+            return null;
+        }
+
+        try{
+            mCameraView.captureImage(mCamerCallBack);
+
+        } catch (Exception e){
+            Log.e(TAG, "Exception="+e.toString());
+        }
+
+        return mImagePath;
+    }
+
 
 
     public String captureImage() {
@@ -174,17 +200,15 @@ public class CameraCom {
             return null;
         }
 
-        mCameraView.captureImage(mCamerCallBack);
+        try{
+            mCameraView.captureImage(mCamerCallBack);
+
+        } catch (Exception e){
+            Log.e(TAG, "Exception="+e.toString());
+        }
 
         return mImagePath;
     }
-
-
-
-    public byte[] getImageData() {
-        return mImageData;
-    }
-
 
 
 
