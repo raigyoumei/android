@@ -10,15 +10,11 @@ import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,7 +46,9 @@ public class BltDeviceUtil {
 
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
-    public static String PAIR_PWD = "0000";
+    public static final String PAIR_PWD = "0000";
+    private static final String SPIT_STR = "   ";
+
     private String mDeviceName = null;
     private boolean mScan = false;
 
@@ -101,9 +99,9 @@ public class BltDeviceUtil {
 
         for (BluetoothDevice device:mBluetoothDeviceList){
 
-            String nameAdr = device.getName()+"\n"+ device.getAddress();
+            String nameAdr = device.getName()+ SPIT_STR + device.getAddress();
 
-            if (name.equals(nameAdr)){
+            if (name.equals(nameAdr.trim())){
 
                 ret = mBluetoothAdapter.getRemoteDevice(device.getAddress());
                 break;
@@ -115,6 +113,7 @@ public class BltDeviceUtil {
 
 
     public boolean initBuleToothDevice(Handler handler, BltComCmd baseSensorCmd) {
+
         Log.i(TAG, "initBuleToothDevice");
 
         mHandler = handler;
@@ -143,7 +142,7 @@ public class BltDeviceUtil {
         }
 
         // auto pair
-        autoBltPair();
+        addReceiver();
 
         return true;
 
@@ -151,7 +150,7 @@ public class BltDeviceUtil {
 
 
 
-    private void autoBltPair(){
+    private void addReceiver(){
 
         mReceiverUtil = new BltCntReceiverUtil(mHandler, PAIR_PWD);
 
@@ -160,7 +159,19 @@ public class BltDeviceUtil {
 
         intent.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
         intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-        mActivity.getBaseContext().registerReceiver(mReceiverUtil, intent);
+        mActivity.registerReceiver(mReceiverUtil, intent);
+
+        Log.d(TAG, "mActivity.registerReceiver call");
+
+    }
+
+
+
+    public void removeReceiver(){
+
+        Log.d(TAG, "mActivity.removeReceiver call");
+
+        mActivity.unregisterReceiver(mReceiverUtil);
     }
 
 
@@ -210,9 +221,9 @@ public class BltDeviceUtil {
 
         for (BluetoothDevice device:mBluetoothDeviceList){
 
-            String nameAdr = device.getName()+"\n"+ device.getAddress();
+            String nameAdr = device.getName()+ SPIT_STR + device.getAddress();
 
-            if (name.equals(nameAdr)){
+            if (name.equals(nameAdr.trim())){
 
                 device = mBluetoothAdapter.getRemoteDevice(device.getAddress());
 
@@ -254,24 +265,34 @@ public class BltDeviceUtil {
                             Log.d(TAG, "device name: " + name);
                             Log.d(TAG, "device ID: " + device.getAddress());
 
-                            if (name == null) {
-                                return;
-                            }
+//                            if (name == null) {
+//                                return;
+//                            }
 
                             //mHandlerUtil.sendHandler(MSG_DEVACE_FIND, name);
+                            boolean addFlg = false;
 
-                            if((mDeviceName != null) && (name.startsWith(mDeviceName))){
-                                //String adr = "EF:F9:C9:82:DD:43";
+                            if(mDeviceName == null){
+                                addFlg = true;
+                            }
 
-                                String listName = name+"\n"+device.getAddress();
+                            if((mDeviceName != null)
+                                    && (name != null)
+                                    && (name.startsWith(mDeviceName))) {
+                                addFlg = true;
+                            }
 
-                                if(getblueDevice(listName) != null) {
+                            if(addFlg) {
+                                String deviceName = name + SPIT_STR + device.getAddress();
+                                deviceName = deviceName.trim();
+
+                                if (getblueDevice(deviceName) != null) {
                                     return;
                                 }
 
-                                if(mBluetoothDeviceList.indexOf(device) == -1) {
+                                if (mBluetoothDeviceList.indexOf(device) == -1) {
                                     mBluetoothDeviceList.add(device);
-                                    mHandlerUtil.sendHandler(MSG_DEVACE_FIND, listName);
+                                    mHandlerUtil.sendHandler(MSG_DEVACE_FIND, deviceName);
                                 }
 
                                 //BltBandUtil.bltBond(device, PAIR_PWD);

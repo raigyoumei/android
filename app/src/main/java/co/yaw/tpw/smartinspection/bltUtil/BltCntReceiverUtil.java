@@ -1,8 +1,6 @@
 package co.yaw.tpw.smartinspection.bltUtil;
 
 
-
-import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
