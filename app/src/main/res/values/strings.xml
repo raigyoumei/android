@@ -192,6 +192,35 @@
 
     <string name="alcohol_measure_info">測定結果を表示する。\n\n表示項目\n    ・撮影画像\n    ・アルコールデータ\n    ・チェック日時</string>
 
+
+    <!--　アルコールメッセージ（雷）add　start -->
+    <string name="alcohol_test_FwVersion">F/W version:%1$s</string>
+    <string name="alcohol_test_reserve">準備中:%1$s</string>
+    <string name="alcohol_test_start">息を吹きかけてください</string>
+    <string name="alcohol_test_end_ok">計測が完了しました</string>
+    <string name="alcohol_test_end_no_breath">異常終了しました</string>
+    <string name="alcohol_test_testing">測定中</string>
+    <string name="alcohol_test_usage_count">使用回数:%1$s</string>
+    <string name="alcohol_test_warnning_start_alcohol">準備中です。まだ息を吹きかけないで下さい</string>
+
+    <string name="alcohol_test_voltage_ok">正常電圧:%1$sV</string>
+    <string name="alcohol_test_voltage_low">低電圧:%1$sV</string>
+
+    <string name="alcohol_test_warnning_blowing">息の吹き方が間違っています</string>
+    <string name="alcohol_test_warnning_usage_over">使用回数が2000回を超えました</string>
+    <string name="alcohol_test_warnning_ic_read">IC読み込みができません</string>
+
+    <string name="alcohol_test_scan_start">アルコールセンサー検索中</string>
+    <string name="alcohol_test_scan_end">検索完了</string>
+    <string name="alcohol_test_connect_ng">接続失敗</string>
+    <string name="alcohol_test_connect">接続中</string>
+
+    <!--　アルコールメッセージ（雷）add　end -->
+
+
+
+
+
     <!-- （乗務後）点呼結果確認画面　-->
     <string name="call_confirm_title">入力完了</string>
     <string name="alcohol_check">アルコールチェック</string>
