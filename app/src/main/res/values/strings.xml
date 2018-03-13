@@ -251,6 +251,19 @@
     <string name="vital_test_end_ng">異常終了</string>
     <string name="vital_test_connect">接続中</string>
 
+    <string name="vital_test_stress_no">no to minimal stress</string>
+    <string name="vital_test_stress_low">low stress</string>
+    <string name="vital_test_stress_mod">moderate stress</string>
+    <string name="vital_test_stress_stressed">stressed</string>
+    <string name="vital_test_stress_highly">highly stressed</string>
+
+    <string name="vital_test_mood_calm">calm</string>
+    <string name="vital_test_mood_relaxed">relaxed</string>
+    <string name="vital_test_mood_balance">balanced</string>
+    <string name="vital_test_mood_motivated">motivated</string>
+    <string name="vital_test_mood_excited">agitated/anxiety/excited</string>
+
+
     <string name="vital_sign_measure_title">バイタルチェックの申告</string>
 
     <!--　健康状態登録画面　-->
