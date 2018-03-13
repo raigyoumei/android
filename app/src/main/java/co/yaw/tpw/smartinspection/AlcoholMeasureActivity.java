@@ -26,6 +26,7 @@ import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
 import co.yaw.tpw.smartinspection.camera.CameraCom;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholCmd;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholHandlerMsg;
+import co.yaw.tpw.smartinspection.maskview.CameraMaskView;
 
 import static android.util.Log.d;
 
@@ -37,6 +38,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     final Context context = this;
     private Button backBtn;
     private Button nextBtn;
+    private TextView crewInfoTv;
     private Class<?> forwardCls = null;
     private Spinner alcoholSensorSpinner;
 
@@ -84,6 +86,13 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
                 startActivity(intent);
             }
         });
+
+        crewInfoTv = findViewById(R.id.crew_info);
+        if (forwardCls == VitalMeasureActivity.class) {
+            crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
+        } else {
+            crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
+        }
 
 
         mStartBtn = findViewById(R.id.measure_button);
@@ -136,7 +145,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         alcoholSensorSpinner.setAdapter(dataAdapter);
 
         // アルコール一覧表示の初期化
-        CameraView camera = (CameraView) findViewById(R.id.camera);
+        CameraMaskView camera = (CameraMaskView) findViewById(R.id.camera);
 
         mCameraCom= new CameraCom(this, camera);
         mCameraCom.setStopFlag(true);
