@@ -1,6 +1,5 @@
 package co.yaw.tpw.smartinspection.maskview;
 
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
@@ -14,12 +13,7 @@ import android.widget.TextView;
 import com.wonderkiln.camerakit.CameraView;
 import com.yaw.tpw.smartinspection.R;
 
-/**
- * Created by renxiaodong on 2018/03/12.
- */
-
 public class CameraMaskView extends CameraView {
-    static private TextView tv;
     public CameraMaskView(@NonNull Context context) {
         super(context);
     }
@@ -64,13 +58,13 @@ public class CameraMaskView extends CameraView {
 
     private void show() {
         setVisibility(VISIBLE);
-        tv = getRootView().findViewById(R.id.cameraMessage);
+        TextView tv = getRootView().findViewById(R.id.cameraMessage);
         tv.setVisibility(INVISIBLE);
     }
 
     private void hide() {
         setVisibility(INVISIBLE);
-        tv = getRootView().findViewById(R.id.cameraMessage);
+        TextView tv = getRootView().findViewById(R.id.cameraMessage);
         tv.setVisibility(VISIBLE);
     }
 
