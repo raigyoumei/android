@@ -12,13 +12,13 @@ import android.util.Log;
 import com.wonderkiln.camerakit.CameraKit;
 import com.wonderkiln.camerakit.CameraKitEventCallback;
 import com.wonderkiln.camerakit.CameraKitImage;
-import com.wonderkiln.camerakit.CameraView;
 
 import java.io.File;
 import java.io.OutputStream;
 import java.util.Random;
 
 import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
+import co.yaw.tpw.smartinspection.maskview.CameraMaskView;
 
 
 public class CameraCom {
@@ -27,9 +27,10 @@ public class CameraCom {
 
     public static final int MSG_IMAGE_CAPTURE = 2001;
 
-    private CameraView mCameraView = null;
+    private CameraMaskView mCameraView = null;
     private CameraKitEventCallback mCamerCallBack = null;
     private Activity mActivity = null;
+    private boolean mRandom = false;
     private byte[] mImageData = null;
     private String mImagePath = null;
     private long mRandomNum = 0;
@@ -39,7 +40,7 @@ public class CameraCom {
     private HandlerUtil mHandlerUtil = null;
 
 
-    public CameraCom(Activity activity, CameraView cameraView) {
+    public CameraCom(Activity activity, CameraMaskView cameraView) {
 
         Log.i(TAG, "cameraCom");
 

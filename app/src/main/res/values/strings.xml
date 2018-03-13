@@ -184,12 +184,15 @@
 
     <!--　アルコールデータ測定画面　-->
     <string name="alcohol_measure_title">アルコールチェック</string>
+    <string name="alcohol_measure_crew_info_before">乗務前</string>
+    <string name="alcohol_measure_crew_info_after">乗務後</string>
     <string name="alcohol_measure_title_before_crew">アルコールチェック（乗務前）</string>
     <string name="alcohol_measure_title_after_crew">アルコールチェック（乗務後）</string>
     <string name="alcohol_sensor_spinner_label">アルコールセンター選択</string>
     <string name="alcohol_sensor_spinner_prompt">アルコールセンサーの任意番号</string>
-    <string name="alcohol_measure_times">1/3回目</string>
-
+    <string name="alcohol_measure_used_times">使用回数:2000回</string>
+    <string name="alcohol_measure_message">メッセージ</string>
+    <string name="alcohol_measure_camera_message">スマホインカメラの画像</string>
     <string name="alcohol_measure_info">測定結果を表示する。\n\n表示項目\n    ・撮影画像\n    ・アルコールデータ\n    ・チェック日時</string>
 
 
