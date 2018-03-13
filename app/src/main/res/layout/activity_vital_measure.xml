@@ -78,10 +78,10 @@
 
                 <TextView
                     style="@style/vitalTitleTextStyle"
-                    android:text="@string/vital_test_b_heart_rate" />
+                    android:text="@string/vital_test_r_heart_rate" />
 
                 <TextView
-                    android:id="@+id/test_b_heart_rate"
+                    android:id="@+id/test_r_heart_rate"
                     style="@style/vitalValueTextStyle"
                     android:text="@string/vital_test_default_value" />
 

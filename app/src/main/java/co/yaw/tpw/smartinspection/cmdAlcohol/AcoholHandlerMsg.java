@@ -19,7 +19,7 @@ import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
 import co.yaw.tpw.smartinspection.camera.CameraCom;
 
 
-public class AcoholHandlerMsg extends Handler {
+public class AcoholHandlerMsg extends HandlerUtil {
 
     private final static String TAG = AcoholHandlerMsg.class.getSimpleName();
 
@@ -33,7 +33,6 @@ public class AcoholHandlerMsg extends Handler {
     private List<String> mDeviceList = null;
     private ArrayAdapter mArrayAdapter = null;
     private CameraCom mCameraView = null;
-
 
 
     public AcoholHandlerMsg(Activity activity) {

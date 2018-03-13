@@ -6,11 +6,12 @@ public class EcgData implements Runnable {
     private int key = 0;
     private Object data = null;
 
-    public EcgData(int k, Object d) {
 
+    public EcgData(int k, Object d) {
         key = k;
         data = d;
     }
+
 
     @Override
     public void run() {
