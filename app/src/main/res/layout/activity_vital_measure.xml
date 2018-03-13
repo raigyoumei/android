@@ -6,7 +6,7 @@
 
     <TextView
         style="@style/titleTextViewStyle"
-        android:text="@string/vital_measure_title"/>
+        android:text="@string/vital_measure_title" />
 
     <LinearLayout
         android:id="@+id/spinner"
@@ -25,16 +25,16 @@
             android:orientation="horizontal">
 
             <TextView
-            android:layout_width="wrap_content"
-            android:layout_weight="5"
-            android:gravity="right"
-            android:layout_height="match_parent"
-            android:text=""/>
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="" />
 
             <Button
                 android:id="@+id/measure_button"
                 style="?android:textAppearanceSmall"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:text="@string/action_measure"
@@ -47,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
+
         <LinearLayout
             android:id="@+id/msginfo"
             android:layout_width="match_parent"
@@ -54,11 +55,6 @@
             android:orientation="vertical">
 
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:gravity="right"-->
-                <!--android:orientation="horizontal">-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,103 +67,71 @@
                 <TextView
                     android:id="@+id/test_heart_rate"
                     style="@style/vitalValueTextStyle"
-                    android:text="@string/vital_test_default_value"
-                    />
-
+                    android:text="@string/vital_test_default_value" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="right"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="right"
+                    style="@style/vitalTitleTextStyle"
                     android:text="@string/vital_test_b_heart_rate" />
 
                 <TextView
                     android:id="@+id/test_b_heart_rate"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="left"
-                    android:layout_height="match_parent"
-                    android:text="@string/vital_test_default_value"/>
+                    style="@style/vitalValueTextStyle"
+                    android:text="@string/vital_test_default_value" />
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="right"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="right"
-                    android:layout_height="match_parent"
+                    style="@style/vitalTitleTextStyle"
                     android:text="@string/vital_test_stress"/>
 
                 <TextView
                     android:id="@+id/test_stress"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="left"
-                    android:layout_height="match_parent"
-                    android:text="@string/vital_test_default_value"/>
+                    style="@style/vitalValueTextStyle"
+                    android:text="@string/vital_test_default_value" />
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="right"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="right"
-                    android:layout_height="match_parent"
+                    style="@style/vitalTitleTextStyle"
                     android:text="@string/vital_test_mood"/>
 
                 <TextView
                     android:id="@+id/test_mood"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="left"
-                    android:layout_height="match_parent"
-                    android:text="@string/vital_test_default_value"/>
+                    style="@style/vitalValueTextStyle"
+                    android:text="@string/vital_test_default_value" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="right"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="right"
-                    android:text="@string/vital_test_signal_quality" />
+                    style="@style/vitalTitleTextStyle"
+                    android:text="@string/vital_test_signal_quality"/>
 
                 <TextView
                     android:id="@+id/test_signal_quality"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="left"
-                    android:layout_height="match_parent"
-                    android:text="@string/vital_test_default_value"/>
+                    style="@style/vitalValueTextStyle"
+                    android:text="@string/vital_test_default_value" />
 
             </LinearLayout>
 
@@ -190,7 +154,7 @@
 
         <Button
             android:id="@+id/next_button"
-            style="@style/nextButtonStyle"/>
+            style="@style/nextButtonStyle" />
     </LinearLayout>
 
 
