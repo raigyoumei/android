@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.neurosky.connection.TgStreamReader;
 import com.neurosky.ecg_algo.NeuroSkyECG;
 import com.neurosky.ecg_algo.NeuroSkyECGCallback;
 import com.yaw.tpw.smartinspection.R;
@@ -68,6 +69,9 @@ public class EcgProcess {
 
     }
 
+    public String getNskECGVersion() {
+        return mNskECG.getVersion();
+    }
 
     public EcgConnect getEcgConnect() {
         return mEcgConnect;
