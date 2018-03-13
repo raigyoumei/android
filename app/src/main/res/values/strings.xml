@@ -93,7 +93,8 @@
     <!--ここまで-->
 
     <string name="check_body_temperature_title">体温</string>
-    <string name="check_ｂlood_pressure_title">血圧</string>
+    <string name="check_max_blood_pressure_title">最高血圧</string>
+    <string name="check_min_blood_pressure_title">最高血圧</string>
     <string name="check_heartbeat_title">心拍</string>
 
     <!--add sato-->
