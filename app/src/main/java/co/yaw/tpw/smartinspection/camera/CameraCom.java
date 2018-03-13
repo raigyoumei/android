@@ -12,7 +12,6 @@ import android.util.Log;
 import com.wonderkiln.camerakit.CameraKit;
 import com.wonderkiln.camerakit.CameraKitEventCallback;
 import com.wonderkiln.camerakit.CameraKitImage;
-import com.wonderkiln.camerakit.CameraView;
 
 import java.io.File;
 import java.io.OutputStream;
@@ -25,6 +24,8 @@ import co.yaw.tpw.smartinspection.maskview.CameraMaskView;
 public class CameraCom {
 
     private final static String TAG = CameraCom.class.getSimpleName();
+
+    public static final int MSG_IMAGE_CAPTURE = 2001;
 
     private CameraMaskView mCameraView = null;
     private CameraKitEventCallback mCamerCallBack = null;

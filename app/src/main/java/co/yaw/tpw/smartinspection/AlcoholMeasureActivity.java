@@ -88,7 +88,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         });
 
         crewInfoTv = findViewById(R.id.crew_info);
-        if (forwardCls == VitalSignMeasureActivity.class) {
+        if (forwardCls == VitalMeasureActivity.class) {
             crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
         } else {
             crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
