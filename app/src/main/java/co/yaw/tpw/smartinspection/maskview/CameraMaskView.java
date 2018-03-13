@@ -56,6 +56,11 @@ public class CameraMaskView extends CameraView {
         }
     }
 
+    public void pause() {
+        super.stop();
+    }
+
+
     private void show() {
         setVisibility(VISIBLE);
         TextView tv = getRootView().findViewById(R.id.cameraMessage);

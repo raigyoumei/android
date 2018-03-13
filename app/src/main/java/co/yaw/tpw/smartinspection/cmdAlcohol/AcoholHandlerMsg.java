@@ -98,8 +98,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 //if(mMsgVersion != null) {
                 //    mMsgVersion.setText((String) value);
                 //}
-                break
-                        ;
+                break;
 
             case AcoholCmd.MSG_COMMAND_TEST_WAITE:
                 value = ble.getString(HandlerUtil.INFO);
@@ -138,7 +137,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
                     mMsgText.setText(mActivity.getString(R.string.alcohol_test_end_ok));
                 }
 
-                mCameraView.captureImageEnd();
+                mCameraView.captureImageRandomEnd();
 
                 break;
 
@@ -161,6 +160,8 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 break;
 
             case AcoholCmd.MSG_COMMAND_MSG_TEST:
+
+                mCameraView.cameraStart();
 
                 if(mMsgText != null) {
                     mMsgText.setText(mActivity.getString(R.string.alcohol_test_testing));
@@ -271,6 +272,13 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 }
 
                 //mCameraView.cameraStop();
+
+                if(mDeviceList != null) {
+                    String flag = mDeviceList.get(0);
+                    mDeviceList.clear();
+                    mDeviceList.add(flag);
+                    mArrayAdapter.notifyDataSetChanged();
+                }
 
                 break;
 

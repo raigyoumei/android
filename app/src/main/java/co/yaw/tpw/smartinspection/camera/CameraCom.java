@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
-import android.os.Handler;
 import android.util.Log;
 
 import com.wonderkiln.camerakit.CameraKit;
@@ -30,7 +29,6 @@ public class CameraCom {
     private CameraMaskView mCameraView = null;
     private CameraKitEventCallback mCamerCallBack = null;
     private Activity mActivity = null;
-    private boolean mRandom = false;
     private byte[] mImageData = null;
     private String mImagePath = null;
     private long mRandomNum = 0;
@@ -42,7 +40,7 @@ public class CameraCom {
 
     public CameraCom(Activity activity, CameraMaskView cameraView) {
 
-        Log.i(TAG, "cameraCom");
+        Log.i(TAG, "CameraCom");
 
         mActivity = activity;
         mCameraView = cameraView;
@@ -58,7 +56,7 @@ public class CameraCom {
 
     public void initCameraCom(HandlerUtil handler) {
 
-        Log.i(TAG, "cameraCom");
+        Log.i(TAG, "initCameraCom");
 
         mHandlerUtil = handler;
 
@@ -111,7 +109,7 @@ public class CameraCom {
                 mHandlerUtil.sendHandler(MSG_IMAGE_CAPTURE, mImageData);
 
                 if (mStopFlag){
-                    mCameraView.stop();
+                    mCameraView.pause();
                 }
 
             }
@@ -135,6 +133,15 @@ public class CameraCom {
 
         mCapImage = false;
         mCameraView.stop();
+
+    }
+
+    public void cameraPause() {
+
+        Log.i(TAG, "cameraPause");
+
+        mCapImage = false;
+        mCameraView.pause();
 
     }
 
@@ -170,7 +177,7 @@ public class CameraCom {
 
 
 
-    public String captureImageEnd() {
+    public String captureImageRandomEnd() {
 
         if(mCapImage) {
             return null;
