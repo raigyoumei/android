@@ -12,6 +12,7 @@ import android.util.Log;
 import com.wonderkiln.camerakit.CameraKit;
 import com.wonderkiln.camerakit.CameraKitEventCallback;
 import com.wonderkiln.camerakit.CameraKitImage;
+import com.wonderkiln.camerakit.CameraView;
 
 import java.io.File;
 import java.io.OutputStream;
@@ -33,7 +34,7 @@ public class CameraCom {
     private String mImagePath = null;
     private long mRandomNum = 0;
     private boolean mCapImage = false;
-    private boolean mEndFlag = false;
+    private boolean mStopFlag = false;
 
     private HandlerUtil mHandlerUtil = null;
 
@@ -46,14 +47,11 @@ public class CameraCom {
         mCameraView = cameraView;
 
         Random random=new Random();
-        mRandomNum = random.nextInt(50);
+        mRandomNum = random.nextInt(100);
     }
 
-
-    public void setRandom(boolean flag) {
-
-        Log.i(TAG, "setRandom");
-        mRandom = flag;
+    public void setStopFlag(boolean flag){
+        mStopFlag = flag;
     }
 
 
@@ -96,7 +94,7 @@ public class CameraCom {
                     fos.close();
                 } catch (Exception e) {
 
-                    Log.e(TAG, "Exception="+e.toString());
+                    Log.e(TAG, "Exception=" + e.toString());
 
                     e.printStackTrace();
                 }
@@ -109,6 +107,12 @@ public class CameraCom {
                         null
                 );
 
+                mHandlerUtil.sendHandler(MSG_IMAGE_CAPTURE, mImageData);
+
+                if (mStopFlag){
+                    mCameraView.stop();
+                }
+
             }
         };
 
@@ -120,8 +124,6 @@ public class CameraCom {
         Log.i(TAG, "cameraStart");
 
         mCapImage = false;
-        mEndFlag = false;
-
         mCameraView.start();
     }
 
@@ -131,52 +133,88 @@ public class CameraCom {
         Log.i(TAG, "cameraStop");
 
         mCapImage = false;
-        mEndFlag = false;
-
         mCameraView.stop();
 
     }
 
 
+    public String captureImageRandom() {
 
-    public void setEndFlag(boolean endFlag) {
+        long time = System.currentTimeMillis();
 
-        Log.i(TAG, "setEndFlag");
-        mEndFlag = endFlag;
+        if(mCapImage) {
+            return null;
+        }
+
+        // ランダム撮影、だ撮影しない場合
+        if(time% mRandomNum!= 0){
+            return null;
+        }
+
+        mCapImage = true;
+        mImagePath = getImageName();
+        if(mImagePath == null){
+            return null;
+        }
+
+        try{
+            mCameraView.captureImage(mCamerCallBack);
+
+        } catch (Exception e){
+            Log.e(TAG, "Exception="+e.toString());
+        }
+
+        return mImagePath;
     }
+
+
+
+    public String captureImageEnd() {
+
+        if(mCapImage) {
+            return null;
+        }
+
+        mCapImage = true;
+        mImagePath = getImageName();
+        if(mImagePath == null){
+            return null;
+        }
+
+        try{
+            mCameraView.captureImage(mCamerCallBack);
+
+        } catch (Exception e){
+            Log.e(TAG, "Exception="+e.toString());
+        }
+
+        return mImagePath;
+    }
+
 
 
     public String captureImage() {
 
-        long time = System.currentTimeMillis();
-
-        boolean capFlg = false;
-
-        if(!mRandom) {
-            capFlg = true;
-            mCapImage = false;
-        }
-
-        // ランダム撮影の場合
-        if((mRandom == true) && (time % mRandomNum == 0)){
-
-            if(!mCapImage) {
-                capFlg = true;
-                mCapImage = true;
-            }
-        }
-
-        // 最後の時、まだ撮影しない場合
-        if((mEndFlag) && (!mCapImage)){
-            capFlg = true;
-            mCapImage = true;
-        }
-
-        if(!capFlg){
+        mImagePath = getImageName();
+        if(mImagePath == null){
             return null;
         }
 
-        String photoName = time + ".jpg";
+        try{
+            mCameraView.captureImage(mCamerCallBack);
+
+        } catch (Exception e){
+            Log.e(TAG, "Exception="+e.toString());
+        }
+
+        return mImagePath;
+    }
+
+
+
+    private String getImageName(){
+
+        String name = System.currentTimeMillis() + ".jpg";
 
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "Camera");
         //カメラ画像を保存するディレクトリ
@@ -187,16 +225,9 @@ public class CameraCom {
             }
         }
 
-        mImagePath = mediaStorageDir.getPath() + File.separator + photoName;
-        mCameraView.captureImage(mCamerCallBack);
+        String path = mediaStorageDir.getPath() + File.separator + name;
 
-        return mImagePath;
-
-    }
-
-
-    public byte[] getImageData() {
-        return mImageData;
+        return path;
     }
 
 

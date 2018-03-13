@@ -4,10 +4,10 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,74 +26,40 @@ import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
 import co.yaw.tpw.smartinspection.camera.CameraCom;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholCmd;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholHandlerMsg;
-import co.yaw.tpw.smartinspection.maskview.CameraMaskView;
+import co.yaw.tpw.smartinspection.cmdVital.VitalHandlerMsg;
 
 import static android.util.Log.d;
 
-public class AlcoholMeasureActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class VitalMeasureActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private final static String TAG = AlcoholMeasureActivity.class.getSimpleName();
-    private final static int ALCOHOL_PRM_REQ_CODE = 100;
+    private final static String TAG = VitalMeasureActivity.class.getSimpleName();
+    private final static int VITAL_PRM_REQ_CODE = 100;
 
     final Context context = this;
-    private Button backBtn;
-    private Button nextBtn;
-    private TextView crewInfoTv;
+    private Button backBtn = null;
+    private Button nextBtn = null;
     private Class<?> forwardCls = null;
-    private Spinner alcoholSensorSpinner;
+    private Spinner vitalSensorSpinner = null;
 
-    private AcoholHandlerMsg mAcoholHandlerMsg = null;
+    private VitalHandlerMsg mVitalHandlerMsg = null;
     private BltDeviceUtil mBltDeviceUtil = null;
-    private AcoholCmd mAcoholCmd = null;
     private Button mStartBtn = null;
     private String mSelectDevice = null;
-    private CameraCom mCameraCom = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alcohol_measure);
+        setContentView(R.layout.activity_vital_measure);
 
-        final Bundle b = getIntent().getExtras();
-        if(b != null) {
-            String forward = b.getString("forward");
-            if(forward.equals("beforeCrew")) {
-                //forwardCls = VitalSignMeasureActivity.class;
-                forwardCls = VitalMeasureActivity.class;
 
-            } else {
-                forwardCls = CallConfirmActivity.class;
-            }
-        }
-
-        backBtn = findViewById(R.id.back_button);
         nextBtn = findViewById(R.id.next_button);
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MenuActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, forwardCls);
-                intent.putExtras(b);
+                Intent intent = new Intent(context, VitalSignMeasureActivity.class);
                 startActivity(intent);
             }
         });
-
-        crewInfoTv = findViewById(R.id.crew_info);
-        if (forwardCls == VitalSignMeasureActivity.class) {
-            crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
-        } else {
-            crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
-        }
-
 
         mStartBtn = findViewById(R.id.measure_button);
         mStartBtn.setOnClickListener(new View.OnClickListener() {
@@ -130,11 +96,11 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     }
 
     private void setSpinnerAdapter() {
-        alcoholSensorSpinner = findViewById(R.id.alcohol_sensor_spinner);
-        alcoholSensorSpinner.setOnItemSelectedListener(this);
+        vitalSensorSpinner = findViewById(R.id.vital_sensor_spinner);
+        vitalSensorSpinner.setOnItemSelectedListener(this);
 
         List<String> categories = new ArrayList<String>();
-        categories.add(getResources().getString(R.string.alcohol_sensor_spinner_label));
+        categories.add(getResources().getString(R.string.vital_sensor_spinner_label));
 //        categories.add("ES3256151SDF\n thidsdjslafdj");
 //        categories.add("FS3256151SDF");
 //        categories.add("GS3256151SDF");
@@ -142,17 +108,11 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        alcoholSensorSpinner.setAdapter(dataAdapter);
+        vitalSensorSpinner.setAdapter(dataAdapter);
 
-        // アルコール一覧表示の初期化
-        CameraMaskView camera = (CameraMaskView) findViewById(R.id.camera);
-
-        mCameraCom= new CameraCom(this, camera);
-        mCameraCom.setStopFlag(true);
-
-        mAcoholHandlerMsg = new AcoholHandlerMsg(this);
-        mAcoholHandlerMsg.initDeviceAdapter(categories, dataAdapter);
-        mAcoholHandlerMsg.setCameraView(mCameraCom);
+        // バイタルセンサー一覧表示の初期化
+        mVitalHandlerMsg = new VitalHandlerMsg(this);
+        mVitalHandlerMsg.initDeviceAdapter(categories, dataAdapter);
 
     }
 
@@ -180,8 +140,6 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     @Override
     protected void onPause() {
 
-        mCameraCom.cameraStop();
-
         super.onPause();
         mBltDeviceUtil.scanLeDevice(false);
         mBltDeviceUtil.initBluetoothGatt();
@@ -208,7 +166,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         boolean flag = false;
 
         switch (requestCode) {
-            case ALCOHOL_PRM_REQ_CODE:
+            case VITAL_PRM_REQ_CODE:
 
                 for(int i = 0; i < grantResults.length; i++) {
                     if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
@@ -234,12 +192,11 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
     private void initBltDeviceInfo() {
 
-        mAcoholCmd = new AcoholCmd(mAcoholHandlerMsg);
         mBltDeviceUtil = new BltDeviceUtil(this, "PAB");
         //mBltDeviceUtil = new BltDeviceUtil(this, null);
 
         // Checks if Bluetooth is supported on the device.
-        if (!mBltDeviceUtil.initBuleToothDevice(mAcoholHandlerMsg, mAcoholCmd)) {
+        if (!mBltDeviceUtil.initBuleToothDevice(mVitalHandlerMsg, null)) {
             //Toast.makeText(this, "error : bluetooth not supported", Toast.LENGTH_SHORT).show();
             finish();
             return;
@@ -258,16 +215,21 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     // VIEW 初期化
     private void initView() {
 
-        //TextView fwVersion = findViewById(R.id.fw_version);
-        TextView usageCount = findViewById(R.id.usge_count);
-        TextView testMsg = findViewById(R.id.test_msg);
-        TextView testValue = findViewById(R.id.test_value);
+        TextView msgText = findViewById(R.id.test_msg);
+        TextView heartRate = findViewById(R.id.test_heart_rate);
+        TextView bheartRate = findViewById(R.id.test_b_heart_rate);
+        TextView stressVal = findViewById(R.id.test_stress);
+        TextView moodVal = findViewById(R.id.test_mood);
+        TextView signalQuality = findViewById(R.id.test_signal_quality);
 
-        //fwVersion.setText("");
-        usageCount.setText("");
-        testMsg.setText("");
-        testValue.setText(getString(R.string.alcohol_test_default_value));
+        String defaultVal = getResources().getString(R.string.vital_test_default_value);
 
+        msgText.setText(defaultVal);
+        heartRate.setText(defaultVal);
+        bheartRate.setText(defaultVal);
+        stressVal.setText(defaultVal);
+        moodVal.setText(defaultVal);
+        signalQuality.setText(defaultVal);
     }
 
 
@@ -295,7 +257,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         if(list.size() > 0){
             String[] permissions = (String[])list.toArray(new String[list.size()]);
-            ActivityCompat.requestPermissions(this, permissions, ALCOHOL_PRM_REQ_CODE);
+            ActivityCompat.requestPermissions(this, permissions, VITAL_PRM_REQ_CODE);
             return false;
         }
 
