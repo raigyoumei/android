@@ -12,20 +12,20 @@ import android.util.Log;
 import com.wonderkiln.camerakit.CameraKit;
 import com.wonderkiln.camerakit.CameraKitEventCallback;
 import com.wonderkiln.camerakit.CameraKitImage;
-import com.wonderkiln.camerakit.CameraView;
 
 import java.io.File;
 import java.io.OutputStream;
 import java.util.Random;
 
 import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
+import co.yaw.tpw.smartinspection.maskview.CameraMaskView;
 
 
 public class CameraCom {
 
     private final static String TAG = CameraCom.class.getSimpleName();
 
-    private CameraView mCameraView = null;
+    private CameraMaskView mCameraView = null;
     private CameraKitEventCallback mCamerCallBack = null;
     private Activity mActivity = null;
     private boolean mRandom = false;
@@ -38,7 +38,7 @@ public class CameraCom {
     private HandlerUtil mHandlerUtil = null;
 
 
-    public CameraCom(Activity activity, CameraView cameraView) {
+    public CameraCom(Activity activity, CameraMaskView cameraView) {
 
         Log.i(TAG, "cameraCom");
 

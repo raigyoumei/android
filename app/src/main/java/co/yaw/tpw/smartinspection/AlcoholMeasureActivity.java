@@ -4,10 +4,10 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.wonderkiln.camerakit.CameraView;
 import com.yaw.tpw.smartinspection.R;
 
 import java.util.ArrayList;
@@ -26,6 +25,7 @@ import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
 import co.yaw.tpw.smartinspection.camera.CameraCom;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholCmd;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholHandlerMsg;
+import co.yaw.tpw.smartinspection.maskview.CameraMaskView;
 
 import static android.util.Log.d;
 
@@ -37,6 +37,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     final Context context = this;
     private Button backBtn;
     private Button nextBtn;
+    private TextView crewInfoTv;
     private Class<?> forwardCls = null;
     private Spinner alcoholSensorSpinner;
 
@@ -53,9 +54,9 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         setContentView(R.layout.activity_alcohol_measure);
 
         final Bundle b = getIntent().getExtras();
-        if(b != null) {
+        if (b != null) {
             String forward = b.getString("forward");
-            if(forward.equals("beforeCrew")) {
+            if (forward.equals("beforeCrew")) {
                 forwardCls = VitalSignMeasureActivity.class;
             } else {
                 forwardCls = CallConfirmActivity.class;
@@ -83,6 +84,13 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             }
         });
 
+        crewInfoTv = findViewById(R.id.crew_info);
+        if (forwardCls == VitalSignMeasureActivity.class) {
+            crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
+        } else {
+            crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
+        }
+
 
         mStartBtn = findViewById(R.id.measure_button);
         mStartBtn.setOnClickListener(new View.OnClickListener() {
@@ -90,11 +98,11 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             public void onClick(View v) {
 
                 //権限チェック
-                if(!checkPermission() || (mSelectDevice == null)){
+                if (!checkPermission() || (mSelectDevice == null)) {
                     return;
                 }
 
-                Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
+                Log.d(TAG, "mBltDeviceUtil.connectDevice=" + mSelectDevice);
 
                 initView();
 
@@ -134,9 +142,9 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         alcoholSensorSpinner.setAdapter(dataAdapter);
 
         // アルコール一覧表示の初期化
-        CameraView camera = (CameraView) findViewById(R.id.camera);
+        CameraMaskView camera = (CameraMaskView) findViewById(R.id.camera);
 
-        mCameraCom= new CameraCom(this, camera);
+        mCameraCom = new CameraCom(this, camera);
         mAcoholHandlerMsg = new AcoholHandlerMsg(this);
         mAcoholHandlerMsg.initDeviceAdapter(categories, dataAdapter);
         mAcoholHandlerMsg.setCameraView(mCameraCom);
@@ -147,13 +155,13 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        Log.d(TAG, "onItemSelected position="+position);
+        Log.d(TAG, "onItemSelected position=" + position);
 
-        if(position > 0){
+        if (position > 0) {
 
             mSelectDevice = parent.getItemAtPosition(position).toString();
 
-        }else{
+        } else {
             mSelectDevice = null;
         }
     }
@@ -188,7 +196,6 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     }
 
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
@@ -197,10 +204,10 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         switch (requestCode) {
             case ALCOHOL_PRM_REQ_CODE:
 
-                for(int i = 0; i < grantResults.length; i++) {
+                for (int i = 0; i < grantResults.length; i++) {
                     if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                         flag = true;
-                    }else{
+                    } else {
                         flag = false;
                         break;
                     }
@@ -211,7 +218,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         }
 
         //全部の権限を持つ場合
-        if(flag){
+        if (flag) {
             // buletooth検索開始
             mBltDeviceUtil.scanLeDevice(true);
         }
@@ -234,7 +241,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         // 権限チェック
         boolean ret = checkPermission();
-        if(ret){
+        if (ret) {
             // buletooth検索開始
             mBltDeviceUtil.scanLeDevice(true);
         }
@@ -261,7 +268,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     // 権限のチェック
     private boolean checkPermission() {
 
-        String[] reqArray = new String[] {
+        String[] reqArray = new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
@@ -271,17 +278,17 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
                 Manifest.permission.CAMERA};
 
         List list = new ArrayList();
-        for(int i = 0; i < reqArray.length; i++){
+        for (int i = 0; i < reqArray.length; i++) {
             if (PermissionChecker.checkSelfPermission(this, reqArray[i]) != PermissionChecker.PERMISSION_GRANTED) {
                 //権限がない場合はパーミッションを要求するメソッドを呼び出し
                 // 許諾が無い場合は表示
-                d(TAG, "permission=" +reqArray[i]);
+                d(TAG, "permission=" + reqArray[i]);
                 list.add(reqArray[i]);
             }
         }
 
-        if(list.size() > 0){
-            String[] permissions = (String[])list.toArray(new String[list.size()]);
+        if (list.size() > 0) {
+            String[] permissions = (String[]) list.toArray(new String[list.size()]);
             ActivityCompat.requestPermissions(this, permissions, ALCOHOL_PRM_REQ_CODE);
             return false;
         }
