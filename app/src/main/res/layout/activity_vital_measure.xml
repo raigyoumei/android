@@ -79,10 +79,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:gravity="right"
-                android:text="@string/vital_test_b_heart_rate" />
+                android:text="@string/vital_test_r_heart_rate" />
 
             <TextView
-                android:id="@+id/test_b_heart_rate"
+                android:id="@+id/test_r_heart_rate"
                 android:layout_width="wrap_content"
                 android:layout_weight="4"
                 android:gravity="left"

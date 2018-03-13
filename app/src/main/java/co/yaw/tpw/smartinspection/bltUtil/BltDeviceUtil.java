@@ -38,7 +38,6 @@ public class BltDeviceUtil {
 
     private BluetoothAdapter mBluetoothAdapter = null;
     private Activity mActivity = null;
-    private Handler mHandler = null;
     private Runnable mRunnable = null;
 
     private BluetoothGatt mBluetoothGatt = null;
@@ -112,13 +111,12 @@ public class BltDeviceUtil {
     }
 
 
-    public boolean initBuleToothDevice(Handler handler, BltComCmd baseSensorCmd) {
+    public boolean initBuleToothDevice(HandlerUtil handler, BltComCmd baseSensorCmd) {
 
         Log.i(TAG, "initBuleToothDevice");
 
-        mHandler = handler;
         mBaseSensorCmd = baseSensorCmd;
-        mHandlerUtil = new HandlerUtil(handler);
+        mHandlerUtil = handler;
 
         if (!mActivity.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             //Toast.makeText(this, "warning :bluetooth not supported", Toast.LENGTH_SHORT).show();
@@ -152,7 +150,7 @@ public class BltDeviceUtil {
 
     private void addReceiver(){
 
-        mReceiverUtil = new BltCntReceiverUtil(mHandler, PAIR_PWD);
+        mReceiverUtil = new BltCntReceiverUtil(mHandlerUtil, PAIR_PWD);
 
         IntentFilter intent = new IntentFilter();
         intent.setPriority(1000);
@@ -197,7 +195,7 @@ public class BltDeviceUtil {
                 };
 
                 // Stops scanning after a pre-defined scan period.
-                mHandler.postDelayed(mRunnable, SCAN_PERIOD);
+                mHandlerUtil.postDelayed(mRunnable, SCAN_PERIOD);
 
             }
 
@@ -232,7 +230,7 @@ public class BltDeviceUtil {
 
                 mScan = false;
                 mBluetoothAdapter.stopLeScan(mLeScanCallback);
-                mHandler.removeCallbacks(mRunnable);
+                mHandlerUtil.removeCallbacks(mRunnable);
 
                 mBluetoothGatt = device.connectGatt(mActivity, false, mGattCallback);
 

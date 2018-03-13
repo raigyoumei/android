@@ -55,11 +55,11 @@ public class CameraCom {
     }
 
 
-    public void initCameraCom( Handler handler) {
+    public void initCameraCom(HandlerUtil handler) {
 
         Log.i(TAG, "cameraCom");
 
-        mHandlerUtil = new HandlerUtil(handler);
+        mHandlerUtil = handler;
 
         mCameraView.setFacing(CameraKit.Constants.FACING_FRONT);
         mCameraView.setMethod(CameraKit.Constants.METHOD_STANDARD);

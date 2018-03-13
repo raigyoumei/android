@@ -17,10 +17,10 @@ public class BltCntReceiverUtil extends BroadcastReceiver {
     private HandlerUtil mHandlerUtil = null;
 
 
-    public BltCntReceiverUtil(Handler handler, String pwd) {
+    public BltCntReceiverUtil(HandlerUtil handler, String pwd) {
         Log.i(TAG, "BltCntReceiverUtil");
 
-        mHandlerUtil = new HandlerUtil(handler);
+        mHandlerUtil = handler;
 
         mPAIR_PWD = pwd;
 

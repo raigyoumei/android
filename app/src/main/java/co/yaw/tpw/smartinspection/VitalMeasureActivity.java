@@ -1,6 +1,7 @@
 package co.yaw.tpw.smartinspection;
 
 import android.Manifest;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,18 +15,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
-
-import com.wonderkiln.camerakit.CameraView;
 import com.yaw.tpw.smartinspection.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
-import co.yaw.tpw.smartinspection.camera.CameraCom;
-import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholCmd;
-import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholHandlerMsg;
+import co.yaw.tpw.smartinspection.cmdVital.EcgConnect;
+import co.yaw.tpw.smartinspection.cmdVital.EcgProcess;
 import co.yaw.tpw.smartinspection.cmdVital.VitalHandlerMsg;
 
 import static android.util.Log.d;
@@ -35,22 +31,25 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     private final static String TAG = VitalMeasureActivity.class.getSimpleName();
     private final static int VITAL_PRM_REQ_CODE = 100;
 
+
     final Context context = this;
-    private Button backBtn = null;
+
     private Button nextBtn = null;
-    private Class<?> forwardCls = null;
     private Spinner vitalSensorSpinner = null;
 
-    private VitalHandlerMsg mVitalHandlerMsg = null;
     private BltDeviceUtil mBltDeviceUtil = null;
     private Button mStartBtn = null;
     private String mSelectDevice = null;
+
+    private VitalHandlerMsg mVitalHandlerMsg = null;
+    private EcgConnect mEcgConnect = null;
+    private EcgProcess mEcgProcess = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vital_measure);
-
 
         nextBtn = findViewById(R.id.next_button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -73,14 +72,27 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
                 Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
 
-                initView();
+                mEcgProcess.initView();
 
-                // bule tooth 接続
-                mBltDeviceUtil.connectDevice(mSelectDevice);
+                // scan stop
+                mBltDeviceUtil.scanLeDevice(false);
 
-                // 継続中表示
-                TextView testMsg = findViewById(R.id.test_msg);
-                testMsg.setText(getString(R.string.alcohol_test_connect));
+                if(!mVitalHandlerMsg.getConnectFailed()) {
+                    mEcgConnect.stopTgStreamReader();
+                }
+
+                mVitalHandlerMsg.setConnectFailed(false);
+
+                BluetoothDevice device = mBltDeviceUtil.getblueDevice(mSelectDevice);
+                if(device == null) {
+                    Log.d(TAG, "device is null");
+                    return;
+                }
+
+                Log.d(TAG, "getBondState ="+device.getBondState());
+
+                mEcgProcess.initNskECG();
+                mEcgConnect.connectTgStream(device);
 
                 // 開始ボタン無効
                 Button startBtn = findViewById(R.id.measure_button);
@@ -93,6 +105,8 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         // bule tooth初期化
         initBltDeviceInfo();
 
+        initEcgInfo();
+
     }
 
     private void setSpinnerAdapter() {
@@ -101,9 +115,6 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
         List<String> categories = new ArrayList<String>();
         categories.add(getResources().getString(R.string.vital_sensor_spinner_label));
-//        categories.add("ES3256151SDF\n thidsdjslafdj");
-//        categories.add("FS3256151SDF");
-//        categories.add("GS3256151SDF");
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
@@ -121,20 +132,20 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         Log.d(TAG, "onItemSelected position="+position);
+        mSelectDevice = null;
 
         if(position > 0){
-
             mSelectDevice = parent.getItemAtPosition(position).toString();
-
-        }else{
-            mSelectDevice = null;
         }
     }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         Log.d(TAG, "onNothingSelected");
     }
+
+
 
 
     @Override
@@ -143,18 +154,30 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         super.onPause();
         mBltDeviceUtil.scanLeDevice(false);
         mBltDeviceUtil.initBluetoothGatt();
-        //mStartTime = 0;
 
-        initView();
+        mEcgProcess.initView();
 
+        mStartBtn.setEnabled(true);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!mBltDeviceUtil.checkIsEnabled()) {
+            mBltDeviceUtil.enable();
+        }
     }
 
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
 
-        mBltDeviceUtil.removeReceiver();
+        mEcgConnect.closeStreamReader();
+        mBltDeviceUtil.clearReceiver();
+
+        super.onDestroy();
 
     }
 
@@ -192,12 +215,10 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
     private void initBltDeviceInfo() {
 
-        mBltDeviceUtil = new BltDeviceUtil(this, "PAB");
-        //mBltDeviceUtil = new BltDeviceUtil(this, null);
+        mBltDeviceUtil = new BltDeviceUtil(this, "MindWave");
 
         // Checks if Bluetooth is supported on the device.
         if (!mBltDeviceUtil.initBuleToothDevice(mVitalHandlerMsg, null)) {
-            //Toast.makeText(this, "error : bluetooth not supported", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -212,24 +233,19 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     }
 
 
-    // VIEW 初期化
-    private void initView() {
+    private void initEcgInfo() {
 
-        TextView msgText = findViewById(R.id.test_msg);
-        TextView heartRate = findViewById(R.id.test_heart_rate);
-        TextView bheartRate = findViewById(R.id.test_b_heart_rate);
-        TextView stressVal = findViewById(R.id.test_stress);
-        TextView moodVal = findViewById(R.id.test_mood);
-        TextView signalQuality = findViewById(R.id.test_signal_quality);
+        mVitalHandlerMsg = new VitalHandlerMsg(this);
 
-        String defaultVal = getResources().getString(R.string.vital_test_default_value);
+        mEcgConnect = new EcgConnect(this);
+        mEcgConnect.initTgStream();
+        mEcgConnect.setHandler(mVitalHandlerMsg);
 
-        msgText.setText(defaultVal);
-        heartRate.setText(defaultVal);
-        bheartRate.setText(defaultVal);
-        stressVal.setText(defaultVal);
-        moodVal.setText(defaultVal);
-        signalQuality.setText(defaultVal);
+        mEcgProcess = new EcgProcess(this);
+        mEcgProcess.setEcgConnect(mEcgConnect);
+
+        mVitalHandlerMsg.setEcgProcess(mEcgProcess);
+
     }
 
 
@@ -239,11 +255,9 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         String[] reqArray = new String[] {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.BLUETOOTH,
-                Manifest.permission.BLUETOOTH_ADMIN,
-                Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.CAMERA};
+                Manifest.permission.BLUETOOTH_ADMIN
+        };
 
         List list = new ArrayList();
         for(int i = 0; i < reqArray.length; i++){
