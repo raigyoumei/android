@@ -13,6 +13,8 @@ import com.yaw.tpw.smartinspection.R;
 import java.util.HashMap;
 import java.util.Map;
 
+import co.yaw.tpw.smartinspection.bltUtil.DateUtil;
+
 
 public class EcgProcess {
 
@@ -27,6 +29,7 @@ public class EcgProcess {
     public static final String STRESS = "stress";
     public static final String MOOD = "mood";
     public static final String SQ = "SQ";
+    public static final String TEST_TIME = "test_time";
 
     private Activity mActivity = null;
 
@@ -229,20 +232,24 @@ public class EcgProcess {
 
 
 
-    public Map<String, Integer> getVitalTestValue() {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+    public Map<String, String> getVitalTestValue() {
+        Map<String, String> map = new HashMap<String, String>();
 
-        map.put(HR, mHeartRate);
-        map.put(RHT, mRheartRate);
-        map.put(STRESS, mStress);
-        map.put(MOOD, mMood);
-        map.put(SQ, mSQ);
+        map.put(HR, mHeartRate+"");
+        map.put(RHT, mRheartRate+"");
+        map.put(STRESS, mStress+"");
+        map.put(MOOD, mMood+"");
+        map.put(SQ, mSQ+"");
+
+        String time = DateUtil.getCustomTime(DateUtil.YMDHMSS);
+        map.put(TEST_TIME, time);
 
         Log.d(TAG, "getVitalTestValue mHeartRate=" + mHeartRate);
         Log.d(TAG, "getVitalTestValue mRheartRate=" + mRheartRate);
         Log.d(TAG, "getVitalTestValue mStress=" + mStress);
         Log.d(TAG, "getVitalTestValue mMood=" + mMood);
         Log.d(TAG, "getVitalTestValue mSQ=" + mSQ);
+        Log.d(TAG, "getVitalTestValue time=" + time);
 
         return map;
     }
