@@ -142,8 +142,7 @@
         android:id="@+id/test_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_marginTop="2dip"
+        android:textSize="@dimen/text_size_middle"
         android:text="" />
 
     <LinearLayout
