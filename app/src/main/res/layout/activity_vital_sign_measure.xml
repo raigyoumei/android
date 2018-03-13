@@ -31,9 +31,8 @@
                     style="@style/ListTextViewStyle"
                     android:text="@string/check_body_temperature_title" />
 
-                <ToggleButton
-                    style="@style/ListNormalGoupButtonStyle"
-                    />
+                <EditText
+                    style="@style/EditTextNumberStyle"/>
             </LinearLayout>
 
             <View
@@ -47,11 +46,10 @@
 
                 <TextView
                     style="@style/ListTextViewStyle"
-                    android:text="@string/check_ｂlood_pressure_title" />
+                    android:text="@string/check_max_blood_pressure_title" />
 
-                <ToggleButton
-                    style="@style/ListNormalGoupButtonStyle"
-                    />
+                <EditText
+                    style="@style/EditTextNumberStyle"/>
             </LinearLayout>
 
             <View
@@ -65,12 +63,10 @@
 
                 <TextView
                     style="@style/ListTextViewStyle"
-                    android:text="@string/check_heartbeat_title" />
+                    android:text="@string/check_min_blood_pressure_title" />
 
-                <ToggleButton
-                    style="@style/ListNormalGoupButtonStyle"
-                    android:checked="true"
-                    />
+                <EditText
+                    style="@style/EditTextNumberStyle"/>
             </LinearLayout>
 
             <View
