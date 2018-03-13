@@ -248,7 +248,7 @@
     <string name="vital_test_proc">測定中</string>
     <string name="vital_test_end_ok">接続終了</string>
     <string name="vital_test_end_ng">異常終了</string>
-
+    <string name="vital_test_connect">接続中</string>
 
     <string name="vital_sign_measure_title">バイタルチェックの申告</string>
 
