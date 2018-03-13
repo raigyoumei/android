@@ -34,16 +34,34 @@ public class CameraMaskView extends CameraView {
     @Override
     public void start() {
         super.start();
-        this.setVisibility(VISIBLE);
-        tv = this.getRootView().findViewById(R.id.cameraMessage);
-        tv.setVisibility(INVISIBLE);
+        post(new Runnable() {
+            @Override
+            public void run() {
+                show();
+            }
+        });
     }
 
     @Override
     public void stop() {
         super.stop();
-        this.setVisibility(INVISIBLE);
-        tv = this.getRootView().findViewById(R.id.cameraMessage);
+        post(new Runnable() {
+            @Override
+            public void run() {
+                hide();
+            }
+        });
+    }
+
+    private void show() {
+        setVisibility(VISIBLE);
+        tv = getRootView().findViewById(R.id.cameraMessage);
+        tv.setVisibility(INVISIBLE);
+    }
+
+    private void hide() {
+        setVisibility(INVISIBLE);
+        tv = getRootView().findViewById(R.id.cameraMessage);
         tv.setVisibility(VISIBLE);
     }
 
