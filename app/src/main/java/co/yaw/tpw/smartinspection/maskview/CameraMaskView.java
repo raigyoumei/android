@@ -1,10 +1,10 @@
 package co.yaw.tpw.smartinspection.maskview;
 
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -13,12 +13,7 @@ import android.widget.TextView;
 import com.wonderkiln.camerakit.CameraView;
 import com.yaw.tpw.smartinspection.R;
 
-/**
- * Created by renxiaodong on 2018/03/12.
- */
-
 public class CameraMaskView extends CameraView {
-    static private TextView tv;
     public CameraMaskView(@NonNull Context context) {
         super(context);
     }
@@ -34,34 +29,42 @@ public class CameraMaskView extends CameraView {
     @Override
     public void start() {
         super.start();
-        post(new Runnable() {
-            @Override
-            public void run() {
-                show();
-            }
-        });
+        if(Looper.myLooper() == Looper.getMainLooper()){
+            show();
+        } else {
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    show();
+                }
+            });
+        }
     }
 
     @Override
     public void stop() {
         super.stop();
-        post(new Runnable() {
-            @Override
-            public void run() {
-                hide();
-            }
-        });
+        if(Looper.myLooper() == Looper.getMainLooper()){
+            hide();
+        } else {
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    hide();
+                }
+            });
+        }
     }
 
     private void show() {
         setVisibility(VISIBLE);
-        tv = getRootView().findViewById(R.id.cameraMessage);
+        TextView tv = getRootView().findViewById(R.id.cameraMessage);
         tv.setVisibility(INVISIBLE);
     }
 
     private void hide() {
         setVisibility(INVISIBLE);
-        tv = getRootView().findViewById(R.id.cameraMessage);
+        TextView tv = getRootView().findViewById(R.id.cameraMessage);
         tv.setVisibility(VISIBLE);
     }
 

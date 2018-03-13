@@ -190,7 +190,6 @@
     <string name="alcohol_measure_title_after_crew">アルコールチェック（乗務後）</string>
     <string name="alcohol_sensor_spinner_label">アルコールセンター選択</string>
     <string name="alcohol_sensor_spinner_prompt">アルコールセンサーの任意番号</string>
-    <string name="alcohol_measure_used_times">使用回数:2000回</string>
     <string name="alcohol_measure_message">メッセージ</string>
     <string name="alcohol_measure_camera_message">スマホインカメラの画像</string>
     <string name="alcohol_measure_info">測定結果を表示する。\n\n表示項目\n    ・撮影画像\n    ・アルコールデータ\n    ・チェック日時</string>
@@ -235,13 +234,20 @@
     <string name="vital_sensor_spinner_label">バイタルセンター選択</string>
     <string name="vital_measure_title">バイタルチェック</string>
     <string name="vital_test_heart_rate">心拍数</string>
-    <string name="vital_test_b_heart_rate">安定心拍数</string>
+    <string name="vital_test_r_heart_rate">安定心拍数</string>
     <string name="vital_test_stress">疲労度</string>
     <string name="vital_test_mood">緊張度</string>
     <string name="vital_test_signal_quality">信号品質</string>
     <string name="vital_test_default_value">---</string>
 
+    <string name="vital_test_msg_scan_start">バイタルセンサー検索中</string>
+    <string name="vital_test_msg_scan_end">検索完了</string>
 
+    <string name="vital_test_msg_blt_pair">ペアリング中</string>
+    <string name="vital_test_msg_blt_pair_end">ペアリング終了</string>
+    <string name="vital_test_proc">測定中</string>
+    <string name="vital_test_end_ok">接続終了</string>
+    <string name="vital_test_end_ng">異常終了</string>
 
 
     <string name="vital_sign_measure_title">バイタルチェックの申告</string>

@@ -49,10 +49,10 @@ public class AcoholCmd extends BltComCmd {
     private boolean mHowWarn = false;
 
 
-    public AcoholCmd( Handler handler) {
+    public AcoholCmd( HandlerUtil handler) {
         Log.i(TAG, "BaseAcoholCmd");
 
-        mHandlerUtil = new HandlerUtil(handler);
+        mHandlerUtil = handler;
 
     }
 

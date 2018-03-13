@@ -8,19 +8,11 @@ import android.util.Log;
 import java.util.Map;
 
 
-public class HandlerUtil {
+public class HandlerUtil  extends Handler {
 
     private final static String TAG = HandlerUtil.class.getSimpleName();
 
     public final static String INFO = "INFO";
-    private Handler mHandler = null;
-
-
-    public HandlerUtil( Handler handler) {
-        Log.i(TAG, "HandlerUtil");
-
-        mHandler = handler;
-    }
 
 
     public void sendHandler(int type) {
@@ -31,7 +23,7 @@ public class HandlerUtil {
 
         msg.what = type;
 
-        mHandler.sendMessage(msg);
+        this.sendMessage(msg);
     }
 
 
@@ -48,7 +40,7 @@ public class HandlerUtil {
         msg.setData(ble);
         msg.what = type;
 
-        mHandler.sendMessage(msg);
+        this.sendMessage(msg);
 
     }
 
@@ -64,7 +56,7 @@ public class HandlerUtil {
         msg.setData(ble);
         msg.what = type;
 
-        mHandler.sendMessage(msg);
+        this.sendMessage(msg);
 
     }
 
@@ -82,7 +74,7 @@ public class HandlerUtil {
         msg.what = type;
         msg.obj = object;
 
-        mHandler.sendMessage(msg);
+        this.sendMessage(msg);
 
     }
 
@@ -103,7 +95,7 @@ public class HandlerUtil {
         }
 
         msg.what = type;
-        mHandler.sendMessage(msg);
+        this.sendMessage(msg);
 
     }
 
@@ -129,7 +121,7 @@ public class HandlerUtil {
         msg.setData(ble);
         msg.what = type;
 
-        mHandler.sendMessage(msg);
+        this.sendMessage(msg);
 
     }
 
