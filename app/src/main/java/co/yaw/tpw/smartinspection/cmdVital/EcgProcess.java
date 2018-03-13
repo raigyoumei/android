@@ -10,6 +10,7 @@ import com.neurosky.ecg_algo.NeuroSkyECG;
 import com.neurosky.ecg_algo.NeuroSkyECGCallback;
 import com.yaw.tpw.smartinspection.R;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -21,6 +22,11 @@ public class EcgProcess {
     private static final String EVALUATION_LICENSE_KEY = "NaelySlOFSZb75fyRV+aTrDEEUlZ7lx4Q9lBs69sTb/CTJvuocULaV1kYt0JcFVpWFY3kYp0LKF2nA1WaxKAEqQG5aCC31ffnepTmCrWZBHboe7YYt36HLRvmS2qyrQz2ReRqeGKl+tgNl/AK9a2LZ09dB4BChrwoNSjuW3Q9N4=";
     private static int sampleRate = 512;
 
+    public static final String HR = "heart_rate";
+    public static final String RHT = "r_heart_rate";
+    public static final String STRESS = "stress";
+    public static final String MOOD = "mood";
+    public static final String SQ = "SQ";
 
     private Activity mActivity = null;
 
@@ -221,6 +227,25 @@ public class EcgProcess {
         msgText.setText("");
     }
 
+
+
+    public Map<String, Integer> getVitalTestValue() {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+
+        map.put(HR, mHeartRate);
+        map.put(RHT, mRheartRate);
+        map.put(STRESS, mStress);
+        map.put(MOOD, mMood);
+        map.put(SQ, mSQ);
+
+        Log.d(TAG, "getVitalTestValue mHeartRate=" + mHeartRate);
+        Log.d(TAG, "getVitalTestValue mRheartRate=" + mRheartRate);
+        Log.d(TAG, "getVitalTestValue mStress=" + mStress);
+        Log.d(TAG, "getVitalTestValue mMood=" + mMood);
+        Log.d(TAG, "getVitalTestValue mSQ=" + mSQ);
+
+        return map;
+    }
 
 
 

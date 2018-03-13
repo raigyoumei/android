@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import com.yaw.tpw.smartinspection.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,20 +79,18 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
                 // scan stop
                 mBltDeviceUtil.scanLeDevice(false);
 
-                if(!mVitalHandlerMsg.getConnectFailed()) {
-                    mEcgConnect.stopTgStreamReader();
-                }
-
-                mVitalHandlerMsg.setConnectFailed(false);
-
                 BluetoothDevice device = mBltDeviceUtil.getblueDevice(mSelectDevice);
                 if(device == null) {
                     Log.d(TAG, "device is null");
                     return;
                 }
 
+                TextView msgText = findViewById(R.id.test_msg);
+                msgText.setText(getString(R.string.vital_test_connect));
+
                 Log.d(TAG, "getBondState ="+device.getBondState());
 
+                mEcgConnect.stopTgStreamReader();
                 mEcgProcess.initNskECG();
                 mEcgConnect.connectTgStream(device);
 
@@ -157,6 +157,8 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
         mEcgProcess.initView();
 
+        mEcgConnect.stopTgStreamReader();
+
         mStartBtn.setEnabled(true);
     }
 
@@ -174,7 +176,6 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     @Override
     protected void onDestroy() {
 
-        mEcgConnect.closeStreamReader();
         mBltDeviceUtil.clearReceiver();
 
         super.onDestroy();

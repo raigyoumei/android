@@ -47,7 +47,7 @@ public class EcgConnect {
     private SharedPreferences.Editor mShareEditor = null;
     private BufferedOutputStream mOutputStreamRawData = null;
 
-
+    private boolean mBltConnectFailed = false;
 
     public EcgConnect(Activity activity) {
         mActivity = activity;
@@ -66,27 +66,6 @@ public class EcgConnect {
     public void setHandler(HandlerUtil handler){
         mHandlerUtil = handler;
     }
-
-
-    public void closeStreamReader(){
-
-        if(mTgStreamReader != null){
-            mTgStreamReader.close();
-        }
-
-        TgStreamReader.stopConsoleLog();
-        mTgStreamReader = null;
-    }
-
-
-
-    public void stopStreamReader(){
-
-        if(mTgStreamReader != null){
-            mTgStreamReader.close();
-        }
-    }
-
 
 
     public void connectTgStream(BluetoothDevice device){
@@ -109,6 +88,7 @@ public class EcgConnect {
 
                 case ConnectionStates.STATE_CONNECTED:
 
+                    mBltConnectFailed = false;
                     //showToast("Connected", Toast.LENGTH_SHORT);
 
                     break;
@@ -143,6 +123,9 @@ public class EcgConnect {
 
                     break;
                 case ConnectionStates.STATE_FAILED:
+
+                    mBltConnectFailed = true;
+
                     //showToast("Connect failed!", Toast.LENGTH_SHORT);
                     break;
             }
@@ -230,8 +213,11 @@ public class EcgConnect {
 
 
 
-
     public void stopTgStreamReader() {
+
+        if(mBltConnectFailed){
+            return;
+        }
 
         if(mTgStreamReader != null){
             mTgStreamReader.stop();
