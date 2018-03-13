@@ -55,6 +55,7 @@
         <activity android:name="co.yaw.tpw.smartinspection.DayCheckShowActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.AlcoholMeasureActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.CallConfirmActivity" />
+        <activity android:name="co.yaw.tpw.smartinspection.VitalMeasureActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.VitalSignMeasureActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.HealthStatusRegActivity"></activity>
     </application>

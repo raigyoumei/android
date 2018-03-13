@@ -1,4 +1,4 @@
-package co.yaw.tpw.smartinspection.cmdAlcohol;
+package co.yaw.tpw.smartinspection.cmdVital;
 
 
 import android.app.Activity;
@@ -17,35 +17,43 @@ import java.util.List;
 import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
 import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
 import co.yaw.tpw.smartinspection.camera.CameraCom;
+import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholCmd;
 
 
-public class AcoholHandlerMsg extends Handler {
+public class VitalHandlerMsg extends Handler {
 
-    private final static String TAG = AcoholHandlerMsg.class.getSimpleName();
+    private final static String TAG = VitalHandlerMsg.class.getSimpleName();
 
     private TextView mMsgText = null;
-    //private TextView mMsgVersion = null;
-    private TextView mUsageCount = null;
-    private TextView mArulValue = null;
+
+    private TextView mHeartRate = null;
+    private TextView mBheartRate = null;
+    private TextView mStressVal = null;
+    private TextView mMoodVal = null;
+    private TextView mSignalQuality = null;
+
     private Button mTestStartBtn = null;
 
     private Activity mActivity = null;
     private List<String> mDeviceList = null;
     private ArrayAdapter mArrayAdapter = null;
-    private CameraCom mCameraView = null;
 
 
 
-    public AcoholHandlerMsg(Activity activity) {
+    public VitalHandlerMsg( Activity activity) {
 
         Log.i(TAG, "AcoholHandlerMsg");
 
         mActivity = activity;
 
-        //mMsgVersion = mActivity.findViewById(R.id.fw_version);
-        mUsageCount = mActivity.findViewById(R.id.usge_count);
         mMsgText = mActivity.findViewById(R.id.test_msg);
-        mArulValue = mActivity.findViewById(R.id.test_value);
+
+        mHeartRate = mActivity.findViewById(R.id.test_heart_rate);
+        mBheartRate = mActivity.findViewById(R.id.test_b_heart_rate);
+        mStressVal = mActivity.findViewById(R.id.test_stress);
+        mMoodVal = mActivity.findViewById(R.id.test_mood);
+        mSignalQuality = mActivity.findViewById(R.id.test_signal_quality);
+
         mTestStartBtn = mActivity.findViewById(R.id.measure_button);
     }
 
@@ -58,14 +66,6 @@ public class AcoholHandlerMsg extends Handler {
         mArrayAdapter = adapter;
     }
 
-
-    public void setCameraView(CameraCom cameraCom) {
-
-        Log.i(TAG, "setCameraView");
-
-        mCameraView = cameraCom;
-        mCameraView.initCameraCom(this);
-    }
 
 
     @Override
@@ -115,17 +115,14 @@ public class AcoholHandlerMsg extends Handler {
             case AcoholCmd.MSG_COMMAND_VALUE_TEST_AL:
                 value = ble.getString(HandlerUtil.INFO);
 
-                if(mMsgText != null) {
-                    mArulValue.setText((String) value);
-                }
-
-                mCameraView.captureImageRandom();
+//                if(mMsgText != null) {
+//                    mArulValue.setText((String) value);
+//                }
 
                 break;
 
             case AcoholCmd.MSG_COMMAND_VALUE_TEST_START:
 
-                mCameraView.cameraStart();
 
                 if(mMsgText != null) {
                     mMsgText.setText(mActivity.getString(R.string.alcohol_test_start));
@@ -139,7 +136,6 @@ public class AcoholHandlerMsg extends Handler {
                     mMsgText.setText(mActivity.getString(R.string.alcohol_test_end_ok));
                 }
 
-                mCameraView.captureImageEnd();
 
                 break;
 
@@ -157,7 +153,6 @@ public class AcoholHandlerMsg extends Handler {
                     mMsgText.setText(mActivity.getString(R.string.alcohol_test_end_no_breath));
                 }
 
-                mCameraView.cameraStop();
 
                 break;
 
@@ -174,9 +169,9 @@ public class AcoholHandlerMsg extends Handler {
                 value = ble.getString(HandlerUtil.INFO);
                 value = String.format(mActivity.getString(R.string.alcohol_test_usage_count), (String)value);
 
-                if(mUsageCount != null) {
-                    mUsageCount.setText((String) value);
-                }
+//                if(mUsageCount != null) {
+//                    mUsageCount.setText((String) value);
+//                }
 
                 break;
 
