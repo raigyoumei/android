@@ -145,6 +145,23 @@
     </style>
     <!-- list view style end -->
 
+    <style name="vitalTitleTextStyle" parent="android:Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/list_text_size</item>
+    </style>
+
+    <style name="vitalValueTextStyle" parent="android:Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/list_text_size</item>
+    </style>
+
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:buttonStyle">@style/MyButtonStyle</item>
         <item name="editTextStyle">@style/MyEditTextStyle</item>
