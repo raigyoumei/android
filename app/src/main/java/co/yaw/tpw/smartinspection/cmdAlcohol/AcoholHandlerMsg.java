@@ -109,6 +109,8 @@ public class AcoholHandlerMsg extends HandlerUtil {
                     mMsgText.setText((String) value);
                 }
 
+                mCameraView.cameraStart();
+
                 break;
 
             case AcoholCmd.MSG_COMMAND_VALUE_TEST_AL:
@@ -283,6 +285,8 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 // blt接続を切り
                 ((AlcoholMeasureActivity)mActivity).getBltDeviceUtil().initBluetoothGatt();
+
+                //mCameraView.cameraStop();
 
                 break;
 
