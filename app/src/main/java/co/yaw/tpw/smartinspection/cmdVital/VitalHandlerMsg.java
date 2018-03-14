@@ -211,6 +211,8 @@ public class VitalHandlerMsg extends HandlerUtil {
         switch (status) {
             case ConnectionStates.STATE_CONNECTED:
 
+                Log.d(TAG,"ConnectionStates is STATE_CONNECTED");
+
                 //sensor.start();
                 //showToast("Connected", Toast.LENGTH_SHORT);
                 mPoorSignal = 0;
@@ -222,11 +224,15 @@ public class VitalHandlerMsg extends HandlerUtil {
                 break;
             case ConnectionStates.STATE_WORKING:
 
+                Log.d(TAG,"ConnectionStates is STATE_WORKING");
+
                 mMsgText.setText(mActivity.getString(R.string.vital_test_proc));
                 //mTestStartBtn.setEnabled(false);
 
                 break;
             case ConnectionStates.STATE_GET_DATA_TIME_OUT:
+
+                Log.d(TAG,"ConnectionStates is STATE_GET_DATA_TIME_OUT");
 
                 //mMsgText.setText("STATE_GET_DATA_TIME_OUT");
 
@@ -236,12 +242,17 @@ public class VitalHandlerMsg extends HandlerUtil {
                 break;
             case ConnectionStates.STATE_STOPPED:
 
+                Log.d(TAG,"ConnectionStates is STATE_STOPPED");
+
                 //mMsgText.setText("STATE_STOPPED");
                 //startBtn.setEnabled(true);
                 //showToast("Stopped", Toast.LENGTH_SHORT);
 
                 break;
             case ConnectionStates.STATE_DISCONNECTED:
+
+                Log.d(TAG,"ConnectionStates is STATE_DISCONNECTED");
+
                 //showToast("STATE_DISCONNECTED", Toast.LENGTH_SHORT);
                 //mMsgText.setText("STATE_DISCONNECTED");
 
@@ -258,6 +269,8 @@ public class VitalHandlerMsg extends HandlerUtil {
                 break;
             case ConnectionStates.STATE_ERROR:
 
+                Log.d(TAG,"ConnectionStates is STATE_ERROR");
+
                 //mMsgText.setText("STATE_ERROR");
                 //showToast("STATE_ERROR", Toast.LENGTH_SHORT);
 
@@ -268,12 +281,17 @@ public class VitalHandlerMsg extends HandlerUtil {
                 break;
             case ConnectionStates.STATE_FAILED:
 
-                mMsgText.setText(mActivity.getText(R.string.vital_test_end_ng));
+                Log.d(TAG,"ConnectionStates is STATE_FAILED");
+
+                mMsgText.setText(mActivity.getText(R.string.vital_test_connect_ng));
                 //mTestStartBtn.setEnabled(true);
 
                 //showToast("Connect failed!", Toast.LENGTH_SHORT);
                 break;
             default:
+
+                Log.d(TAG,"ConnectionStates is other="+status);
+
                 break;
         }
 

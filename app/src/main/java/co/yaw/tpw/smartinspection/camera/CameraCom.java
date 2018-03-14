@@ -150,12 +150,7 @@ public class CameraCom {
         Log.i(TAG, "cameraPause");
 
         mCapImage = false;
-
-        if(mCameraStart) {
-            mCameraView.pause();
-            mCameraStart = false;
-        }
-
+        mCameraView.pause();
     }
 
 
