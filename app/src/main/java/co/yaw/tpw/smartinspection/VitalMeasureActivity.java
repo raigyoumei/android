@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,8 +42,8 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     private Spinner vitalSensorSpinner = null;
 
     private BltDeviceUtil mBltDeviceUtil = null;
-    private Button mStartBtn = null;
-    private String mSelectDevice = null;
+    //private Button mStartBtn = null;
+    //private String mSelectDevice = null;
 
     private VitalHandlerMsg mVitalHandlerMsg = null;
     private EcgConnect mEcgConnect = null;
@@ -63,43 +64,43 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
             }
         });
 
-        mStartBtn = findViewById(R.id.measure_button);
-        mStartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //権限チェック
-                if(!checkPermission() || (mSelectDevice == null)){
-                    return;
-                }
-
-                Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
-
-                mEcgProcess.initView();
-
-                // scan stop
-                mBltDeviceUtil.scanLeDevice(false);
-
-                BluetoothDevice device = mBltDeviceUtil.getblueDevice(mSelectDevice);
-                if(device == null) {
-                    Log.d(TAG, "device is null");
-                    return;
-                }
-
-                TextView msgText = findViewById(R.id.test_msg);
-                msgText.setText(getString(R.string.vital_test_connect));
-
-                Log.d(TAG, "getBondState ="+device.getBondState());
-
-                mEcgConnect.stopTgStreamReader();
-                mEcgProcess.initNskECG();
-                mEcgConnect.connectTgStream(device);
-
-                // 開始ボタン無効
-                Button startBtn = findViewById(R.id.measure_button);
-                startBtn.setEnabled(false);
-            }
-        });
+//        mStartBtn = findViewById(R.id.measure_button);
+//        mStartBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                //権限チェック
+//                if(!checkPermission() || (mSelectDevice == null)){
+//                    return;
+//                }
+//
+//                Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
+//
+//                mEcgProcess.initView();
+//
+//                // scan stop
+//                mBltDeviceUtil.scanLeDevice(false);
+//
+//                BluetoothDevice device = mBltDeviceUtil.getblueDevice(mSelectDevice);
+//                if(device == null) {
+//                    Log.d(TAG, "device is null");
+//                    return;
+//                }
+//
+//                TextView msgText = findViewById(R.id.test_msg);
+//                msgText.setText(getString(R.string.vital_test_connect));
+//
+//                Log.d(TAG, "getBondState ="+device.getBondState());
+//
+//                mEcgConnect.stopTgStreamReader();
+//                mEcgProcess.initNskECG();
+//                mEcgConnect.connectTgStream(device);
+//
+//                // 開始ボタン無効
+//                Button startBtn = findViewById(R.id.measure_button);
+//                startBtn.setEnabled(false);
+//            }
+//        });
 
         setSpinnerAdapter();
 
@@ -107,10 +108,12 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         initBltDeviceInfo();
 
         initEcgInfo();
-
     }
 
+
+
     private void setSpinnerAdapter() {
+
         vitalSensorSpinner = findViewById(R.id.vital_sensor_spinner);
         vitalSensorSpinner.setOnItemSelectedListener(this);
 
@@ -122,6 +125,27 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         vitalSensorSpinner.setAdapter(dataAdapter);
 
+        vitalSensorSpinner.setOnTouchListener(new AdapterView.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                Log.d(TAG, "setOnTouchListener onTouch call");
+
+                // 権限チェック
+                boolean ret = checkPermission();
+                if(ret){
+
+                    if(!mBltDeviceUtil.getConnectStatus()){
+                        // buletooth検索開始
+                        mBltDeviceUtil.scanLeDevice(true);
+                    }
+                }
+
+                return false;
+            }
+        });
+
         // バイタルセンサー一覧表示の初期化
         mVitalHandlerMsg = new VitalHandlerMsg(this);
         mVitalHandlerMsg.initDeviceAdapter(categories, dataAdapter);
@@ -129,14 +153,49 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     }
 
 
+    private void connectTgStream(String select) {
+
+        //権限チェック
+        if(!checkPermission()){
+            return;
+        }
+
+        Log.d(TAG, "mBltDeviceUtil.connectDevice="+select);
+
+        mEcgProcess.initView();
+
+        // scan stop
+        mBltDeviceUtil.scanLeDevice(false);
+
+        BluetoothDevice device = mBltDeviceUtil.getblueDevice(select);
+        if(device == null) {
+            Log.d(TAG, "device is null");
+            return;
+        }
+
+        TextView msgText = findViewById(R.id.test_msg);
+        msgText.setText(getString(R.string.vital_test_connect));
+
+        Log.d(TAG, "getBondState ="+device.getBondState());
+
+        mEcgConnect.stopTgStreamReader();
+        mEcgProcess.initNskECG();
+        mEcgConnect.connectTgStream(device);
+    }
+
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         Log.d(TAG, "onItemSelected position="+position);
-        mSelectDevice = null;
+        String select = null;
 
         if(position > 0){
-            mSelectDevice = parent.getItemAtPosition(position).toString();
+            select = parent.getItemAtPosition(position).toString();
+
+            Log.d(TAG, "onItemSelected name="+select);
+
+            connectTgStream(select);
         }
     }
 
@@ -153,6 +212,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     protected void onPause() {
 
         super.onPause();
+
         mBltDeviceUtil.scanLeDevice(false);
         mBltDeviceUtil.initBluetoothGatt();
 
@@ -160,7 +220,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
         mEcgConnect.stopTgStreamReader();
 
-        mStartBtn.setEnabled(true);
+        //mStartBtn.setEnabled(true);
     }
 
 
@@ -208,10 +268,12 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
         //全部の権限を持つ場合
         if(flag){
-            // buletooth検索開始
-            mBltDeviceUtil.scanLeDevice(true);
-        }
 
+            if(!mBltDeviceUtil.getConnectStatus()){
+                // buletooth検索開始
+                mBltDeviceUtil.scanLeDevice(true);
+            }
+        }
     }
 
 
@@ -225,19 +287,17 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
             return;
         }
 
-        // 権限チェック
-        boolean ret = checkPermission();
-        if(ret){
-            // buletooth検索開始
-            mBltDeviceUtil.scanLeDevice(true);
-        }
+//        // 権限チェック
+//        boolean ret = checkPermission();
+//        if(ret){
+//            // buletooth検索開始
+//            mBltDeviceUtil.scanLeDevice(true);
+//        }
 
     }
 
 
     private void initEcgInfo() {
-
-        mVitalHandlerMsg = new VitalHandlerMsg(this);
 
         mEcgConnect = new EcgConnect(this);
         mEcgConnect.initTgStream();

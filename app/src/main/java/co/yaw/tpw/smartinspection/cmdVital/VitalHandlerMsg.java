@@ -24,7 +24,7 @@ public class VitalHandlerMsg extends HandlerUtil {
     private final static String TAG = VitalHandlerMsg.class.getSimpleName();
 
     private TextView mMsgText = null;
-    private Button mTestStartBtn = null;
+    //private Button mTestStartBtn = null;
 
     private Activity mActivity = null;
     private List<String> mDeviceList = null;
@@ -42,10 +42,8 @@ public class VitalHandlerMsg extends HandlerUtil {
 
         mActivity = activity;
 
-
         mMsgText = mActivity.findViewById(R.id.test_msg);
-
-        mTestStartBtn = mActivity.findViewById(R.id.measure_button);
+        //mTestStartBtn = mActivity.findViewById(R.id.measure_button);
 
     }
 
@@ -68,7 +66,7 @@ public class VitalHandlerMsg extends HandlerUtil {
         Bundle ble = msg.getData();
 
         Object value = null;
-        Button startBtn = mTestStartBtn;
+        //Button startBtn = mTestStartBtn;
 
         Log.d(TAG, "mHandler msg.what="+msg.what);
 
@@ -89,13 +87,14 @@ public class VitalHandlerMsg extends HandlerUtil {
 
             case BltDeviceUtil.MSG_DEVACE_SCAN_END:
 
-                if(mTestStartBtn.isEnabled()) {
+                if(!mEcgProcess.getEcgConnect().getConnectStatus()) {
                     mMsgText.setText(mActivity.getString(R.string.vital_test_msg_scan_end));
                 }
 
                 break;
 
             case BltDeviceUtil.MSG_DEVACE_FIND:
+
                 value = ble.getString(HandlerUtil.INFO);
 
                 mDeviceList.add((String)value);
@@ -106,15 +105,14 @@ public class VitalHandlerMsg extends HandlerUtil {
             case BltDeviceUtil.MSG_DEVACE_PAIR_START:
 
                 mMsgText.setText(mActivity.getString(R.string.vital_test_msg_blt_pair));
-                startBtn.setEnabled(false);
+                //startBtn.setEnabled(false);
 
                 break;
 
             case BltDeviceUtil.MSG_DEVACE_PAIR_END:
 
                 mMsgText.setText(mActivity.getString(R.string.vital_test_msg_blt_pair_end));
-
-                startBtn.setEnabled(true);
+                //startBtn.setEnabled(true);
 
                 break;
 
@@ -219,32 +217,27 @@ public class VitalHandlerMsg extends HandlerUtil {
                 mPressCount = 0;
 
                 //mMsgText.setText(mActivity.getString(R.string.starting));
-
-                mTestStartBtn.setEnabled(false);
+                //mTestStartBtn.setEnabled(false);
 
                 break;
             case ConnectionStates.STATE_WORKING:
 
                 mMsgText.setText(mActivity.getString(R.string.vital_test_proc));
-                mTestStartBtn.setEnabled(false);
+                //mTestStartBtn.setEnabled(false);
 
                 break;
             case ConnectionStates.STATE_GET_DATA_TIME_OUT:
 
                 //mMsgText.setText("STATE_GET_DATA_TIME_OUT");
 
-                if(!mTestStartBtn.isEnabled()) {
-                    mMsgText.setText(mActivity.getString(R.string.vital_test_end_ng));
-                    mTestStartBtn.setEnabled(true);
-                }
+                mMsgText.setText(mActivity.getString(R.string.vital_test_end_ng));
+                //mTestStartBtn.setEnabled(true);
 
                 break;
             case ConnectionStates.STATE_STOPPED:
 
                 //mMsgText.setText("STATE_STOPPED");
-
                 //startBtn.setEnabled(true);
-
                 //showToast("Stopped", Toast.LENGTH_SHORT);
 
                 break;
@@ -252,21 +245,13 @@ public class VitalHandlerMsg extends HandlerUtil {
                 //showToast("STATE_DISCONNECTED", Toast.LENGTH_SHORT);
                 //mMsgText.setText("STATE_DISCONNECTED");
 
-                if(mTestStartBtn.isEnabled()){
-                    break;
-                }
-
                 //mMsgText.setText(mActivity.getString(R.string.test_end));
                 if(mPressCount > 1){
                     mMsgText.setText(mActivity.getString(R.string.vital_test_end_ng));
-                }else {
-                    mMsgText.setText(mActivity.getString(R.string.vital_test_end_ok));
                 }
 
-                mTestStartBtn.setEnabled(true);
-
+                //mTestStartBtn.setEnabled(true);
                 mEcgProcess.getVitalTestValue();
-
 
                 break;
             case ConnectionStates.STATE_ERROR:
@@ -281,10 +266,8 @@ public class VitalHandlerMsg extends HandlerUtil {
                 break;
             case ConnectionStates.STATE_FAILED:
 
-                if(!mTestStartBtn.isEnabled()) {
-                    mMsgText.setText(mActivity.getText(R.string.vital_test_end_ng));
-                    mTestStartBtn.setEnabled(true);
-                }
+                mMsgText.setText(mActivity.getText(R.string.vital_test_end_ng));
+                //mTestStartBtn.setEnabled(true);
 
                 //showToast("Connect failed!", Toast.LENGTH_SHORT);
                 break;
