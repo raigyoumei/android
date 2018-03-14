@@ -33,9 +33,6 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
     private final static String TAG = VitalMeasureActivity.class.getSimpleName();
 
-    private final static int VITAL_PRM_REQ_CODE = 100;
-
-
     final Context context = this;
 
     private Button nextBtn = null;
@@ -108,6 +105,9 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         initBltDeviceInfo();
 
         initEcgInfo();
+
+        checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
+
     }
 
 
@@ -133,10 +133,10 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
                 Log.d(TAG, "setOnTouchListener onTouch call");
 
                 // 権限チェック
-                boolean ret = checkPermission();
+                boolean ret = checkPermission(BltDeviceUtil.BLT_PRM_SCAN_START);
                 if(ret){
 
-                    if(!mBltDeviceUtil.getConnectStatus()){
+                    if(!mEcgConnect.getConnectStatus()){
                         // buletooth検索開始
                         mBltDeviceUtil.scanLeDevice(true);
                     }
@@ -156,13 +156,23 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     private void connectTgStream(String select) {
 
         //権限チェック
-        if(!checkPermission()){
+        if(!checkPermission(BltDeviceUtil.BLT_PRM_SCAN_START)){
+
+            Log.d(TAG, "checkPermission is false");
+            return;
+        }
+
+        if(mEcgConnect.getConnectStatus()){
+            Log.d(TAG, "getConnectStatus is ture");
             return;
         }
 
         Log.d(TAG, "mBltDeviceUtil.connectDevice="+select);
 
         mEcgProcess.initView();
+
+        TextView msgText = findViewById(R.id.test_msg);
+        msgText.setText(getString(R.string.vital_test_connect));
 
         // scan stop
         mBltDeviceUtil.scanLeDevice(false);
@@ -172,9 +182,6 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
             Log.d(TAG, "device is null");
             return;
         }
-
-        TextView msgText = findViewById(R.id.test_msg);
-        msgText.setText(getString(R.string.vital_test_connect));
 
         Log.d(TAG, "getBondState ="+device.getBondState());
 
@@ -207,7 +214,6 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
 
 
-
     @Override
     protected void onPause() {
 
@@ -228,9 +234,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     protected void onResume() {
         super.onResume();
 
-        if (!mBltDeviceUtil.checkIsEnabled()) {
-            mBltDeviceUtil.enable();
-        }
+        //checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
     }
 
 
@@ -251,7 +255,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         boolean flag = false;
 
         switch (requestCode) {
-            case VITAL_PRM_REQ_CODE:
+            case BltDeviceUtil.BLT_PRM_SCAN_START:
 
                 for(int i = 0; i < grantResults.length; i++) {
                     if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
@@ -262,6 +266,13 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
                     }
                 }
                 break;
+
+            case BltDeviceUtil.BLT_PRM_SCAN_NO:
+
+                flag = false;
+
+                break;
+
             default:
                 break;
         }
@@ -269,7 +280,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         //全部の権限を持つ場合
         if(flag){
 
-            if(!mBltDeviceUtil.getConnectStatus()){
+            if(!mEcgConnect.getConnectStatus()){
                 // buletooth検索開始
                 mBltDeviceUtil.scanLeDevice(true);
             }
@@ -312,7 +323,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
 
     // 権限のチェック
-    private boolean checkPermission() {
+    private boolean checkPermission(int code) {
 
         String[] reqArray = new String[] {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -320,6 +331,8 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
                 Manifest.permission.BLUETOOTH,
                 Manifest.permission.BLUETOOTH_ADMIN
         };
+
+        mBltDeviceUtil.bltEnable();
 
         List list = new ArrayList();
         for(int i = 0; i < reqArray.length; i++){
@@ -333,7 +346,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
         if(list.size() > 0){
             String[] permissions = (String[])list.toArray(new String[list.size()]);
-            ActivityCompat.requestPermissions(this, permissions, VITAL_PRM_REQ_CODE);
+            ActivityCompat.requestPermissions(this, permissions, code);
             return false;
         }
 
