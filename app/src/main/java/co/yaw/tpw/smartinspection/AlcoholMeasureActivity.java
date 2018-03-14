@@ -4,15 +4,21 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -45,7 +51,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     private AcoholHandlerMsg mAcoholHandlerMsg = null;
     private BltDeviceUtil mBltDeviceUtil = null;
     private AcoholCmd mAcoholCmd = null;
-    private Button mStartBtn = null;
+    //private Button mStartBtn = null;
     private String mSelectDevice = null;
     private CameraCom mCameraCom = null;
 
@@ -95,34 +101,35 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         }
 
 
-        mStartBtn = findViewById(R.id.measure_button);
-        mStartBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //権限チェック
-                if(!checkPermission() || (mSelectDevice == null)){
-                    return;
-                }
-
-                Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
-
-                initView();
-
-                // bule tooth 接続
-                mBltDeviceUtil.connectDevice(mSelectDevice);
-
-                // 継続中表示
-                TextView testMsg = findViewById(R.id.test_msg);
-                testMsg.setText(getString(R.string.alcohol_test_connect));
-
-                // 開始ボタン無効
-                Button startBtn = findViewById(R.id.measure_button);
-                startBtn.setEnabled(false);
-            }
-        });
+//        mStartBtn = findViewById(R.id.measure_button);
+//        mStartBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                //権限チェック
+//                if(!checkPermission() || (mSelectDevice == null)){
+//                    return;
+//                }
+//
+//                Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
+//
+//                initView();
+//
+//                // bule tooth 接続
+//                mBltDeviceUtil.connectDevice(mSelectDevice);
+//
+//                // 継続中表示
+//                TextView testMsg = findViewById(R.id.test_msg);
+//                testMsg.setText(getString(R.string.alcohol_test_connect));
+//
+//                // 開始ボタン無効
+//                Button startBtn = findViewById(R.id.measure_button);
+//                startBtn.setEnabled(false);
+//            }
+//        });
 
         setSpinnerAdapter();
+        setCameraMaskView();
 
         // bule tooth初期化
         initBltDeviceInfo();
@@ -154,8 +161,49 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         mAcoholHandlerMsg.initDeviceAdapter(categories, dataAdapter);
         mAcoholHandlerMsg.setCameraView(mCameraCom);
 
+
+        alcoholSensorSpinner.setOnTouchListener(new AdapterView.OnTouchListener(){
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                Log.d(TAG, "setOnTouchListener onTouch call");
+
+                boolean ret = checkPermission();
+                if(ret){
+
+                    if(!mBltDeviceUtil.getConnectStatus()){
+
+                        // buletooth検索開始
+                        mBltDeviceUtil.scanLeDevice(true);
+                    }
+                }
+
+                return false;
+            }
+        });
+
     }
 
+    private void setCameraMaskView() {
+        final ScrollView scrollView = findViewById(R.id.scrollView);
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                int height = scrollView.getHeight();
+                int width = scrollView.getWidth();
+                int wh = height < width ? height : width;
+                if (wh > 0) {
+                    FrameLayout frameLayout = findViewById(R.id.circle_frame);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                            wh,
+                            wh);
+                    layoutParams.gravity = Gravity.CENTER;
+                    frameLayout.setLayoutParams(layoutParams);
+                }
+            }
+        });
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -167,8 +215,34 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             mSelectDevice = parent.getItemAtPosition(position).toString();
 
         }else{
-            mSelectDevice = null;
+
+            Log.d(TAG, "onItemSelected position is 0");
+            return;
         }
+
+        if(mBltDeviceUtil.getConnectStatus()){
+            Log.d(TAG, "getConnectStatus is true");
+            return;
+        }
+
+        //権限チェック
+        if(!checkPermission()){
+
+            Log.d(TAG, "checkPermission is false");
+            return;
+        }
+
+            Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
+
+        initView();
+
+        // bule tooth 接続
+        mBltDeviceUtil.connectDevice(mSelectDevice);
+
+        // 継続中表示
+        TextView testMsg = findViewById(R.id.test_msg);
+        testMsg.setText(getString(R.string.alcohol_test_connect));
+
     }
 
     @Override
@@ -225,8 +299,13 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         //全部の権限を持つ場合
         if(flag){
-            // buletooth検索開始
-            mBltDeviceUtil.scanLeDevice(true);
+
+            if(!mBltDeviceUtil.getConnectStatus()){
+                Log.d(TAG, "getConnectStatus is false");
+
+                //buletooth検索開始
+                mBltDeviceUtil.scanLeDevice(true);
+            }
         }
 
     }
@@ -246,11 +325,11 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         }
 
         // 権限チェック
-        boolean ret = checkPermission();
-        if(ret){
-            // buletooth検索開始
-            mBltDeviceUtil.scanLeDevice(true);
-        }
+//        boolean ret = checkPermission();
+//        if(ret){
+//            // buletooth検索開始
+//            mBltDeviceUtil.scanLeDevice(true);
+//        }
 
     }
 

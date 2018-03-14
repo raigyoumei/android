@@ -24,17 +24,19 @@ import java.util.Map;
 
 public class BltDeviceUtil {
 
+    private final static String TAG = BltDeviceUtil.class.getSimpleName();
+
+
     public static final int MSG_SCAN_START = 1001;
     public static final int MSG_DEVACE_FIND = 1002;
-    public static final int MSG_DEVACE_CONNECT = 1003;
-    public static final int MSG_DEVACE_DISCONNECT = 1004;
-    public static final int MSG_DEVACE_CONNECT_NG = 1005;
-    public static final int MSG_DEVACE_SCAN_END = 1006;
+    public static final int MSG_DEVACE_CONNECTING = 1003;
+    public static final int MSG_DEVACE_CONNECT = 1004;
+    public static final int MSG_DEVACE_DISCONNECT = 1005;
+    public static final int MSG_DEVACE_CONNECT_NG = 1006;
+    public static final int MSG_DEVACE_SCAN_END = 1007;
 
-    public static final int MSG_DEVACE_PAIR_START = 1007;
-    public static final int MSG_DEVACE_PAIR_END = 1008;
-
-    private final static String TAG = BltBandUtil.class.getSimpleName();
+    public static final int MSG_DEVACE_PAIR_START = 1008;
+    public static final int MSG_DEVACE_PAIR_END = 1009;
 
     private BluetoothAdapter mBluetoothAdapter = null;
     private Activity mActivity = null;
@@ -56,6 +58,10 @@ public class BltDeviceUtil {
 
 
     private List<BluetoothDevice> mBluetoothDeviceList = new ArrayList<BluetoothDevice>();
+
+
+    private boolean mConnectStatus = false;
+
 
     public BltDeviceUtil(Activity Context) {
         Log.i(TAG, "BuleToothDevice");
@@ -79,6 +85,11 @@ public class BltDeviceUtil {
 
     public void enable() {
         mBluetoothAdapter.enable();
+    }
+
+
+    public boolean getConnectStatus() {
+        return mConnectStatus;
     }
 
 
@@ -117,6 +128,8 @@ public class BltDeviceUtil {
 
         mBaseSensorCmd = baseSensorCmd;
         mHandlerUtil = handler;
+
+        mConnectStatus = false;
 
         if (!mActivity.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             //Toast.makeText(this, "warning :bluetooth not supported", Toast.LENGTH_SHORT).show();
@@ -177,8 +190,6 @@ public class BltDeviceUtil {
     public void scanLeDevice(final boolean enable) {
         if (enable) {
             if (!mScan){
-
-                mScan = true;
                 mHandlerUtil.sendHandler(MSG_SCAN_START);
 
                 mBluetoothDeviceList.clear();
@@ -188,21 +199,24 @@ public class BltDeviceUtil {
                 mRunnable = new Runnable() {
                     @Override
                     public void run() {
-                        mScan = false;
                         mBluetoothAdapter.stopLeScan(mLeScanCallback);
-                        mHandlerUtil.sendHandler(MSG_DEVACE_SCAN_END);
+
+                        if(!mConnectStatus) {
+                            mHandlerUtil.sendHandler(MSG_DEVACE_SCAN_END);
+                        }
+
+                        mScan = false;
                     }
                 };
 
                 // Stops scanning after a pre-defined scan period.
                 mHandlerUtil.postDelayed(mRunnable, SCAN_PERIOD);
-
+                mScan = true;
             }
 
         } else {
-            mScan = false;
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
-
+            mScan = false;
             //mHandlerUtil.sendHandler(MSG_DEVACE_SCAN_END);
 
         }
@@ -223,16 +237,20 @@ public class BltDeviceUtil {
 
             if (name.equals(nameAdr.trim())){
 
+                mConnectStatus = true;
+
                 device = mBluetoothAdapter.getRemoteDevice(device.getAddress());
 
                 //boolean ret = BltBandUtil.pair(device.getAddress(), PAIR_PWD);
                 //Log.d(TAG, "BuleToothBand.pair ret =" + ret);
 
-                mScan = false;
+
                 mBluetoothAdapter.stopLeScan(mLeScanCallback);
                 mHandlerUtil.removeCallbacks(mRunnable);
 
                 mBluetoothGatt = device.connectGatt(mActivity, false, mGattCallback);
+
+                mScan = false;
 
                 return true;
             }
@@ -327,25 +345,49 @@ public class BltDeviceUtil {
                     mHandlerUtil.sendHandler(MSG_DEVACE_CONNECT_NG);
                 }
 
+                mConnectStatus = false;
+
                 return;
             }
 
-            if (newState == BluetoothProfile.STATE_CONNECTED) {
+            switch (newState){
+                case BluetoothProfile.STATE_CONNECTING:
 
-                Log.d(TAG, "STATE_CONNECTED");
+                    Log.d(TAG, "STATE_CONNECTING");
+                    mHandlerUtil.sendHandler(MSG_DEVACE_CONNECTING);
 
-                gatt.discoverServices();
-                mHandlerUtil.sendHandler(MSG_DEVACE_CONNECT);
-                return;
-            }
+                    break;
 
-            if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                case BluetoothProfile.STATE_CONNECTED:
 
-                Log.d(TAG, "STATE_DISCONNECTED");
+                    Log.d(TAG, "STATE_CONNECTED");
 
-                gatt.close();
-                mHandlerUtil.sendHandler(MSG_DEVACE_DISCONNECT);
-                return;
+                    gatt.discoverServices();
+                    mHandlerUtil.sendHandler(MSG_DEVACE_CONNECT);
+
+                    break;
+
+                case BluetoothProfile.STATE_DISCONNECTING:
+
+                    Log.d(TAG, "STATE_DISCONNECTING");
+                    mConnectStatus = false;
+
+                    break;
+
+                case BluetoothProfile.STATE_DISCONNECTED:
+
+                    Log.d(TAG, "STATE_DISCONNECTED");
+
+                    gatt.close();
+                    mHandlerUtil.sendHandler(MSG_DEVACE_DISCONNECT);
+
+                    mConnectStatus = false;
+
+                    break;
+
+                default:
+                    Log.d(TAG, "other newState="+newState);
+                    break;
             }
 
         }

@@ -27,7 +27,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
     //private TextView mMsgVersion = null;
     private TextView mUsageCount = null;
     private TextView mArulValue = null;
-    private Button mTestStartBtn = null;
+    //private Button mTestStartBtn = null;
 
     private Activity mActivity = null;
     private List<String> mDeviceList = null;
@@ -45,7 +45,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
         mUsageCount = mActivity.findViewById(R.id.usge_count);
         mMsgText = mActivity.findViewById(R.id.test_msg);
         mArulValue = mActivity.findViewById(R.id.test_value);
-        mTestStartBtn = mActivity.findViewById(R.id.measure_button);
+        //mTestStartBtn = mActivity.findViewById(R.id.measure_button);
     }
 
 
@@ -267,9 +267,9 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 //mBltDeviceUtil.initBluetoothGatt();
                 //mStartTime = 0;
 
-                if(mTestStartBtn != null) {
-                    mTestStartBtn.setEnabled(true);
-                }
+//                if(mTestStartBtn != null) {
+//                    mTestStartBtn.setEnabled(true);
+//                }
 
                 //mCameraView.cameraStop();
 
@@ -323,6 +323,13 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 break;
 
+            case BltDeviceUtil.MSG_DEVACE_CONNECTING:
+
+                if(mMsgText != null) {
+                    mMsgText.setText(mActivity.getString(R.string.alcohol_test_connect));
+                }
+
+                break;
 
             case BltDeviceUtil.MSG_DEVACE_CONNECT:
                 //value = ble.getString(HandlerUtil.INFO);
@@ -331,9 +338,9 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 //mDeviceList.add((String)value);
                 //mArrayAdapter.notifyDataSetChanged();
 
-                if(mTestStartBtn != null) {
-                    mTestStartBtn.setEnabled(false);
-                }
+//                if(mTestStartBtn != null) {
+//                    mTestStartBtn.setEnabled(false);
+//                }
 
                 break;
 
@@ -346,9 +353,9 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 //mMsgText.setText(mActivity.getString(R.string.test_connect_ng));
 
-                if(mTestStartBtn != null) {
-                    mTestStartBtn.setEnabled(true);
-                }
+//                if(mTestStartBtn != null) {
+//                    mTestStartBtn.setEnabled(true);
+//                }
 
                 break;
 
@@ -360,9 +367,9 @@ public class AcoholHandlerMsg extends HandlerUtil {
                     mMsgText.setText(mActivity.getString(R.string.alcohol_test_connect_ng));
                 }
 
-                if(mTestStartBtn != null) {
-                    mTestStartBtn.setEnabled(true);
-                }
+//                if(mTestStartBtn != null) {
+//                    mTestStartBtn.setEnabled(true);
+//                }
 
                 break;
 

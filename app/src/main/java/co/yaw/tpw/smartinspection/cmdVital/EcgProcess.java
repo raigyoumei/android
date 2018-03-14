@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.neurosky.connection.TgStreamReader;
 import com.neurosky.ecg_algo.NeuroSkyECG;
 import com.neurosky.ecg_algo.NeuroSkyECGCallback;
 import com.yaw.tpw.smartinspection.R;
@@ -68,6 +69,9 @@ public class EcgProcess {
 
     }
 
+    public String getNskECGVersion() {
+        return mNskECG.getVersion();
+    }
 
     public EcgConnect getEcgConnect() {
         return mEcgConnect;
@@ -151,11 +155,15 @@ public class EcgProcess {
                                     mEcgConnect.stopTgStreamReader();
                                 }
 
-                                mStressView.setText(String.valueOf(mNskECG.getStress()));
+                                String stress = getStressInfo(mNskECG.getStress());
+                                //mStressView.setText(String.valueOf(mNskECG.getStress()));
+                                mStressView.setText(stress);
                                 mStress = mNskECG.getStress();
 
                                 //tv_heartage.setText(String.valueOf(mNskECG.getHeartAge()));
-                                mMoodView.setText(String.valueOf(mNskECG.getMood()));
+                                //mMoodView.setText(String.valueOf(mNskECG.getMood()));
+                                String mood = getMoodInfo(mNskECG.getMood());
+                                mMoodView.setText(mood);
                                 mMood = mNskECG.getMood();
                             }
 
@@ -253,6 +261,49 @@ public class EcgProcess {
 
         return map;
     }
+
+
+
+    private String getStressInfo(int value){
+
+        String ret = null;
+
+        if(value > 80){
+            ret = mActivity.getString(R.string.vital_test_stress_highly);
+        }else if(value > 60) {
+            ret = mActivity.getString(R.string.vital_test_stress_stressed);
+        }else if(value > 40) {
+            ret = mActivity.getString(R.string.vital_test_stress_mod);
+        }else if(value > 20) {
+            ret = mActivity.getString(R.string.vital_test_stress_low);
+        }else{
+            ret = mActivity.getString(R.string.vital_test_stress_no);
+        }
+
+        return ret;
+    }
+
+
+    private String getMoodInfo(int value){
+
+        String ret = null;
+
+        if(value > 80){
+            ret = mActivity.getString(R.string.vital_test_mood_excited);
+        }else if(value > 60) {
+            ret = mActivity.getString(R.string.vital_test_mood_motivated);
+        }else if(value > 40) {
+            ret = mActivity.getString(R.string.vital_test_mood_balance);
+        }else if(value > 20) {
+            ret = mActivity.getString(R.string.vital_test_mood_relaxed);
+        }else{
+            ret = mActivity.getString(R.string.vital_test_mood_calm);
+        }
+
+        return ret;
+    }
+
+
 
 
 

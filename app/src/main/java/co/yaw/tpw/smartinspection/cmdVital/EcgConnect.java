@@ -16,16 +16,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import co.yaw.tpw.smartinspection.bltUtil.DateUtil;
 import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
 
 public class EcgConnect {
 
-    private final static String TAG = VitalHandlerMsg.class.getSimpleName();
+    private final static String TAG = EcgConnect.class.getSimpleName();
 
     private static final String SHAREFILENAME = "NeuroskyUserInfo";
 
@@ -53,6 +52,10 @@ public class EcgConnect {
         mActivity = activity;
     }
 
+
+    public String getTgStreamVersion() {
+        return TgStreamReader.getVersion();
+    }
 
     public void initTgStream(){
 
@@ -178,8 +181,7 @@ public class EcgConnect {
         File dir = new File(path);
         if(!dir.exists()) dir.mkdirs();
 
-        SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyyMMdd_HH_mm_ss");
-        String fileName = mSharePreferences.getString(USER_NAME, "User") + "_" + dateFormatGmt.format(new Date())+".txt";
+        String fileName = mSharePreferences.getString(USER_NAME, "User") + "_" + DateUtil.getCustomTime(DateUtil.YMDHMSS) +".txt";
 
         File outputFile = new File(dir, fileName);
         mOutputStreamRawData = null;
@@ -263,8 +265,6 @@ public class EcgConnect {
         mShareEditor.putInt(USER_HEIGHT, height);
         mShareEditor.commit();
     }
-
-
 
 
     public void outPutLogData(int data) {
