@@ -26,7 +26,6 @@ public class BltDeviceUtil {
 
     private final static String TAG = BltDeviceUtil.class.getSimpleName();
 
-
     public static final int MSG_SCAN_START = 1001;
     public static final int MSG_DEVACE_FIND = 1002;
     public static final int MSG_DEVACE_CONNECTING = 1003;
@@ -38,6 +37,11 @@ public class BltDeviceUtil {
     public static final int MSG_DEVACE_PAIR_START = 1008;
     public static final int MSG_DEVACE_PAIR_END = 1009;
 
+
+    public final static int BLT_PRM_SCAN_START = 8001;
+    public final static int BLT_PRM_SCAN_NO = 8002;
+
+
     private BluetoothAdapter mBluetoothAdapter = null;
     private Activity mActivity = null;
     private Runnable mRunnable = null;
@@ -46,7 +50,7 @@ public class BltDeviceUtil {
     private BltComCmd mBaseSensorCmd = null;
 
     // Stops scanning after 10 seconds.
-    private static final long SCAN_PERIOD = 10000;
+    private static final long SCAN_PERIOD = 20000;
     public static final String PAIR_PWD = "0000";
     private static final String SPIT_STR = "   ";
 
@@ -83,8 +87,10 @@ public class BltDeviceUtil {
     }
 
 
-    public void enable() {
-        mBluetoothAdapter.enable();
+    public void bltEnable() {
+        if(!mBluetoothAdapter.isEnabled()) {
+            mBluetoothAdapter.enable();
+        }
     }
 
 
@@ -148,9 +154,7 @@ public class BltDeviceUtil {
             return false;
         }
 
-        if (!mBluetoothAdapter.isEnabled()) {
-            mBluetoothAdapter.enable();
-        }
+        bltEnable();
 
         // auto pair
         addReceiver();

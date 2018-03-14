@@ -39,7 +39,6 @@ import static android.util.Log.d;
 public class AlcoholMeasureActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private final static String TAG = AlcoholMeasureActivity.class.getSimpleName();
-    private final static int ALCOHOL_PRM_REQ_CODE = 100;
 
     final Context context = this;
     private Button backBtn;
@@ -134,6 +133,8 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         // bule tooth初期化
         initBltDeviceInfo();
 
+        checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
+
     }
 
     private void setSpinnerAdapter() {
@@ -168,7 +169,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
                 Log.d(TAG, "setOnTouchListener onTouch call");
 
-                boolean ret = checkPermission();
+                boolean ret = checkPermission(BltDeviceUtil.BLT_PRM_SCAN_START);
                 if(ret){
 
                     if(!mBltDeviceUtil.getConnectStatus()){
@@ -222,25 +223,24 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
     private void connectDevice(String select) {
 
-        if(mBltDeviceUtil.getConnectStatus()){
-            Log.d(TAG, "getConnectStatus is true");
+        //権限チェック
+        if(!checkPermission(BltDeviceUtil.BLT_PRM_SCAN_START)){
+            Log.d(TAG, "checkPermission is false");
             return;
         }
 
-        //権限チェック
-        if(!checkPermission()){
-
-            Log.d(TAG, "checkPermission is false");
+        if(mBltDeviceUtil.getConnectStatus()){
+            Log.d(TAG, "getConnectStatus is ture");
             return;
         }
 
         Log.d(TAG, "mBltDeviceUtil.connectDevice="+select);
 
+        initView();
+
         // 接続中表示
         TextView testMsg = findViewById(R.id.test_msg);
         testMsg.setText(getString(R.string.alcohol_test_connect));
-
-        initView();
 
         // bule tooth 接続
         mBltDeviceUtil.connectDevice(select);
@@ -278,6 +278,14 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     }
 
 
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        //checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
@@ -285,7 +293,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         boolean flag = false;
 
         switch (requestCode) {
-            case ALCOHOL_PRM_REQ_CODE:
+            case BltDeviceUtil.BLT_PRM_SCAN_START:
 
                 for(int i = 0; i < grantResults.length; i++) {
                     if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
@@ -296,6 +304,12 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
                     }
                 }
                 break;
+            case BltDeviceUtil.BLT_PRM_SCAN_NO:
+
+                flag = false;
+
+                break;
+
             default:
                 break;
         }
@@ -357,7 +371,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
 
     // 権限のチェック
-    private boolean checkPermission() {
+    private boolean checkPermission(int bltScan) {
 
         String[] reqArray = new String[] {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -367,6 +381,8 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
                 Manifest.permission.BLUETOOTH_ADMIN,
                 Manifest.permission.RECORD_AUDIO,
                 Manifest.permission.CAMERA};
+
+        mBltDeviceUtil.bltEnable();
 
         List list = new ArrayList();
         for(int i = 0; i < reqArray.length; i++){
@@ -380,7 +396,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         if(list.size() > 0){
             String[] permissions = (String[])list.toArray(new String[list.size()]);
-            ActivityCompat.requestPermissions(this, permissions, ALCOHOL_PRM_REQ_CODE);
+            ActivityCompat.requestPermissions(this, permissions, bltScan);
             return false;
         }
 
