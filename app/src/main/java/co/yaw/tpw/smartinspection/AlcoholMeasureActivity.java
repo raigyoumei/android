@@ -161,7 +161,6 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         mAcoholHandlerMsg.initDeviceAdapter(categories, dataAdapter);
         mAcoholHandlerMsg.setCameraView(mCameraCom);
 
-
         alcoholSensorSpinner.setOnTouchListener(new AdapterView.OnTouchListener(){
 
             @Override
@@ -313,11 +312,12 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
     private void initBltDeviceInfo() {
 
-        mAcoholCmd = new AcoholCmd(mAcoholHandlerMsg);
         mBltDeviceUtil = new BltDeviceUtil(this, "PAB");
+
         //mBltDeviceUtil = new BltDeviceUtil(this, null);
 
         // Checks if Bluetooth is supported on the device.
+        mAcoholCmd = new AcoholCmd(mAcoholHandlerMsg);
         if (!mBltDeviceUtil.initBuleToothDevice(mAcoholHandlerMsg, mAcoholCmd)) {
             //Toast.makeText(this, "error : bluetooth not supported", Toast.LENGTH_SHORT).show();
             finish();
@@ -383,5 +383,10 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         return true;
     }
 
+
+
+    public BltDeviceUtil getBltDeviceUtil(){
+        return mBltDeviceUtil;
+    }
 
 }

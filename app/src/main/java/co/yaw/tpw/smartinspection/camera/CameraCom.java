@@ -36,6 +36,7 @@ public class CameraCom {
     private boolean mStopFlag = false;
 
     private HandlerUtil mHandlerUtil = null;
+    private boolean mCameraStart = false;
 
 
     public CameraCom(Activity activity, CameraMaskView cameraView) {
@@ -109,7 +110,7 @@ public class CameraCom {
                 mHandlerUtil.sendHandler(MSG_IMAGE_CAPTURE, mImageData);
 
                 if (mStopFlag){
-                    mCameraView.pause();
+                    cameraPause();
                 }
 
             }
@@ -123,7 +124,11 @@ public class CameraCom {
         Log.i(TAG, "cameraStart");
 
         mCapImage = false;
-        mCameraView.start();
+
+        if(!mCameraStart) {
+            mCameraView.start();
+            mCameraStart = true;
+        }
     }
 
 
@@ -132,7 +137,11 @@ public class CameraCom {
         Log.i(TAG, "cameraStop");
 
         mCapImage = false;
-        mCameraView.stop();
+
+        if(mCameraStart) {
+            mCameraView.stop();
+            mCameraStart = false;
+        }
 
     }
 
@@ -141,7 +150,11 @@ public class CameraCom {
         Log.i(TAG, "cameraPause");
 
         mCapImage = false;
-        mCameraView.pause();
+
+        if(mCameraStart) {
+            mCameraView.pause();
+            mCameraStart = false;
+        }
 
     }
 

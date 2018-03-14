@@ -563,11 +563,16 @@ public class BltDeviceUtil {
 
 
     public void initBluetoothGatt() {
+
+        Log.d(TAG, "initBluetoothGatt call");
+
         if(mBluetoothGatt != null){
             mBluetoothGatt.disconnect();
             //mBluetoothGatt.close();
         }
+
         mBluetoothGatt = null;
+        mConnectStatus = false;
     }
 
 }

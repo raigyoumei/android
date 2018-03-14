@@ -14,6 +14,7 @@ import com.yaw.tpw.smartinspection.R;
 
 import java.util.List;
 
+import co.yaw.tpw.smartinspection.AlcoholMeasureActivity;
 import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
 import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
 import co.yaw.tpw.smartinspection.camera.CameraCom;
@@ -107,6 +108,8 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 if(mMsgText != null) {
                     mMsgText.setText((String) value);
                 }
+
+                mCameraView.cameraStart();
 
                 break;
 
@@ -279,6 +282,11 @@ public class AcoholHandlerMsg extends HandlerUtil {
                     mDeviceList.add(flag);
                     mArrayAdapter.notifyDataSetChanged();
                 }
+
+                // blt接続を切り
+                ((AlcoholMeasureActivity)mActivity).getBltDeviceUtil().initBluetoothGatt();
+
+                //mCameraView.cameraStop();
 
                 break;
 
