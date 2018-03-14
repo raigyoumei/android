@@ -24,7 +24,7 @@ import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
 
 public class EcgConnect {
 
-    private final static String TAG = VitalHandlerMsg.class.getSimpleName();
+    private final static String TAG = EcgConnect.class.getSimpleName();
 
     private static final String SHAREFILENAME = "NeuroskyUserInfo";
 

@@ -34,6 +34,7 @@ import static android.util.Log.d;
 public class AlcoholMeasureActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private final static String TAG = AlcoholMeasureActivity.class.getSimpleName();
+
     private final static int ALCOHOL_PRM_REQ_CODE = 100;
 
     final Context context = this;
@@ -165,8 +166,12 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
                 boolean ret = checkPermission();
                 if(ret){
-                    // buletooth検索開始
-                    mBltDeviceUtil.scanLeDevice(true);
+
+                    if(!mBltDeviceUtil.getConnectStatus()){
+
+                        // buletooth検索開始
+                        mBltDeviceUtil.scanLeDevice(true);
+                    }
                 }
 
                 return false;
@@ -186,29 +191,36 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             mSelectDevice = parent.getItemAtPosition(position).toString();
 
         }else{
-            mSelectDevice = null;
+
+            Log.d(TAG, "onItemSelected position is 0");
+            return;
         }
 
-        if(mSelectDevice != null){
-
-            //権限チェック
-            if(!checkPermission() || (mSelectDevice == null)){
-                return;
-            }
-
-            Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
-
-            initView();
-
-            // bule tooth 接続
-            mBltDeviceUtil.connectDevice(mSelectDevice);
-
-            // 継続中表示
-            TextView testMsg = findViewById(R.id.test_msg);
-            testMsg.setText(getString(R.string.alcohol_test_connect));
+        if(mBltDeviceUtil.getConnectStatus()){
+            Log.d(TAG, "getConnectStatus is true");
+            return;
         }
+
+        //権限チェック
+        if(!checkPermission()){
+
+            Log.d(TAG, "checkPermission is false");
+            return;
+        }
+
+        Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
+
+        initView();
+
+        // bule tooth 接続
+        mBltDeviceUtil.connectDevice(mSelectDevice);
+
+        // 継続中表示
+        TextView testMsg = findViewById(R.id.test_msg);
+        testMsg.setText(getString(R.string.alcohol_test_connect));
 
     }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -264,8 +276,13 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         //全部の権限を持つ場合
         if(flag){
-            //buletooth検索開始
-            mBltDeviceUtil.scanLeDevice(true);
+
+            if(!mBltDeviceUtil.getConnectStatus()){
+                Log.d(TAG, "getConnectStatus is false");
+
+                //buletooth検索開始
+                mBltDeviceUtil.scanLeDevice(true);
+            }
         }
 
     }
