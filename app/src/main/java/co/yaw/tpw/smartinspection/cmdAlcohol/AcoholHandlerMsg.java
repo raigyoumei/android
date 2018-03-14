@@ -323,6 +323,13 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 break;
 
+            case BltDeviceUtil.MSG_DEVACE_CONNECTING:
+
+                if(mMsgText != null) {
+                    mMsgText.setText(mActivity.getString(R.string.alcohol_test_connect));
+                }
+
+                break;
 
             case BltDeviceUtil.MSG_DEVACE_CONNECT:
                 //value = ble.getString(HandlerUtil.INFO);

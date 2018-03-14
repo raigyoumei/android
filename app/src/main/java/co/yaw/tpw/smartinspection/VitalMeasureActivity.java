@@ -31,6 +31,7 @@ import static android.util.Log.d;
 public class VitalMeasureActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private final static String TAG = VitalMeasureActivity.class.getSimpleName();
+
     private final static int VITAL_PRM_REQ_CODE = 100;
 
 
