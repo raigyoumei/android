@@ -250,9 +250,10 @@
     <string name="vital_test_msg_blt_pair">ペアリング中</string>
     <string name="vital_test_msg_blt_pair_end">ペアリング終了</string>
     <string name="vital_test_proc">測定中</string>
-    <string name="vital_test_end_ok">接続終了</string>
-    <string name="vital_test_end_ng">異常終了</string>
+    <string name="vital_test_end_ok">測定正常終了</string>
+    <string name="vital_test_end_ng">測定異常終了</string>
     <string name="vital_test_connect">接続中</string>
+    <string name="vital_test_connect_ng">接続失敗</string>
 
     <string name="vital_test_stress_no">no to minimal stress</string>
     <string name="vital_test_stress_low">low stress</string>
