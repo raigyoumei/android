@@ -47,15 +47,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center" />
-
-            <Button
-                android:id="@+id/measure_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:text="@string/action_measure"
-                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
