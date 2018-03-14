@@ -248,6 +248,8 @@ public class VitalHandlerMsg extends HandlerUtil {
                 //mMsgText.setText(mActivity.getString(R.string.test_end));
                 if(mPressCount > 1){
                     mMsgText.setText(mActivity.getString(R.string.vital_test_end_ng));
+                }else{
+                    mMsgText.setText(mActivity.getString(R.string.vital_test_end_ok));
                 }
 
                 //mTestStartBtn.setEnabled(true);
