@@ -52,7 +52,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     private BltDeviceUtil mBltDeviceUtil = null;
     private AcoholCmd mAcoholCmd = null;
     //private Button mStartBtn = null;
-    private String mSelectDevice = null;
+    //private String mSelectDevice = null;
     private CameraCom mCameraCom = null;
 
     @Override
@@ -208,16 +208,19 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         Log.d(TAG, "onItemSelected position="+position);
+        String select = null;
 
         if(position > 0){
 
-            mSelectDevice = parent.getItemAtPosition(position).toString();
+            select = parent.getItemAtPosition(position).toString();
+            Log.d(TAG, "onItemSelected select="+select);
 
-        }else{
-
-            Log.d(TAG, "onItemSelected position is 0");
-            return;
+            connectDevice(select);
         }
+    }
+
+
+    private void connectDevice(String select) {
 
         if(mBltDeviceUtil.getConnectStatus()){
             Log.d(TAG, "getConnectStatus is true");
@@ -231,18 +234,19 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             return;
         }
 
-            Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
+        Log.d(TAG, "mBltDeviceUtil.connectDevice="+select);
+
+        // 接続中表示
+        TextView testMsg = findViewById(R.id.test_msg);
+        testMsg.setText(getString(R.string.alcohol_test_connect));
 
         initView();
 
         // bule tooth 接続
-        mBltDeviceUtil.connectDevice(mSelectDevice);
-
-        // 継続中表示
-        TextView testMsg = findViewById(R.id.test_msg);
-        testMsg.setText(getString(R.string.alcohol_test_connect));
+        mBltDeviceUtil.connectDevice(select);
 
     }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {

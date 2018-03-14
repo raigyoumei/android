@@ -48,6 +48,8 @@ public class EcgConnect {
 
     private boolean mBltConnectFailed = false;
 
+    private boolean mConnectStutas = false;
+
     public EcgConnect(Activity activity) {
         mActivity = activity;
     }
@@ -55,6 +57,10 @@ public class EcgConnect {
 
     public String getTgStreamVersion() {
         return TgStreamReader.getVersion();
+    }
+
+    public boolean getConnectStatus() {
+        return mConnectStutas;
     }
 
     public void initTgStream(){
@@ -83,16 +89,25 @@ public class EcgConnect {
     private TgStreamHandler mTgStreamHandlerCallback = new TgStreamHandler() {
 
         @Override
-        public void onStatesChanged(int connectionStates) {
+        public void onStatesChanged(int states) {
             // TODO Auto-generated method stub
-            Log.d(TAG, "connectionStates change to: " + connectionStates);
+            Log.d(TAG, "connectionStates change to: " + states);
 
-            switch (connectionStates) {
+            switch (states) {
+
+                case ConnectionStates.STATE_CONNECTING:
+                    mConnectStutas = true;
+
+                    break;
 
                 case ConnectionStates.STATE_CONNECTED:
 
+                    mConnectStutas = true;
+
                     mBltConnectFailed = false;
                     //showToast("Connected", Toast.LENGTH_SHORT);
+
+                    mHandlerUtil.sendHandler(MSG_UPDATE_STATE, states);
 
                     break;
 
@@ -101,40 +116,68 @@ public class EcgConnect {
                     startRecordRawData();
                     //showToast("STATE_WORKING", Toast.LENGTH_SHORT);
 
+                    mHandlerUtil.sendHandler(MSG_UPDATE_STATE, states);
+
                     break;
 
                 case ConnectionStates.STATE_GET_DATA_TIME_OUT:
 
+                    mConnectStutas = false;
+
                     stopRecordRawData();
                     //showToast("Get data timeout", Toast.LENGTH_SHORT);
+
+                    mHandlerUtil.sendHandler(MSG_UPDATE_STATE, states);
 
                     break;
 
                 case ConnectionStates.STATE_STOPPED:
+
+                    mConnectStutas = false;
+
                     stopRecordRawData();
                     //showToast("Stopped", Toast.LENGTH_SHORT);
+
+                    mHandlerUtil.sendHandler(MSG_UPDATE_STATE, states);
 
                     break;
 
                 case ConnectionStates.STATE_DISCONNECTED:
+
+                    mConnectStutas = false;
+
                     //showToast("STATE_DISCONNECTED", Toast.LENGTH_SHORT);
 
+                    mHandlerUtil.sendHandler(MSG_UPDATE_STATE, states);
                     break;
+
                 case ConnectionStates.STATE_ERROR:
+
+                    mConnectStutas = false;
 
                     //showToast("STATE_ERROR", Toast.LENGTH_SHORT);
 
+                    mHandlerUtil.sendHandler(MSG_UPDATE_STATE, states);
+
                     break;
+
                 case ConnectionStates.STATE_FAILED:
+
+                    mConnectStutas = false;
 
                     mBltConnectFailed = true;
 
                     //showToast("Connect failed!", Toast.LENGTH_SHORT);
+
+                    mHandlerUtil.sendHandler(MSG_UPDATE_STATE, states);
+
+                    break;
+                default:
+
+                    Log.d(TAG, "connectionStates other =" + states);
+
                     break;
             }
-
-
-            mHandlerUtil.sendHandler(MSG_UPDATE_STATE, connectionStates);
 
         }
 
@@ -216,6 +259,8 @@ public class EcgConnect {
 
 
     public void stopTgStreamReader() {
+
+        mConnectStutas = false;
 
         if(mBltConnectFailed){
             return;
