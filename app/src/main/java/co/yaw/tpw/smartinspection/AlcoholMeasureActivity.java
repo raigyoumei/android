@@ -4,16 +4,21 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -34,7 +39,6 @@ import static android.util.Log.d;
 public class AlcoholMeasureActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private final static String TAG = AlcoholMeasureActivity.class.getSimpleName();
-
     private final static int ALCOHOL_PRM_REQ_CODE = 100;
 
     final Context context = this;
@@ -125,6 +129,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 //        });
 
         setSpinnerAdapter();
+        setCameraMaskView();
 
         // bule tooth初期化
         initBltDeviceInfo();
@@ -179,6 +184,25 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
     }
 
+    private void setCameraMaskView() {
+        final ScrollView scrollView = findViewById(R.id.scrollView);
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                int height = scrollView.getHeight();
+                int width = scrollView.getWidth();
+                int wh = height < width ? height : width;
+                if (wh > 0) {
+                    FrameLayout frameLayout = findViewById(R.id.circle_frame);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                            wh,
+                            wh);
+                    layoutParams.gravity = Gravity.CENTER;
+                    frameLayout.setLayoutParams(layoutParams);
+                }
+            }
+        });
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -207,7 +231,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             return;
         }
 
-        Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
+            Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
 
         initView();
 
@@ -219,7 +243,6 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         testMsg.setText(getString(R.string.alcohol_test_connect));
 
     }
-
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {

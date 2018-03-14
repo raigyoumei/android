@@ -78,7 +78,7 @@ public class CameraMaskView extends CameraView {
         boolean isStarted = isStarted();
         if(isStarted) {
             Path clipPath = new Path();
-            RectF oval = new RectF(0, 0, canvas.getWidth(), canvas.getWidth());
+            RectF oval = new RectF(0, 0, canvas.getWidth(), canvas.getHeight());
             clipPath.addOval(oval, Path.Direction.CW);
             canvas.clipPath(clipPath);
 
