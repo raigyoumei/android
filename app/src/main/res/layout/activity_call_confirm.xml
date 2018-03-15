@@ -163,11 +163,8 @@
     </ScrollView>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_msg"
-        android:text="@string/input_completed"
-        android:textSize="@dimen/text_size_middle" />
+        style="@style/MessageStyle"
+        android:text="@string/input_completed" />
 
     <LinearLayout
         android:layout_width="match_parent"

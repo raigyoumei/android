@@ -131,11 +131,8 @@
 
         <TextView
             android:id="@+id/test_msg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_msg"
-            android:text="@string/alcohol_test_blt_select"
-            android:textSize="@dimen/text_size_small" />
+            style="@style/MessageStyle"
+            android:text="@string/alcohol_test_blt_select" />
 
         <LinearLayout
             android:layout_width="match_parent"
