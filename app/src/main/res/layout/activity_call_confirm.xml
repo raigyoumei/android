@@ -35,26 +35,8 @@
                         style="@style/ListTextViewStyle"
                         android:text="@string/alcohol_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-
-                </LinearLayout>
-
-                <View
-                    style="@style/ListViewSeparator" />
-
-                <LinearLayout
-                    android:id="@+id/vital_sign_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
-
                     <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/vital_sign_check" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                        style="@style/ListTextViewNoExceptionStyle" />
 
                 </LinearLayout>
 
@@ -72,9 +54,69 @@
                         style="@style/ListTextViewStyle"
                         android:text="@string/health_status_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="true"/>
+                    <TextView
+                        style="@style/ListTextViewNeedConfirmStyle"/>
+
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:id="@+id/vital_sign_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/call_confirm_heartbeat" />
+
+                    <TextView
+                        android:id="@+id/heartbeat_value"
+                        style="@style/ListTextViewNormalStyle"
+                        android:text="89" />
+
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/call_confirm_max_blood_pressure" />
+
+                    <TextView
+                        android:id="@+id/max_blood_pressure_value"
+                        style="@style/ListTextViewNormalStyle"
+                        android:text="110" />
+
+                </LinearLayout>
+
+                <View
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/call_confirm_min_blood_pressure" />
+
+                    <!--<ToggleButton-->
+                        <!--style="@style/ListNeedConfirmOrNotButtonStyle"/>-->
+
+                    <TextView
+                        android:id="@+id/min_blood_pressure_value"
+                        style="@style/ListTextViewNormalStyle"
+                        android:text="69" />
 
                 </LinearLayout>
 
@@ -83,14 +125,15 @@
                     style="@style/ListViewSeparator" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="80dp"
-                android:text="@string/input_completed" />
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_msg"
+        android:text="@string/input_completed"
+        android:textSize="@dimen/text_size_middle" />
 
     <LinearLayout
         android:layout_width="match_parent"
