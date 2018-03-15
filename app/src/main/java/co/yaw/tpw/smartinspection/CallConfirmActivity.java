@@ -32,6 +32,8 @@ public class CallConfirmActivity extends AppCompatActivity {
                 View maxBloodPressureSeparator = findViewById(R.id.max_blood_pressure_separator);
                 View minBloodPressureLayout = findViewById(R.id.min_blood_pressure_layout);
                 View minBloodPressureSeparator = findViewById(R.id.min_blood_pressure_separator);
+                View bodyTemperatureLayout = findViewById(R.id.body_temperature_layout);
+                View bodyTemperatureSeparator = findViewById(R.id.body_temperature_separator);
 
                 ViewGroup vg = (ViewGroup)(healthStatusLayout.getParent());
                 vg.removeView(healthStatusLayout);
@@ -42,6 +44,8 @@ public class CallConfirmActivity extends AppCompatActivity {
                 vg.removeView(maxBloodPressureSeparator);
                 vg.removeView(minBloodPressureLayout);
                 vg.removeView(minBloodPressureSeparator);
+                vg.removeView(bodyTemperatureLayout);
+                vg.removeView(bodyTemperatureSeparator);
             }
         }
 
