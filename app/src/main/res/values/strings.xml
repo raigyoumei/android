@@ -165,7 +165,7 @@
     <string name="visual_check">目視点検</string>
     <string name="system_diag">システム診断</string>
     <string name="engine_status">エンジン</string>
-    <string name="input_completed">入力は全て完了しました。</string>
+    <string name="input_completed">入力は全て完了しました</string>
 
     <!--add sato-->
     <string name="brake_status">ブレーキ系</string>
@@ -233,6 +233,14 @@
     <!-- （乗務前）点呼結果確認画面　-->
     <string name="vital_sign_check">バイタルチェック</string>
     <string name="health_status_check">健康状態</string>
+
+    <!--add sato-->
+    <!--（乗務前）点呼結果確認画面　-->
+    <string name="call_confirm_heartbeat">心拍数</string>
+    <string name="call_confirm_max_blood_pressure">最高血圧</string>
+    <string name="call_confirm_min_blood_pressure">最低血圧</string>
+    <string name="call_confirm_body_temperature">体温</string>
+    <!--add sato end-->
 
     <!--　バイタルチェックデータ測定画面　-->
     <string name="vital_sensor_spinner_label">バイタルセンター選択</string>

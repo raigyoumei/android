@@ -11,7 +11,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,6 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <!--アルコールチェック-->
 
                 <View
                     style="@style/ListViewSeparator" />
@@ -35,31 +37,15 @@
                         style="@style/ListTextViewStyle"
                         android:text="@string/alcohol_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-
-                </LinearLayout>
-
-                <View
-                    style="@style/ListViewSeparator" />
-
-                <LinearLayout
-                    android:id="@+id/vital_sign_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
-
                     <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/vital_sign_check" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                        style="@style/ListTextViewNoExceptionStyle" />
 
                 </LinearLayout>
 
+                <!-- 健康状態 -->
+
                 <View
-                    android:id="@+id/vital_sign_separator"
+                    android:id="@+id/health_status_separator"
                     style="@style/ListViewSeparator" />
 
                 <LinearLayout
@@ -72,25 +58,113 @@
                         style="@style/ListTextViewStyle"
                         android:text="@string/health_status_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="true"/>
+                    <TextView
+                        style="@style/ListTextViewNeedConfirmStyle"/>
+
+                </LinearLayout>
+
+                <!--心拍-->
+
+                <View
+                    android:id="@+id/heartbeat_separator"
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:id="@+id/heartbeat_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/call_confirm_heartbeat" />
+
+                    <TextView
+                        android:id="@+id/heartbeat_value"
+                        style="@style/ListTextViewNormalStyle"
+                        android:text="89" />
+
+                </LinearLayout>
+
+                <!-- 体温 -->
+
+                <View
+                    android:id="@+id/body_temperature_separator"
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:id="@+id/body_temperature_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/call_confirm_body_temperature" />
+
+                    <TextView
+                        android:id="@+id/body_temperature_value"
+                        style="@style/ListTextViewNormalStyle"
+                        android:text="36.3" />
+
+                </LinearLayout>
+
+                <!-- 最高血圧 -->
+
+                <View
+                    android:id="@+id/max_blood_pressure_separator"
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:id="@+id/max_blood_pressure_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/call_confirm_max_blood_pressure" />
+
+                    <TextView
+                        android:id="@+id/max_blood_pressure_value"
+                        style="@style/ListTextViewNormalStyle"
+                        android:text="110" />
+
+                </LinearLayout>
+
+                <!--最低血圧-->
+
+                <View
+                    android:id="@+id/min_blood_pressure_separator"
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:id="@+id/min_blood_pressure_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/call_confirm_min_blood_pressure" />
+
+                    <TextView
+                        android:id="@+id/min_blood_pressure_value"
+                        style="@style/ListTextViewNormalStyle"
+                        android:text="69" />
 
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/health_status_separator"
+                    android:id="@+id/call_confirm_end_separator"
                     style="@style/ListViewSeparator" />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="80dp"
-                android:text="@string/input_completed" />
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        style="@style/MessageStyle"
+        android:text="@string/input_completed" />
 
     <LinearLayout
         android:layout_width="match_parent"

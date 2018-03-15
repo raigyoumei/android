@@ -24,16 +24,28 @@ public class CallConfirmActivity extends AppCompatActivity {
         if(b != null) {
             String forward = b.getString("forward");
             if(forward != null && forward.equals("afterCrew")) {
-                View vitalSignLayout = findViewById(R.id.vital_sign_layout);
-                View vitalSignSeparator = findViewById(R.id.vital_sign_separator);
                 View healthStatusLayout = findViewById(R.id.health_status_layout);
                 View healthStatusSeparator = findViewById(R.id.health_status_separator);
+                View heartbeatLayout = findViewById(R.id.heartbeat_layout);
+                View heartbeatSeparator= findViewById(R.id.heartbeat_separator);
+                View maxBloodPressureLayout = findViewById(R.id.max_blood_pressure_layout);
+                View maxBloodPressureSeparator = findViewById(R.id.max_blood_pressure_separator);
+                View minBloodPressureLayout = findViewById(R.id.min_blood_pressure_layout);
+                View minBloodPressureSeparator = findViewById(R.id.min_blood_pressure_separator);
+                View bodyTemperatureLayout = findViewById(R.id.body_temperature_layout);
+                View bodyTemperatureSeparator = findViewById(R.id.body_temperature_separator);
 
-                ViewGroup vg = (ViewGroup)(vitalSignLayout.getParent());
-                vg.removeView(vitalSignLayout);
-                vg.removeView(vitalSignSeparator);
+                ViewGroup vg = (ViewGroup)(healthStatusLayout.getParent());
                 vg.removeView(healthStatusLayout);
                 vg.removeView(healthStatusSeparator);
+                vg.removeView(heartbeatLayout);
+                vg.removeView(heartbeatSeparator);
+                vg.removeView(maxBloodPressureLayout);
+                vg.removeView(maxBloodPressureSeparator);
+                vg.removeView(minBloodPressureLayout);
+                vg.removeView(minBloodPressureSeparator);
+                vg.removeView(bodyTemperatureLayout);
+                vg.removeView(bodyTemperatureSeparator);
             }
         }
 
