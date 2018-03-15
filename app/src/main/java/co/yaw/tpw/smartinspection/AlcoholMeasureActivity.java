@@ -279,15 +279,6 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
 
     @Override
-    public void onResume() {
-
-        super.onResume();
-
-        //checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
-    }
-
-
-    @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
         boolean flag = false;

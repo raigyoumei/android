@@ -234,14 +234,6 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        //checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
-    }
-
-
-    @Override
     protected void onDestroy() {
 
         mBltDeviceUtil.clearReceiver();
@@ -249,7 +241,6 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         super.onDestroy();
 
     }
-
 
 
     @Override
