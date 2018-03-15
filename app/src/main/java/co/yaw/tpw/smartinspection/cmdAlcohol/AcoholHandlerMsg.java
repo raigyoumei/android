@@ -13,9 +13,11 @@ import android.widget.TextView;
 import com.yaw.tpw.smartinspection.R;
 
 import java.util.List;
+import java.util.Map;
 
 import co.yaw.tpw.smartinspection.AlcoholMeasureActivity;
 import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
+import co.yaw.tpw.smartinspection.bltUtil.DateUtil;
 import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
 import co.yaw.tpw.smartinspection.camera.CameraCom;
 
@@ -24,10 +26,23 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
     private final static String TAG = AcoholHandlerMsg.class.getSimpleName();
 
-    private TextView mMsgText = null;
-    //private TextView mMsgVersion = null;
-    private TextView mUsageCount = null;
-    private TextView mArulValue = null;
+    public static final String FW_VERSION = "fw_version";
+    public static final String USAGE_COUNT = "usage_count";
+    public static final String VOLTAGE_VALUE = "voltage_value";
+    public static final String ACOHOL_VALUE = "acohol_value";
+    public static final String TEST_TIME = "test_time";
+
+
+    private String mFwVersion = null;
+    private String mUsageVal = null;
+    private String mVoltageVal = null;
+    private String mAcoholVal = null;
+    private byte[] mImageVal = null;
+
+    private TextView mMsgTextView = null;
+    //private TextView mMsgVersionView = null;
+    private TextView mUsageCountView = null;
+    private TextView mArulValueView = null;
     //private Button mTestStartBtn = null;
 
     private Activity mActivity = null;
@@ -42,10 +57,10 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
         mActivity = activity;
 
-        //mMsgVersion = mActivity.findViewById(R.id.fw_version);
-        mUsageCount = mActivity.findViewById(R.id.usge_count);
-        mMsgText = mActivity.findViewById(R.id.test_msg);
-        mArulValue = mActivity.findViewById(R.id.test_value);
+        //mMsgVersionView = mActivity.findViewById(R.id.fw_version);
+        mUsageCountView = mActivity.findViewById(R.id.usge_count);
+        mMsgTextView = mActivity.findViewById(R.id.test_msg);
+        mArulValueView = mActivity.findViewById(R.id.test_value);
         //mTestStartBtn = mActivity.findViewById(R.id.measure_button);
     }
 
@@ -86,33 +101,68 @@ public class AcoholHandlerMsg extends HandlerUtil {
             case AcoholCmd.MSG_MSG_INF:
                 value = ble.getString(HandlerUtil.INFO);
 
-                mMsgText.setText((String) value);
+                mMsgTextView.setText((String) value);
 
                 break;
 
             case AcoholCmd.MSG_COMMAND_MSG_VERSION:
-                value = ble.getString(HandlerUtil.INFO);
-                value = String.format(mActivity.getString(R.string.alcohol_test_FwVersion), (String)value);
+
+                mFwVersion = ble.getString(HandlerUtil.INFO);
+
+                value = String.format(mActivity.getString(R.string.alcohol_test_FwVersion), mFwVersion);
 
                 //if(mMsgVersion != null) {
                 //    mMsgVersion.setText((String) value);
                 //}
                 break;
 
+            case AcoholCmd.MSG_COMMAND_MSG_TEST_COUNT:
+
+                mUsageVal = ble.getString(HandlerUtil.INFO);
+
+                value = String.format(mActivity.getString(R.string.alcohol_test_usage_count), mUsageVal);
+
+                mUsageCountView.setText((String) value);
+
+                break;
+
+            case AcoholCmd.MSG_COMMAND_VOLTAGE_OK:
+
+                mVoltageVal = ble.getString(HandlerUtil.INFO);
+                value = String.format(mActivity.getString(R.string.alcohol_test_voltage_ok), mVoltageVal);
+
+                //if(mMsgVersion != null) {
+                //    mMsgVersion.append("\n" + value);
+                //}
+                break;
+
+            case AcoholCmd.MSG_COMMAND_VOLTAGE_LOW:
+
+                mVoltageVal = ble.getString(HandlerUtil.INFO);
+
+                value = String.format(mActivity.getString(R.string.alcohol_test_voltage_low), mVoltageVal);
+
+                //if(mMsgVersion != null) {
+                //    mMsgVersion.append("\n" + value);
+                //}
+
+                break;
+
             case AcoholCmd.MSG_COMMAND_TEST_WAITE:
                 value = ble.getString(HandlerUtil.INFO);
                 value = String.format(mActivity.getString(R.string.alcohol_test_reserve), (String)value);
 
-                mMsgText.setText((String) value);
+                mMsgTextView.setText((String) value);
 
                 mCameraView.cameraStart();
 
                 break;
 
             case AcoholCmd.MSG_COMMAND_VALUE_TEST_AL:
-                value = ble.getString(HandlerUtil.INFO);
 
-                mArulValue.setText((String) value);
+                mAcoholVal = ble.getString(HandlerUtil.INFO);
+
+                mArulValueView.setText(mAcoholVal);
 
                 mCameraView.captureImageRandom();
 
@@ -122,13 +172,13 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 mCameraView.cameraStart();
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_start));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_start));
 
                 break;
 
             case AcoholCmd.MSG_COMMAND_VALUE_TEST_END:
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_end_ok));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_end_ok));
 
                 mCameraView.captureImageRandomEnd();
 
@@ -136,13 +186,13 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
             case AcoholCmd.MSG_COMMAND_WARNNING_NO_BREATH:
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_start));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_start));
 
                 break;
 
             case AcoholCmd.MSG_COMMAND_WARNNING_TEST_END:
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_end_no_breath));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_end_no_breath));
 
                 mCameraView.cameraStop();
 
@@ -152,18 +202,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 mCameraView.cameraStart();
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_testing));
-
-                break;
-
-            case AcoholCmd.MSG_COMMAND_MSG_TEST_COUNT:
-
-                value = ble.getString(HandlerUtil.INFO);
-                value = String.format(mActivity.getString(R.string.alcohol_test_usage_count), (String)value);
-
-                if(mUsageCount != null) {
-                    mUsageCount.setText((String) value);
-                }
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_testing));
 
                 break;
 
@@ -172,29 +211,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 //value = ble.getString(HandlerUtil.INFO);
                 //value = String.format(mActivity.getString(R.string.test_count), (String)value);
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_warnning_start_alcohol));
-
-                break;
-
-            case AcoholCmd.MSG_COMMAND_VOLTAGE_OK:
-
-                value = ble.getString(HandlerUtil.INFO);
-                value = String.format(mActivity.getString(R.string.alcohol_test_voltage_ok), (String)value);
-
-                //if(mMsgVersion != null) {
-                //    mMsgVersion.append("\n" + value);
-                //}
-                break;
-
-
-            case AcoholCmd.MSG_COMMAND_VOLTAGE_LOW:
-
-                value = ble.getString(HandlerUtil.INFO);
-                value = String.format(mActivity.getString(R.string.alcohol_test_voltage_low), (String)value);
-
-                //if(mMsgVersion != null) {
-                //    mMsgVersion.append("\n" + value);
-                //}
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_warnning_start_alcohol));
 
                 break;
 
@@ -203,7 +220,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 //value = ble.getString(HandlerUtil.INFO);
                 //value = String.format(mActivity.getString(R.string.test_before_voltage_low), (String)value);
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_warnning_blowing));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_warnning_blowing));
 
                 break;
 
@@ -213,7 +230,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 //value = ble.getString(HandlerUtil.INFO);
                 //value = String.format(mActivity.getString(R.string.test_before_voltage_low), (String)value);
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_warnning_usage_over));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_warnning_usage_over));
 
                 break;
 
@@ -222,7 +239,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 //value = ble.getString(HandlerUtil.INFO);
                 //value = String.format(mActivity.getString(R.string.test_before_voltage_low), (String)value);
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_warnning_ic_read));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_warnning_ic_read));
 
                 break;
 
@@ -237,6 +254,8 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 //testTime.setText(time);
 
                 //mCameraView.captureImage(mCamerCallBack);
+
+                saveAcoholTestInfo();
 
                 break;
 
@@ -272,7 +291,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 //value = ble.getString(HandlerUtil.INFO);
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_scan_start));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_scan_start));
 
                 if(mDeviceList != null) {
                     String flag = mDeviceList.get(0);
@@ -288,7 +307,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 //value = ble.getString(HandlerUtil.INFO);
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_scan_end));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_scan_end));
 
                 break;
 
@@ -305,7 +324,9 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
             case BltDeviceUtil.MSG_DEVACE_CONNECTING:
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_connect));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_connect));
+
+                initTestInfo();
 
                 break;
 
@@ -341,7 +362,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
             case BltDeviceUtil.MSG_DEVACE_CONNECT_NG:
                 //value = ble.getString(HandlerUtil.INFO);
 
-                mMsgText.setText(mActivity.getString(R.string.alcohol_test_connect_ng));
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_connect_ng));
 
 //                if(mTestStartBtn != null) {
 //                    mTestStartBtn.setEnabled(true);
@@ -355,7 +376,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 Log.d(TAG, "CameraCom.MSG_IMAGE_CAPTURE msg.what=" + msg.what);
 
-                byte []image = ble.getByteArray(HandlerUtil.INFO);
+                mImageVal = ble.getByteArray(HandlerUtil.INFO);
 
                 break;
 
@@ -363,6 +384,31 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 break;
 
         }
+    }
+
+
+    public void saveAcoholTestInfo(){
+
+        String time = DateUtil.getCustomTime(DateUtil.YMDHMSS);
+
+        Log.d(TAG, "saveAcoholTestInfo mFwVersion=" + mFwVersion);
+        Log.d(TAG, "saveAcoholTestInfo mUsageVal=" + mUsageVal);
+        Log.d(TAG, "saveAcoholTestInfo mVoltageVal=" + mVoltageVal);
+        Log.d(TAG, "saveAcoholTestInfo mAcoholVal=" + mAcoholVal);
+        Log.d(TAG, "saveAcoholTestInfo mImageVal=" + mImageVal);
+
+        Log.d(TAG, "saveAcoholTestInfo time=" + time);
+
+    }
+
+
+    public void initTestInfo(){
+
+        mFwVersion = null;
+        mUsageVal = null;
+        mVoltageVal = null;
+        mAcoholVal = null;
+        mImageVal = null;
     }
 
 }

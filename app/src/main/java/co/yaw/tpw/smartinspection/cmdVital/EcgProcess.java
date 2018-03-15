@@ -31,6 +31,8 @@ public class EcgProcess {
     public static final String MOOD = "mood";
     public static final String SQ = "SQ";
     public static final String TEST_TIME = "test_time";
+    public static final String ECG_VERSION = "ecg_version";
+    public static final String STREAM_VERSION = "stream_version";
 
     private Activity mActivity = null;
 
@@ -241,21 +243,29 @@ public class EcgProcess {
     public Map<String, String> getVitalTestValue() {
         Map<String, String> map = new HashMap<String, String>();
 
+        String time = DateUtil.getCustomTime(DateUtil.YMDHMSS);
+        String ecgVer = getNskECGVersion();
+        String StreamVer = getEcgConnect().getTgStreamVersion();
+
         map.put(HR, mHeartRate+"");
         map.put(RHT, mRheartRate+"");
         map.put(STRESS, mStress+"");
         map.put(MOOD, mMood+"");
         map.put(SQ, mSQ+"");
 
-        String time = DateUtil.getCustomTime(DateUtil.YMDHMSS);
         map.put(TEST_TIME, time);
+        map.put(ECG_VERSION, ecgVer);
+        map.put(STREAM_VERSION, StreamVer);
 
         Log.d(TAG, "getVitalTestValue mHeartRate=" + mHeartRate);
         Log.d(TAG, "getVitalTestValue mRheartRate=" + mRheartRate);
         Log.d(TAG, "getVitalTestValue mStress=" + mStress);
         Log.d(TAG, "getVitalTestValue mMood=" + mMood);
         Log.d(TAG, "getVitalTestValue mSQ=" + mSQ);
+
         Log.d(TAG, "getVitalTestValue time=" + time);
+        Log.d(TAG, "getVitalTestValue ecgVer=" + ecgVer);
+        Log.d(TAG, "getVitalTestValue StreamVer=" + StreamVer);
 
         return map;
     }
