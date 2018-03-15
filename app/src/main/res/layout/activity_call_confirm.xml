@@ -11,7 +11,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,6 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <!--アルコールチェック-->
 
                 <View
                     style="@style/ListViewSeparator" />
@@ -40,8 +42,10 @@
 
                 </LinearLayout>
 
+                <!-- 健康状態 -->
+
                 <View
-                    android:id="@+id/vital_sign_separator"
+                    android:id="@+id/health_status_separator"
                     style="@style/ListViewSeparator" />
 
                 <LinearLayout
@@ -60,10 +64,11 @@
                 </LinearLayout>
 
                 <View
+                    android:id="@+id/heartbeat_separator"
                     style="@style/ListViewSeparator" />
 
                 <LinearLayout
-                    android:id="@+id/vital_sign_layout"
+                    android:id="@+id/heartbeat_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="5dp">
@@ -79,10 +84,14 @@
 
                 </LinearLayout>
 
+                <!-- 最高血圧 -->
+
                 <View
+                    android:id="@+id/max_blood_pressure_separator"
                     style="@style/ListViewSeparator" />
 
                 <LinearLayout
+                    android:id="@+id/max_blood_pressure_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="5dp">
@@ -98,10 +107,14 @@
 
                 </LinearLayout>
 
+                <!--最低血圧-->
+
                 <View
+                    android:id="@+id/min_blood_pressure_separator"
                     style="@style/ListViewSeparator" />
 
                 <LinearLayout
+                    android:id="@+id/min_blood_pressure_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="5dp">
@@ -121,10 +134,9 @@
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/health_status_separator"
+                    android:id="@+id/call_confirm_end_separator"
                     style="@style/ListViewSeparator" />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 
