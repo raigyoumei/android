@@ -151,9 +151,7 @@ public class EcgProcess {
 
                             if(mRr_count >= mRr_threshold){
 
-                                if(Math.abs(mHeartRate - mRheartRate) <= 10){
-                                    mEcgConnect.stopTgStreamReader();
-                                }
+                                mEcgConnect.stopTgStreamReader();
 
                                 String stress = getStressInfo(mNskECG.getStress());
                                 //mStressView.setText(String.valueOf(mNskECG.getStress()));
@@ -192,7 +190,7 @@ public class EcgProcess {
                             break;
 
                         case NeuroSkyECG.MSG_ECG_SIGNAL_QUALITY:
-                            mSQView.setText(String.valueOf(this.getData()));
+                            //mSQView.setText(String.valueOf(this.getData()));
                             mSQ = (int)this.getData();
 
                             break;
@@ -262,6 +260,11 @@ public class EcgProcess {
         return map;
     }
 
+
+
+    public int getSQValue() {
+        return mSQ;
+    }
 
 
     private String getStressInfo(int value){

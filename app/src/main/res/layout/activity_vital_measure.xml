@@ -135,7 +135,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size_middle"
-        android:text=""
+        android:text="@string/vital_test_msg_blt_select"
         android:background="@drawable/bg_msg"/>
 
     <LinearLayout

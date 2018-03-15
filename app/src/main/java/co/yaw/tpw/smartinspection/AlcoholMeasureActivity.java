@@ -279,15 +279,6 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
 
     @Override
-    public void onResume() {
-
-        super.onResume();
-
-        //checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
-    }
-
-
-    @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
         boolean flag = false;
@@ -362,8 +353,10 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         //fwVersion.setText("");
         usageCount.setText("");
-        testMsg.setText("");
         testValue.setText(getString(R.string.alcohol_test_default_value));
+
+        testMsg.setText(getString(R.string.alcohol_test_blt_select));
+
 
         mCameraCom.cameraStop();
 
