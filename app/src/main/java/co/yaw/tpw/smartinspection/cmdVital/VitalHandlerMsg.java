@@ -14,8 +14,10 @@ import com.neurosky.connection.DataType.BodyDataType;
 import com.yaw.tpw.smartinspection.R;
 
 import java.util.List;
+import java.util.Map;
 
 import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
+import co.yaw.tpw.smartinspection.bltUtil.DateUtil;
 import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
 
 
@@ -264,7 +266,7 @@ public class VitalHandlerMsg extends HandlerUtil {
                 }
 
                 //mTestStartBtn.setEnabled(true);
-                mEcgProcess.getVitalTestValue();
+                saveViteTestInfo();
 
                 TextView SQView = mActivity.findViewById(R.id.test_signal_quality);
 
@@ -308,5 +310,12 @@ public class VitalHandlerMsg extends HandlerUtil {
 
     }
 
+
+
+    public void saveViteTestInfo(){
+
+        Map<String, String> map = mEcgProcess.getVitalTestValue();
+
+    }
 
 }
