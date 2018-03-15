@@ -53,11 +53,14 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     //private Button mStartBtn = null;
     //private String mSelectDevice = null;
     private CameraCom mCameraCom = null;
+    private TextView mtestMsg = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alcohol_measure);
+
+        mtestMsg = findViewById(R.id.test_msg);
 
         final Bundle b = getIntent().getExtras();
         if(b != null) {
@@ -118,8 +121,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 //                mBltDeviceUtil.connectDevice(mSelectDevice);
 //
 //                // 継続中表示
-//                TextView testMsg = findViewById(R.id.test_msg);
-//                testMsg.setText(getString(R.string.alcohol_test_connect));
+//                mtestMsg.setText(getString(R.string.alcohol_test_connect));
 //
 //                // 開始ボタン無効
 //                Button startBtn = findViewById(R.id.measure_button);
@@ -239,8 +241,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         initView();
 
         // 接続中表示
-        TextView testMsg = findViewById(R.id.test_msg);
-        testMsg.setText(getString(R.string.alcohol_test_connect));
+        mtestMsg.setText(getString(R.string.alcohol_test_connect));
 
         // bule tooth 接続
         mBltDeviceUtil.connectDevice(select);
@@ -257,15 +258,23 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     @Override
     protected void onPause() {
 
-        mCameraCom.cameraStop();
-
         super.onPause();
+
         mBltDeviceUtil.scanLeDevice(false);
         mBltDeviceUtil.initBluetoothGatt();
         //mStartTime = 0;
 
         initView();
 
+    }
+
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        mtestMsg.setText(getString(R.string.alcohol_test_blt_select));
     }
 
 
@@ -294,7 +303,9 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
                         break;
                     }
                 }
+
                 break;
+
             case BltDeviceUtil.BLT_PRM_SCAN_NO:
 
                 flag = false;
@@ -348,15 +359,11 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         //TextView fwVersion = findViewById(R.id.fw_version);
         TextView usageCount = findViewById(R.id.usge_count);
-        TextView testMsg = findViewById(R.id.test_msg);
         TextView testValue = findViewById(R.id.test_value);
 
         //fwVersion.setText("");
         usageCount.setText("");
         testValue.setText(getString(R.string.alcohol_test_default_value));
-
-        testMsg.setText(getString(R.string.alcohol_test_blt_select));
-
 
         mCameraCom.cameraStop();
 

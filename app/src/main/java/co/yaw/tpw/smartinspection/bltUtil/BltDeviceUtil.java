@@ -344,14 +344,13 @@ public class BltDeviceUtil {
                 gatt.close();
                 Log.e(TAG, "Cannot connect device with error status: " + status);
 
+                mConnectStatus = false;
+
                 // 正常に終了の場合、メッセージ発行しない
                 if(status != 0x08) {
                     mHandlerUtil.sendHandler(MSG_DEVACE_CONNECT_NG);
+                    return;
                 }
-
-                mConnectStatus = false;
-
-                return;
             }
 
             switch (newState){

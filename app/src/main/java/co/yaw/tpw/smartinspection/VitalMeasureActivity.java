@@ -46,11 +46,15 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     private EcgConnect mEcgConnect = null;
     private EcgProcess mEcgProcess = null;
 
+    private TextView mTestmsg = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vital_measure);
+
+        mTestmsg = findViewById(R.id.test_msg);
 
         nextBtn = findViewById(R.id.next_button);
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -84,8 +88,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 //                    return;
 //                }
 //
-//                TextView msgText = findViewById(R.id.test_msg);
-//                msgText.setText(getString(R.string.vital_test_connect));
+//                mTestmsg.setText(getString(R.string.vital_test_connect));
 //
 //                Log.d(TAG, "getBondState ="+device.getBondState());
 //
@@ -171,8 +174,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
         mEcgProcess.initView();
 
-        TextView msgText = findViewById(R.id.test_msg);
-        msgText.setText(getString(R.string.vital_test_connect));
+        mTestmsg.setText(getString(R.string.vital_test_connect));
 
         // scan stop
         mBltDeviceUtil.scanLeDevice(false);
@@ -226,10 +228,17 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
         mEcgConnect.stopTgStreamReader();
 
-        TextView msgText = findViewById(R.id.test_msg);
-        msgText.setText(getString(R.string.vital_test_msg_blt_select));
-
         //mStartBtn.setEnabled(true);
+    }
+
+
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+
+        mTestmsg.setText(getString(R.string.vital_test_msg_blt_select));
     }
 
 
