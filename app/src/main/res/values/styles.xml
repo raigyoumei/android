@@ -145,6 +145,30 @@
     </style>
     <!-- list view style end -->
 
+    <!--add sato-->
+    <style name="ListTextViewNoExceptionStyle" parent="ListTextViewStyle">
+        <item name="android:layout_weight">2</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/background_light</item>
+        <item name="android:text">@string/action_no_exception</item>
+    </style>
+
+    <style name="ListTextViewNeedConfirmStyle" parent="ListTextViewStyle">
+        <item name="android:layout_weight">2</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/background_light</item>
+        <item name="android:text">@string/action_need_confirm</item>
+    </style>
+
+    <style name="ListTextViewNormalStyle" parent="ListTextViewStyle">
+        <item name="android:layout_weight">2</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+    </style>
+
+    <!--add sato end-->
+
     <style name="vitalTitleTextStyle" parent="android:Widget.TextView">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
