@@ -226,6 +226,9 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
         mEcgConnect.stopTgStreamReader();
 
+        TextView msgText = findViewById(R.id.test_msg);
+        msgText.setText(getString(R.string.vital_test_msg_blt_select));
+
         //mStartBtn.setEnabled(true);
     }
 

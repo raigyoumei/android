@@ -362,8 +362,10 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         //fwVersion.setText("");
         usageCount.setText("");
-        testMsg.setText("");
         testValue.setText(getString(R.string.alcohol_test_default_value));
+
+        testMsg.setText(getString(R.string.alcohol_test_blt_select));
+
 
         mCameraCom.cameraStop();
 
