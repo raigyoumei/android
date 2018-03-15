@@ -165,7 +165,7 @@
     <string name="visual_check">目視点検</string>
     <string name="system_diag">システム診断</string>
     <string name="engine_status">エンジン</string>
-    <string name="input_completed">入力は全て完了しました。</string>
+    <string name="input_completed">入力は全て完了しました</string>
 
     <!--add sato-->
     <string name="brake_status">ブレーキ系</string>
