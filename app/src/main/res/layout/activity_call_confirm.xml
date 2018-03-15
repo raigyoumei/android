@@ -63,6 +63,8 @@
 
                 </LinearLayout>
 
+                <!--心拍-->
+
                 <View
                     android:id="@+id/heartbeat_separator"
                     style="@style/ListViewSeparator" />
@@ -81,6 +83,29 @@
                         android:id="@+id/heartbeat_value"
                         style="@style/ListTextViewNormalStyle"
                         android:text="89" />
+
+                </LinearLayout>
+
+                <!-- 体温 -->
+
+                <View
+                    android:id="@+id/body_temperature_separator"
+                    style="@style/ListViewSeparator" />
+
+                <LinearLayout
+                    android:id="@+id/body_temperature_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp">
+
+                    <TextView
+                        style="@style/ListTextViewStyle"
+                        android:text="@string/call_confirm_body_temperature" />
+
+                    <TextView
+                        android:id="@+id/body_temperature_value"
+                        style="@style/ListTextViewNormalStyle"
+                        android:text="36.3" />
 
                 </LinearLayout>
 
@@ -122,9 +147,6 @@
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/call_confirm_min_blood_pressure" />
-
-                    <!--<ToggleButton-->
-                        <!--style="@style/ListNeedConfirmOrNotButtonStyle"/>-->
 
                     <TextView
                         android:id="@+id/min_blood_pressure_value"

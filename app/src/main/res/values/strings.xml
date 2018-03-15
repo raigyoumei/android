@@ -239,6 +239,7 @@
     <string name="call_confirm_heartbeat">心拍数</string>
     <string name="call_confirm_max_blood_pressure">最高血圧</string>
     <string name="call_confirm_min_blood_pressure">最低血圧</string>
+    <string name="call_confirm_body_temperature">体温</string>
     <!--add sato end-->
 
     <!--　バイタルチェックデータ測定画面　-->
