@@ -226,15 +226,10 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
         mEcgConnect.stopTgStreamReader();
 
+        TextView msgText = findViewById(R.id.test_msg);
+        msgText.setText(getString(R.string.vital_test_msg_blt_select));
+
         //mStartBtn.setEnabled(true);
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        //checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
     }
 
 
@@ -246,7 +241,6 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         super.onDestroy();
 
     }
-
 
 
     @Override

@@ -266,7 +266,18 @@ public class VitalHandlerMsg extends HandlerUtil {
                 //mTestStartBtn.setEnabled(true);
                 mEcgProcess.getVitalTestValue();
 
+                TextView SQView = mActivity.findViewById(R.id.test_signal_quality);
+
+                int sq = mEcgProcess.getSQValue();
+                if(sq > 2) { // 3,4,5は正常
+                    SQView.setText(mActivity.getString(R.string.vital_test_signal_ok));
+                }else{ // 1,2は再測定必要
+                    SQView.setText(mActivity.getString(R.string.vital_test_signal_ng));
+                    mMsgText.setText(mActivity.getString(R.string.vital_test_retest));
+                }
+
                 break;
+
             case ConnectionStates.STATE_ERROR:
 
                 Log.d(TAG,"ConnectionStates is STATE_ERROR");

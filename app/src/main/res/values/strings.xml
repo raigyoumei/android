@@ -191,7 +191,6 @@
     <string name="alcohol_measure_title_after_crew">アルコールチェック（乗務後）</string>
     <string name="alcohol_sensor_spinner_label">アルコールセンサー選択</string>
     <string name="alcohol_sensor_spinner_prompt">アルコールセンサーの任意番号</string>
-    <string name="alcohol_measure_message">アルコールセンサーを選択してください</string>
     <string name="alcohol_measure_camera_message">カメラ表示</string>
     <string name="alcohol_measure_info">測定結果を表示する。\n\n表示項目\n    ・撮影画像\n    ・アルコールデータ\n    ・チェック日時</string>
 
@@ -208,6 +207,7 @@
     <string name="alcohol_test_testing">測定中</string>
     <string name="alcohol_test_usage_count">使用回数:%1$s回</string>
     <string name="alcohol_test_warnning_start_alcohol">準備中です。まだ息を吹きかけないで下さい</string>
+    <string name="alcohol_test_blt_select">アルコールセンサーを選択してください</string>
 
     <string name="alcohol_test_voltage_ok">正常電圧:%1$sV</string>
     <string name="alcohol_test_voltage_low">低電圧:%1$sV</string>
@@ -241,11 +241,14 @@
     <string name="vital_test_r_heart_rate">安定心拍数</string>
     <string name="vital_test_stress">疲労度</string>
     <string name="vital_test_mood">緊張度</string>
-    <string name="vital_test_signal_quality">信号品質</string>
+    <string name="vital_test_signal_quality">測定</string>
     <string name="vital_test_default_value">---</string>
+    <string name="vital_test_signal_ok">正常</string>
+    <string name="vital_test_signal_ng">再測定</string>
 
     <string name="vital_test_msg_scan_start">バイタルセンサー検索中</string>
     <string name="vital_test_msg_scan_end">検索完了</string>
+    <string name="vital_test_msg_blt_select">バイタルセンサーを選択してください</string>
 
     <string name="vital_test_msg_blt_pair">ペアリング中</string>
     <string name="vital_test_msg_blt_pair_end">ペアリング終了</string>
@@ -254,6 +257,7 @@
     <string name="vital_test_end_ng">測定異常終了</string>
     <string name="vital_test_connect">接続中</string>
     <string name="vital_test_connect_ng">接続失敗</string>
+    <string name="vital_test_retest">再度測定してください</string>
 
     <string name="vital_test_stress_no">no to minimal stress</string>
     <string name="vital_test_stress_low">low stress</string>

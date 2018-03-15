@@ -50,7 +50,7 @@ public class BltDeviceUtil {
     private BltComCmd mBaseSensorCmd = null;
 
     // Stops scanning after 10 seconds.
-    private static final long SCAN_PERIOD = 20000;
+    private static final long SCAN_PERIOD = 5000;
     public static final String PAIR_PWD = "0000";
     private static final String SPIT_STR = "   ";
 
