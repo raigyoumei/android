@@ -88,9 +88,8 @@
                     android:id="@+id/cameraMessage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/fg_round"
-                    android:gravity="center"
-                    android:text="@string/alcohol_measure_camera_message" />
+                    android:background="@drawable/fg_round_image"
+                    android:gravity="center" />
 
             </FrameLayout>
 
