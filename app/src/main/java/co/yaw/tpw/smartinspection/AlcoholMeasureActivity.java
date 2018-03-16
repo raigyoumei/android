@@ -4,11 +4,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -22,7 +23,6 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.wonderkiln.camerakit.CameraView;
 import com.yaw.tpw.smartinspection.R;
 
 import java.util.ArrayList;
@@ -188,6 +188,14 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     }
 
     private void setCameraMaskView() {
+        LayerDrawable layerDrawable = (LayerDrawable) getResources()
+                .getDrawable(R.drawable.fg_round_image);
+        ScaleDrawable scaleDraw = (ScaleDrawable) layerDrawable
+                .findDrawableByLayerId(R.id.bg_camera_scale);
+        scaleDraw.setLevel(1);
+        View v = findViewById(R.id.cameraMessage);
+        v.setBackground(layerDrawable);
+
         final ScrollView scrollView = findViewById(R.id.scrollView);
         scrollView.post(new Runnable() {
             @Override

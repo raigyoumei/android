@@ -8,7 +8,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import android.view.View;
 
 import com.wonderkiln.camerakit.CameraView;
 import com.yaw.tpw.smartinspection.R;
@@ -65,14 +65,14 @@ public class CameraMaskView extends CameraView {
 
     private void show() {
         setVisibility(VISIBLE);
-        TextView tv = getRootView().findViewById(R.id.cameraMessage);
-        tv.setVisibility(INVISIBLE);
+        View v = getRootView().findViewById(R.id.cameraMessage);
+        v.setVisibility(INVISIBLE);
     }
 
     private void hide() {
         setVisibility(INVISIBLE);
-        TextView tv = getRootView().findViewById(R.id.cameraMessage);
-        tv.setVisibility(VISIBLE);
+        View v = getRootView().findViewById(R.id.cameraMessage);
+        v.setVisibility(VISIBLE);
     }
 
     @Override
