@@ -130,9 +130,9 @@
     <!--　メニュー画面　-->
     <string name="menu_title">メニュー</string>
     <string name="menu_call">点呼</string>
-    <string name="menu_day_check"><Data><![CDATA[<font color="#000000"><b>日常点検</b></font>]]></Data></string>
-    <string name="menu_before_crew_call"><Data><![CDATA[<font color="#892C6A"><b>乗務前</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
-    <string name="menu_after_crew_call"><Data><![CDATA[<font color="#1F6BCC"><b>乗務後</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
+    <string name="menu_day_check"><Data><![CDATA[日常点検]]></Data></string>
+    <string name="menu_before_crew_call"><Data><![CDATA[乗務前点呼]]></Data></string>
+    <string name="menu_after_crew_call"><Data><![CDATA[乗務後点呼]]></Data></string>
 
     <!--　日常点検開始画面　-->
     <string name="day_check_start_title">点検メニュー</string>
