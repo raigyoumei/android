@@ -4,6 +4,7 @@
 
     <!-- 共通アクションボタン名 -->
     <string name="action_log_in">ログイン</string>
+    <string name="action_log_out">ログアウト</string>
     <string name="action_next">次へ</string>
     <string name="action_menu">メニュー</string>
     <string name="action_no_exception">異常なし</string>

@@ -10,7 +10,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,28 +21,35 @@
 
             <Button
                 android:id="@+id/day_check_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                style="@style/bottomButtonStyle"
                 android:layout_marginTop="30dp"
                 android:text="@string/menu_day_check" />
 
             <Button
                 android:id="@+id/before_crew_call_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                style="@style/bottomButtonStyle"
                 android:layout_marginTop="30dp"
                 android:text="@string/menu_before_crew_call" />
 
             <Button
                 android:id="@+id/after_crew_call_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                style="@style/bottomButtonStyle"
                 android:layout_marginTop="30dp"
                 android:text="@string/menu_after_crew_call" />
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/log_out_button"
+            style="@style/bottomButtonStyle"
+            android:text="@string/action_log_out" />
+
+    </LinearLayout>
 
 </LinearLayout>
