@@ -14,6 +14,8 @@ import com.wonderkiln.camerakit.CameraView;
 import com.yaw.tpw.smartinspection.R;
 
 public class CameraMaskView extends CameraView {
+    private RectF oval = new RectF();
+    private Path clipPath = new Path();
     public CameraMaskView(@NonNull Context context) {
         super(context);
     }
@@ -77,8 +79,7 @@ public class CameraMaskView extends CameraView {
     protected void onDraw(Canvas canvas) {
         boolean isStarted = isStarted();
         if(isStarted) {
-            Path clipPath = new Path();
-            RectF oval = new RectF(0, 0, canvas.getWidth(), canvas.getHeight());
+            oval.set(0, 0, canvas.getWidth(), canvas.getHeight());
             clipPath.addOval(oval, Path.Direction.CW);
             canvas.clipPath(clipPath);
 
