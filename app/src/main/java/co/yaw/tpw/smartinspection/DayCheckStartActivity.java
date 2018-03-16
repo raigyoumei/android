@@ -13,6 +13,7 @@ public class DayCheckStartActivity extends AppCompatActivity {
 
     final Context context = this;
     private Button startBtn;
+    private Button backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +21,21 @@ public class DayCheckStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_day_check_start);
 
         startBtn = findViewById(R.id.day_check_start_button);
+        backBtn = findViewById(R.id.back_button);
 
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context , EngineActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MenuActivity.class);
                 startActivity(intent);
             }
         });
