@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
@@ -32,7 +32,9 @@
                     android:hint="@string/login_prompt_jgsid"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:text="YAW000001"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -67,7 +69,9 @@
                     android:hint="@string/login_prompt_password"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:text="password"/>
 
             </android.support.design.widget.TextInputLayout>
 
