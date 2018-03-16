@@ -295,7 +295,18 @@ public class AcoholCmd extends BltComCmd {
         String alcoholStr = String.format("%.2f", alcohol/100.0).toString();
 
         sendMassage(MSG_COMMAND_VALUE_TEST_AL, alcoholStr);
-        sendMassage(MSG_COMMAND_VALUE_TEST_END,null);
+
+        // 15以下は青   15~25は黄色  25以上は赤
+        String flag = "G";
+        if(alcohol < 15){
+            flag = "G";
+        } else if(alcohol <= 25){
+            flag = "Y";
+        }else{
+            flag = "R";
+        }
+
+        sendMassage(MSG_COMMAND_VALUE_TEST_END,flag);
 
     }
 
