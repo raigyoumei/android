@@ -19,7 +19,7 @@
     <string name="check_brake_pedal_title">ブレーキペダル</string>
     <string name="check_brake_pedal_info">踏みしろ、ブレーキのきき</string>
 
-    <string name="check_park_title">駐車ブレーキ.レバー</string>
+    <string name="check_park_title">駐車ブレーキ・レバー</string>
     <string name="check_park_info">引きしろ（踏みしろ）</string>
 
     <string name="check_prime_mover_title">原動機</string>
@@ -168,16 +168,16 @@
     <string name="input_completed">入力は全て完了しました</string>
 
     <!--add sato-->
-    <string name="brake_status">ブレーキ系</string>
-    <string name="battery_status">バッテリー</string>
-    <string name="tire_status">タイヤホイール系</string>
-    <string name="transmission_status">トランスミッション系</string>
-    <string name="light_status">灯火系</string>
-    <string name="wiper_status">ワイパー系</string>
+    <!--<string name="brake_status">ブレーキ系</string>-->
+    <!--<string name="battery_status">バッテリー</string>-->
+    <!--<string name="tire_status">タイヤホイール系</string>-->
+    <!--<string name="transmission_status">トランスミッション系</string>-->
+    <!--<string name="light_status">灯火系</string>-->
+    <!--<string name="wiper_status">ワイパー系</string>-->
     <string name="collision_avoidance_status">安全衝突回避</string>
     <string name="air_bug_status">エアバック</string>
     <string name="air_conditioner_status">エアコン</string>
-    <string name="other_status">その他</string>
+    <!--<string name="other_status">その他</string>-->
     <!--ここまで-->
 
     <!--　日常点検結果表示画面　-->
