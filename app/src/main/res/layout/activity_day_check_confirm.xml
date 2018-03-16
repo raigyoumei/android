@@ -13,7 +13,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1">
 
         <LinearLayout
@@ -29,8 +29,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="5dp">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         style="@style/ListTextViewStyle"
@@ -38,7 +37,7 @@
 
                     <TextView
                         style="@style/ListTextViewStyle"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:text="XXXXX" />
                 </LinearLayout>
             </LinearLayout>
@@ -46,7 +45,6 @@
             <!--ブレーキペダル-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_brake_pedal_title" />
 
             <View
@@ -61,37 +59,34 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
             </LinearLayout>
 
             <!--駐車ブレーキ・レバー-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_park_title" />
 
             <View
@@ -106,37 +101,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
             </LinearLayout>
 
             <!--原動機-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_prime_mover_title" />
 
             <View
@@ -151,37 +142,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                    <TextView
+                        style="@style/ListTextViewNeedConfirmStyle"/>
                 </LinearLayout>
             </LinearLayout>
 
             <!--ウィンドウォッシャ-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_window_washer_title" />
 
             <View
@@ -196,37 +183,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
                     <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/system_diag" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="true"/>
+                        style="@style/ListTextViewNeedConfirmStyle"/>
                 </LinearLayout>
+
             </LinearLayout>
 
             <!--ワイパー-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_wiper_title" />
 
             <View
@@ -241,37 +212,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
                     <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/system_diag" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <!--エアブレーキ・ペダル-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_air_brake_stroke_title" />
 
             <View
@@ -286,37 +241,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="true"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
             </LinearLayout>
 
             <!--空気圧力計-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_air_pressure_title" />
 
             <View
@@ -331,39 +282,34 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="true"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
             </LinearLayout>
 
             <!--ブレーキ・バルブ-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_brake_valve_title" />
 
             <View
@@ -378,37 +324,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
             </LinearLayout>
 
             <!--ウィンドウォッシャタンク-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_wind_washer_tank_title" />
 
             <View
@@ -423,38 +365,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
                     <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/system_diag" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <!--ブレーキのリザーバ・タンク-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_brake_reservoir_tank_title" />
 
             <View
@@ -469,38 +394,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
                     <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/system_diag" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <!--バッテリー-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_battery_title" />
 
             <View
@@ -515,38 +423,34 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
             </LinearLayout>
 
             <!--ラジエーターなどの冷却装置-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_radiator_title" />
 
             <View
@@ -561,37 +465,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="true"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
             </LinearLayout>
 
             <!--潤滑装置-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_engine_oil_title" />
 
             <View
@@ -606,38 +506,34 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
             </LinearLayout>
 
             <!--ファンベルト-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_fan_belt_title" />
 
             <View
@@ -652,38 +548,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
                     <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/system_diag" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <!--灯火装置、方向指示器-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_light_device_title" />
 
             <View
@@ -698,38 +577,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
                     <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/system_diag" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <!--タイヤ-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_tire_air_pressure_title" />
 
             <View
@@ -744,38 +606,34 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
             </LinearLayout>
 
             <!--エアタンク-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_air_tank_title" />
 
             <View
@@ -790,38 +648,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
                     <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/system_diag" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <!--警告灯-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/check_warning_light_title" />
 
             <View
@@ -836,38 +677,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
                     <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/system_diag" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
+
             </LinearLayout>
 
             <!--安全衝突回避-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/collision_avoidance_status" />
 
             <View
@@ -882,38 +706,20 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
-                    <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/visual_check" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                    <TextView
+                        style="@style/ListTextViewNeedConfirmStyle"/>
                 </LinearLayout>
             </LinearLayout>
 
             <!--エアバック-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/air_bug_status" />
 
             <View
@@ -928,38 +734,20 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
-                    <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/visual_check" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
             </LinearLayout>
 
             <!--エアコン-->
             <TextView
                 style="@style/ListTitleTextViewStyle"
-                android:paddingLeft="20dp"
                 android:text="@string/air_conditioner_status" />
 
             <View
@@ -974,31 +762,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
-
-                    <TextView
-                        style="@style/ListTextViewStyle"
-                        android:text="@string/visual_check" />
-
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="1dp"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="false"/>
+                    <TextView
+                        style="@style/ListTextViewNeedConfirmStyle"/>
                 </LinearLayout>
             </LinearLayout>
 
