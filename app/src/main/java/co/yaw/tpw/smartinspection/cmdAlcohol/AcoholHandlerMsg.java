@@ -2,6 +2,7 @@ package co.yaw.tpw.smartinspection.cmdAlcohol;
 
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -178,6 +179,15 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
             case AcoholCmd.MSG_COMMAND_VALUE_TEST_END:
 
+                String flag = ble.getString(HandlerUtil.INFO);
+                if(flag.equals("G")) {
+                    mArulValueView.setTextColor(0xFF00FF00);
+                }else if(flag.equals("Y")) {
+                    mArulValueView.setTextColor(0xFFFFCC00);
+                }else{
+                    mArulValueView.setTextColor(0xFFFF6600);
+                }
+
                 mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_end_ok));
 
                 mCameraView.captureImageRandomEnd();
@@ -272,9 +282,9 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 //mCameraView.cameraStop();
 
                 if(mDeviceList != null) {
-                    String flag = mDeviceList.get(0);
+                    String iniStr = mDeviceList.get(0);
                     mDeviceList.clear();
-                    mDeviceList.add(flag);
+                    mDeviceList.add(iniStr);
                     mArrayAdapter.notifyDataSetChanged();
                 }
 
@@ -294,9 +304,9 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_scan_start));
 
                 if(mDeviceList != null) {
-                    String flag = mDeviceList.get(0);
+                    String iniStr = mDeviceList.get(0);
                     mDeviceList.clear();
-                    mDeviceList.add(flag);
+                    mDeviceList.add(iniStr);
                     mArrayAdapter.notifyDataSetChanged();
                 }
 
