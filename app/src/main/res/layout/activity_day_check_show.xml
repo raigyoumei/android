@@ -10,7 +10,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1">
 
         <LinearLayout
@@ -30,14 +30,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingVertical="5dp">
+                    android:layout_marginTop="5dp"
+                    android:paddingBottom="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/visual_check" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
                 <View
@@ -47,29 +48,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingVertical="5dp">
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
 
                     <TextView
                         style="@style/ListTextViewStyle"
                         android:text="@string/system_diag" />
 
-                    <ToggleButton
-                        style="@style/ListNeedConfirmOrNotButtonStyle"
-                        android:checked="true"/>
+                    <TextView
+                        style="@style/ListTextViewNoExceptionStyle" />
                 </LinearLayout>
 
                 <View
                     style="@style/ListViewSeparator" />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="80dp"
-                android:text="@string/input_completed" />
+            
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        style="@style/MessageStyle"
+        android:text="@string/input_completed" />
 
     <LinearLayout
         android:layout_width="match_parent"

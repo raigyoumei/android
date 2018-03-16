@@ -4,6 +4,7 @@
 
     <!-- 共通アクションボタン名 -->
     <string name="action_log_in">ログイン</string>
+    <string name="action_log_out">ログアウト</string>
     <string name="action_next">次へ</string>
     <string name="action_menu">メニュー</string>
     <string name="action_no_exception">異常なし</string>
@@ -19,7 +20,7 @@
     <string name="check_brake_pedal_title">ブレーキペダル</string>
     <string name="check_brake_pedal_info">踏みしろ、ブレーキのきき</string>
 
-    <string name="check_park_title">駐車ブレーキ.レバー</string>
+    <string name="check_park_title">駐車ブレーキ・レバー</string>
     <string name="check_park_info">引きしろ（踏みしろ）</string>
 
     <string name="check_prime_mover_title">原動機</string>
@@ -130,9 +131,9 @@
     <!--　メニュー画面　-->
     <string name="menu_title">メニュー</string>
     <string name="menu_call">点呼</string>
-    <string name="menu_day_check"><Data><![CDATA[<font color="#000000"><b>日常点検</b></font>]]></Data></string>
-    <string name="menu_before_crew_call"><Data><![CDATA[<font color="#892C6A"><b>乗務前</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
-    <string name="menu_after_crew_call"><Data><![CDATA[<font color="#1F6BCC"><b>乗務後</b></font><font color="#000000"><b>点呼</b></font>]]></Data></string>
+    <string name="menu_day_check"><Data><![CDATA[日常点検]]></Data></string>
+    <string name="menu_before_crew_call"><Data><![CDATA[乗務前点呼]]></Data></string>
+    <string name="menu_after_crew_call"><Data><![CDATA[乗務後点呼]]></Data></string>
 
     <!--　日常点検開始画面　-->
     <string name="day_check_start_title">点検メニュー</string>
@@ -168,16 +169,16 @@
     <string name="input_completed">入力は全て完了しました</string>
 
     <!--add sato-->
-    <string name="brake_status">ブレーキ系</string>
-    <string name="battery_status">バッテリー</string>
-    <string name="tire_status">タイヤホイール系</string>
-    <string name="transmission_status">トランスミッション系</string>
-    <string name="light_status">灯火系</string>
-    <string name="wiper_status">ワイパー系</string>
+    <!--<string name="brake_status">ブレーキ系</string>-->
+    <!--<string name="battery_status">バッテリー</string>-->
+    <!--<string name="tire_status">タイヤホイール系</string>-->
+    <!--<string name="transmission_status">トランスミッション系</string>-->
+    <!--<string name="light_status">灯火系</string>-->
+    <!--<string name="wiper_status">ワイパー系</string>-->
     <string name="collision_avoidance_status">安全衝突回避</string>
     <string name="air_bug_status">エアバック</string>
     <string name="air_conditioner_status">エアコン</string>
-    <string name="other_status">その他</string>
+    <!--<string name="other_status">その他</string>-->
     <!--ここまで-->
 
     <!--　日常点検結果表示画面　-->

@@ -16,6 +16,7 @@ public class MenuActivity extends AppCompatActivity {
     private TextView dayCheckBtn;
     private TextView beforeCrewCallBtn;
     private TextView afterCrewCallBtn;
+    private TextView logoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MenuActivity extends AppCompatActivity {
         dayCheckBtn = findViewById(R.id.day_check_button);
         beforeCrewCallBtn = findViewById(R.id.before_crew_call_button);
         afterCrewCallBtn = findViewById(R.id.after_crew_call_button);
+        logoutBtn = findViewById(R.id.log_out_button);
 
         dayCheckBtn.setText(Html.fromHtml(getResources().getString(R.string.menu_day_check)));
         beforeCrewCallBtn.setText(Html.fromHtml(getResources().getString(R.string.menu_before_crew_call)));
@@ -47,6 +49,14 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startNextActivity("afterCrew");
+            }
+        });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context , LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
