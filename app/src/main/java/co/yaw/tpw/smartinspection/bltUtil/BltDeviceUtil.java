@@ -90,6 +90,8 @@ public class BltDeviceUtil {
     public boolean bltEnable() {
         boolean ret = true;
 
+        Log.i(TAG, "bltEnable call");
+
         if(!mBluetoothAdapter.isEnabled()) {
             ret = mBluetoothAdapter.enable();
         }
@@ -104,6 +106,8 @@ public class BltDeviceUtil {
 
 
     public void clearReceiver() {
+
+        Log.i(TAG, "clearReceiver call");
 
         if(mReceiverUtil != null) {
             mActivity.getBaseContext().unregisterReceiver(mReceiverUtil);
@@ -177,7 +181,7 @@ public class BltDeviceUtil {
         intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         mActivity.registerReceiver(mReceiverUtil, intent);
 
-        Log.d(TAG, "mActivity.registerReceiver call");
+        Log.d(TAG, "addReceiver call");
 
     }
 
@@ -185,7 +189,7 @@ public class BltDeviceUtil {
 
     public void removeReceiver(){
 
-        Log.d(TAG, "mActivity.removeReceiver call");
+        Log.d(TAG, "removeReceiver call");
 
         mActivity.unregisterReceiver(mReceiverUtil);
     }
@@ -229,6 +233,8 @@ public class BltDeviceUtil {
 
 
     public boolean connectDevice(String name) {
+
+        Log.d(TAG, "connectDevice call");
 
         if(name == null){
             return false;

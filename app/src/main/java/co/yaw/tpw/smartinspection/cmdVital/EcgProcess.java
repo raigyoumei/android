@@ -234,8 +234,8 @@ public class EcgProcess {
         moodVal.setText(defaultVal);
         signalQuality.setText(defaultVal);
 
-        TextView msgText = mActivity.findViewById(R.id.test_msg);
-        msgText.setText("");
+        //TextView msgText = mActivity.findViewById(R.id.test_msg);
+        //msgText.setText("");
     }
 
 

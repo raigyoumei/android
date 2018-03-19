@@ -265,7 +265,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     protected void onStart() {
         super.onStart();
 
-        mtestMsg.setText(getString(R.string.alcohol_test_blt_select));
+        //mtestMsg.setText(getString(R.string.alcohol_test_blt_select));
 
     }
 
