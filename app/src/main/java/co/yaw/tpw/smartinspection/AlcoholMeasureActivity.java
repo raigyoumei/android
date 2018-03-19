@@ -102,39 +102,13 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
         }
 
-
-//        mStartBtn = findViewById(R.id.measure_button);
-//        mStartBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                //権限チェック
-//                if(!checkPermission() || (mSelectDevice == null)){
-//                    return;
-//                }
-//
-//                Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
-//
-//                initView();
-//
-//                // bule tooth 接続
-//                mBltDeviceUtil.connectDevice(mSelectDevice);
-//
-//                // 継続中表示
-//                mtestMsg.setText(getString(R.string.alcohol_test_connect));
-//
-//                // 開始ボタン無効
-//                Button startBtn = findViewById(R.id.measure_button);
-//                startBtn.setEnabled(false);
-//            }
-//        });
-
         setSpinnerAdapter();
         setCameraMaskView();
 
         // bule tooth初期化
         initBltDeviceInfo();
 
+        // 必要な権限チェック
         checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
 
     }
@@ -226,6 +200,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             select = parent.getItemAtPosition(position).toString();
             Log.d(TAG, "onItemSelected select="+select);
 
+            //bltを接続する
             connectDevice(select);
         }
     }
@@ -233,12 +208,13 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
     private void connectDevice(String select) {
 
-        //権限チェック
+        //必要な権限チェック
         if(!checkPermission(BltDeviceUtil.BLT_PRM_SCAN_START)){
             Log.d(TAG, "checkPermission is false");
             return;
         }
 
+        // 既に接続中の場合、接続しない
         if(mBltDeviceUtil.getConnectStatus()){
             Log.d(TAG, "getConnectStatus is ture");
             return;
@@ -246,12 +222,13 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         Log.d(TAG, "mBltDeviceUtil.connectDevice="+select);
 
+        //画面表示を初期化する
         initView();
 
         // 接続中表示
         mtestMsg.setText(getString(R.string.alcohol_test_connect));
 
-        // bule tooth 接続
+        // BLT接続を実行する
         mBltDeviceUtil.connectDevice(select);
 
     }
@@ -268,29 +245,43 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         super.onPause();
 
+        mBltDeviceUtil.removeReceiver();
+
         mBltDeviceUtil.scanLeDevice(false);
         mBltDeviceUtil.initBluetoothGatt();
-        //mStartTime = 0;
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
 
         initView();
+    }
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mtestMsg.setText(getString(R.string.alcohol_test_blt_select));
 
     }
 
 
     @Override
     public void onResume() {
-
         super.onResume();
 
-        mtestMsg.setText(getString(R.string.alcohol_test_blt_select));
+        // auto pair
+        mBltDeviceUtil.addReceiver();
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        mBltDeviceUtil.removeReceiver();
 
     }
 
@@ -301,6 +292,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         boolean flag = false;
 
         switch (requestCode) {
+            // blt 自動検索
             case BltDeviceUtil.BLT_PRM_SCAN_START:
 
                 for(int i = 0; i < grantResults.length; i++) {
@@ -314,6 +306,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
                 break;
 
+            // blt 自動検索なし
             case BltDeviceUtil.BLT_PRM_SCAN_NO:
 
                 flag = false;
@@ -342,12 +335,9 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         mBltDeviceUtil = new BltDeviceUtil(this, "PAB");
 
-        //mBltDeviceUtil = new BltDeviceUtil(this, null);
-
         // Checks if Bluetooth is supported on the device.
         mAcoholCmd = new AcoholCmd(mAcoholHandlerMsg);
         if (!mBltDeviceUtil.initBuleToothDevice(mAcoholHandlerMsg, mAcoholCmd)) {
-            //Toast.makeText(this, "error : bluetooth not supported", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
