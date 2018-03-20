@@ -87,10 +87,16 @@ public class BltDeviceUtil {
     }
 
 
-    public void bltEnable() {
+    public boolean bltEnable() {
+        boolean ret = true;
+
+        Log.i(TAG, "bltEnable call");
+
         if(!mBluetoothAdapter.isEnabled()) {
-            mBluetoothAdapter.enable();
+            ret = mBluetoothAdapter.enable();
         }
+
+        return ret;
     }
 
 
@@ -100,6 +106,8 @@ public class BltDeviceUtil {
 
 
     public void clearReceiver() {
+
+        Log.i(TAG, "clearReceiver call");
 
         if(mReceiverUtil != null) {
             mActivity.getBaseContext().unregisterReceiver(mReceiverUtil);
@@ -138,7 +146,6 @@ public class BltDeviceUtil {
         mConnectStatus = false;
 
         if (!mActivity.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
-            //Toast.makeText(this, "warning :bluetooth not supported", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -150,14 +157,12 @@ public class BltDeviceUtil {
 
         // Checks if Bluetooth is supported on the device.
         if (mBluetoothAdapter == null) {
-            //Toast.makeText(this, "error : bluetooth not supported", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        bltEnable();
-
-        // auto pair
-        addReceiver();
+        if(!bltEnable()){
+            return false;
+        }
 
         return true;
 
@@ -165,7 +170,7 @@ public class BltDeviceUtil {
 
 
 
-    private void addReceiver(){
+    public void addReceiver(){
 
         mReceiverUtil = new BltCntReceiverUtil(mHandlerUtil, PAIR_PWD);
 
@@ -176,7 +181,7 @@ public class BltDeviceUtil {
         intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         mActivity.registerReceiver(mReceiverUtil, intent);
 
-        Log.d(TAG, "mActivity.registerReceiver call");
+        Log.d(TAG, "addReceiver call");
 
     }
 
@@ -184,7 +189,7 @@ public class BltDeviceUtil {
 
     public void removeReceiver(){
 
-        Log.d(TAG, "mActivity.removeReceiver call");
+        Log.d(TAG, "removeReceiver call");
 
         mActivity.unregisterReceiver(mReceiverUtil);
     }
@@ -229,6 +234,8 @@ public class BltDeviceUtil {
 
     public boolean connectDevice(String name) {
 
+        Log.d(TAG, "connectDevice call");
+
         if(name == null){
             return false;
         }
@@ -248,13 +255,11 @@ public class BltDeviceUtil {
                 //boolean ret = BltBandUtil.pair(device.getAddress(), PAIR_PWD);
                 //Log.d(TAG, "BuleToothBand.pair ret =" + ret);
 
-
                 mBluetoothAdapter.stopLeScan(mLeScanCallback);
                 mHandlerUtil.removeCallbacks(mRunnable);
+                mScan = false;
 
                 mBluetoothGatt = device.connectGatt(mActivity, false, mGattCallback);
-
-                mScan = false;
 
                 return true;
             }
@@ -262,6 +267,7 @@ public class BltDeviceUtil {
 
         return false;
     }
+
 
     // Device scan callback.
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
@@ -326,12 +332,12 @@ public class BltDeviceUtil {
 
     private BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
 
-        @Override  //当连接上设备或者失去连接时会回调该函数
+        @Override  //デバイスが接続されているか接続が失われたときに呼び出されます
         public void onConnectionStateChange(BluetoothGatt gatt, int status,int newState) {
 
             super.onConnectionStateChange(gatt, status, newState);
 
-            Log.d(TAG, "11111onConnectionStateChange: thread "
+            Log.d(TAG, "onConnectionStateChange: thread "
                     + Thread.currentThread() + status+"--->" + newState);
 
             if(gatt == null){
@@ -339,8 +345,8 @@ public class BltDeviceUtil {
             }
 
             if (status != BluetoothGatt.GATT_SUCCESS) {
-                 // 当尝试连接失败的时候调用 disconnect 方法是不会引起这个方法回调的，所以这里
-                //   直接回调就可以了。
+                //接続に失敗したときに切断メソッドを呼び出しても、
+                // このメソッドはコールバックしません。したがって、ここでは直接コールバックです
                 gatt.close();
                 Log.e(TAG, "Cannot connect device with error status: " + status);
 
@@ -396,15 +402,15 @@ public class BltDeviceUtil {
         }
 
 
-        @Override  //当设备是否找到服务时，会回调该函数
+        @Override  //デバイスがサービスを検出したときに呼び出されます
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
 
             super.onServicesDiscovered(gatt, status);
 
-            Log.d(TAG, "11111onServicesDiscovered: " + status);
+            Log.d(TAG, "onServicesDiscovered: " + status);
 
-            if (status == BluetoothGatt.GATT_SUCCESS) {   //找到服务了
-                //在这里可以对服务进行解析，寻找到你需要的服务
+            if (status == BluetoothGatt.GATT_SUCCESS) { //サービスを見つかった
+                //ここでサービスを解析し、必要なサービスを見つけることができます
 
                 List<BluetoothGattService> list =gatt.getServices();
                 //List<BluetoothGattService> list = mBluetoothGatt.getServices();
@@ -470,25 +476,25 @@ public class BltDeviceUtil {
             }
         }
 
-        @Override  //当读取设备时会回调该函数
+        @Override  //デバイスの読み込み時にコールバックされます
         public void onCharacteristicRead(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic, int status) {
             super.onCharacteristicRead(gatt, characteristic, status);
 
-            //Log.d(TAG, "11111onCharacteristicRead: " + status);
-            //System.out.println("onCharacteristicRead");
+            //Log.d(TAG, "onCharacteristicRead: " + status);
 
-            Log.d(TAG, "111111onCharacteristicRead = " + characteristic.getStringValue(0));
+            Log.d(TAG, "onCharacteristicRead getStringValue=" + characteristic.getStringValue(0));
 
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                //读取到的数据存在characteristic当中，可以通过characteristic.getValue();函数取出。然后再进行解析操作。
+                //読み取られたデータは特性内に存在し、
+                // これはcharacteristic.getValue（）
+                // 関数を使用して取り出すことができる
+                // その後、解析操作を実行する
                 int charaProp = characteristic.getProperties();
-
-                //Log.d(TAG, "111111onCharacteristicRead = " + characteristic.getStringValue(0));
 
                 byte[] value = characteristic.getValue();
                 String hexStr = HexUtil.formatHexString(value);
 
-                Log.d(TAG, "111111onCharacteristicRead = " + hexStr);
+                Log.d(TAG, "onCharacteristicRead hexStr=" + hexStr);
 
                 if(mBaseSensorCmd != null) {
                     mBaseSensorCmd.cmdProc(value);
@@ -498,51 +504,43 @@ public class BltDeviceUtil {
         }
 
 
-        @Override //当向设备Descriptor中写数据时，会回调该函数
+        @Override //デバイス記述子にデータを書き込むときにコールバックされます
         public void onDescriptorWrite( BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
             super.onDescriptorWrite(gatt, descriptor, status);
 
-            Log.d(TAG, "11111onDescriptorWriteonDescriptorWrite = " + status + ", descriptor =" + descriptor.getUuid().toString());
-
-            //System.out.println("onDescriptorWriteonDescriptorWrite = " + status + ", descriptor =" + descriptor.getUuid().toString());
+            Log.d(TAG, "onDescriptorWrite=" + status + ", descriptor =" + descriptor.getUuid().toString());
         }
 
-        @Override //设备发出通知时会调用到该接口
+        @Override //デバイスは通知を送信するとこのインターフェイスを呼び出します
         public void onCharacteristicChanged(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic) {
             super.onCharacteristicChanged(gatt, characteristic);
 
             byte[] value = characteristic.getValue();
             String hexStr = HexUtil.formatHexString(value);
 
-            Log.d(TAG, "11111onCharacteristicChanged=" + hexStr);
+            Log.d(TAG, "onDescriptorWrite hexStr=" + hexStr);
 
             if (characteristic.getValue() != null) {
-                //System.out.println(characteristic.getStringValue(0));
 
                 if(mBaseSensorCmd != null) {
                     mBaseSensorCmd.cmdProc(value);
                 }
 
             }
-            //System.out.println("--------onCharacteristicChanged-----");
         }
 
         @Override
         public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {
             super.onReadRemoteRssi(gatt, rssi, status);
 
-            Log.d(TAG, "11111onReadRemoteRssi = " + rssi);
-
-            //System.out.println("rssi = " + rssi);
+            Log.d(TAG, "onReadRemoteRssi = " + rssi);
         }
 
-        @Override //当向Characteristic写数据时会回调该函数
+        @Override //Characteristicへのデータ書き込み時のこの関数へのコールバックする
         public void onCharacteristicWrite(BluetoothGatt gatt,BluetoothGattCharacteristic characteristic, int status) {
             super.onCharacteristicWrite(gatt, characteristic, status);
 
-            Log.d(TAG, "11111onCharacteristicWrite = " + status);
-
-            //System.out.println("--------write success----- status:" + status);
+            Log.d(TAG, "onCharacteristicWrite = " + status);
         }
 
         @Override
@@ -551,7 +549,7 @@ public class BltDeviceUtil {
 
             super.onDescriptorRead(gatt, descriptor, status);
 
-            Log.d(TAG, "11111onDescriptorRead = " + status);
+            Log.d(TAG, "onDescriptorRead = " + status);
 
         }
 
@@ -559,7 +557,7 @@ public class BltDeviceUtil {
         public void onPhyUpdate(BluetoothGatt gatt, int txPhy, int rxPhy, int status) {
             super.onPhyUpdate(gatt, txPhy, rxPhy, status);
 
-            Log.d(TAG, "11111onPhyUpdate = " + status);
+            Log.d(TAG, "onPhyUpdate = " + status);
         }
 
     };

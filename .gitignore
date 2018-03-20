@@ -7,7 +7,6 @@
 .DS_Store
 /build
 /app/build
-/app/*.iml
 /captures
 .externalNativeBuild
 /app/release/

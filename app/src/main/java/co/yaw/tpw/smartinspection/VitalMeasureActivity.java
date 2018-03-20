@@ -65,43 +65,6 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
             }
         });
 
-//        mStartBtn = findViewById(R.id.measure_button);
-//        mStartBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                //権限チェック
-//                if(!checkPermission() || (mSelectDevice == null)){
-//                    return;
-//                }
-//
-//                Log.d(TAG, "mBltDeviceUtil.connectDevice="+mSelectDevice);
-//
-//                mEcgProcess.initView();
-//
-//                // scan stop
-//                mBltDeviceUtil.scanLeDevice(false);
-//
-//                BluetoothDevice device = mBltDeviceUtil.getblueDevice(mSelectDevice);
-//                if(device == null) {
-//                    Log.d(TAG, "device is null");
-//                    return;
-//                }
-//
-//                mTestmsg.setText(getString(R.string.vital_test_connect));
-//
-//                Log.d(TAG, "getBondState ="+device.getBondState());
-//
-//                mEcgConnect.stopTgStreamReader();
-//                mEcgProcess.initNskECG();
-//                mEcgConnect.connectTgStream(device);
-//
-//                // 開始ボタン無効
-//                Button startBtn = findViewById(R.id.measure_button);
-//                startBtn.setEnabled(false);
-//            }
-//        });
-
         setSpinnerAdapter();
 
         // bule tooth初期化
@@ -112,7 +75,6 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
 
     }
-
 
 
     private void setSpinnerAdapter() {
@@ -222,31 +184,38 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         super.onPause();
 
         mBltDeviceUtil.scanLeDevice(false);
-        mBltDeviceUtil.initBluetoothGatt();
-
-        mEcgProcess.initView();
 
         mEcgConnect.stopTgStreamReader();
+
+        mBltDeviceUtil.clearReceiver();
+        mBltDeviceUtil.initBluetoothGatt();
 
         //mStartBtn.setEnabled(true);
     }
 
 
+    @Override
+    public void onStop() {
+
+        super.onStop();
+
+        mEcgProcess.initView();
+
+        //mTestmsg.setText(getString(R.string.vital_test_msg_blt_select));
+    }
+
 
     @Override
     public void onResume() {
-
         super.onResume();
 
-        mTestmsg.setText(getString(R.string.vital_test_msg_blt_select));
+        mBltDeviceUtil.addReceiver();
+
     }
 
 
     @Override
     protected void onDestroy() {
-
-        mBltDeviceUtil.clearReceiver();
-
         super.onDestroy();
 
     }
