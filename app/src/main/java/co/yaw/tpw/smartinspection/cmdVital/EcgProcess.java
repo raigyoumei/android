@@ -240,7 +240,7 @@ public class EcgProcess {
 
 
 
-    public Map<String, String> getVitalTestValue() {
+    public Map<String, String> saveVitalTestValue() {
         Map<String, String> map = new HashMap<String, String>();
 
         String time = DateUtil.getCustomTime(DateUtil.YMDHMSS);

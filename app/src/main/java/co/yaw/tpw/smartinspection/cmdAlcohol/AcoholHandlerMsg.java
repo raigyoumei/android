@@ -51,6 +51,8 @@ public class AcoholHandlerMsg extends HandlerUtil {
     private ArrayAdapter mArrayAdapter = null;
     private CameraCom mCameraView = null;
 
+    private int mcrewBef = 0;
+
 
     public AcoholHandlerMsg(Activity activity) {
 
@@ -81,6 +83,11 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
         mCameraView = cameraCom;
         mCameraView.initCameraCom(this);
+    }
+
+
+    public void setMcrewInfo(int flag){
+        mcrewBef = flag;
     }
 
 
@@ -406,8 +413,20 @@ public class AcoholHandlerMsg extends HandlerUtil {
         Log.d(TAG, "saveAcoholTestInfo mVoltageVal=" + mVoltageVal);
         Log.d(TAG, "saveAcoholTestInfo mAcoholVal=" + mAcoholVal);
         Log.d(TAG, "saveAcoholTestInfo mImageVal=" + mImageVal);
+        Log.d(TAG, "saveAcoholTestInfo mcrewBef=" + mcrewBef);
 
         Log.d(TAG, "saveAcoholTestInfo time=" + time);
+
+
+        // ログイン認証情報を取得処理
+        //////////////////////////
+        //////////////////////////
+
+
+        //サーバーに保存する処理
+        /////////////////////////
+        /////////////////////////
+        /////////////////////////
 
     }
 

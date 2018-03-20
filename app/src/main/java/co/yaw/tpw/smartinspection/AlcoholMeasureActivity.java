@@ -55,6 +55,8 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     private CameraCom mCameraCom = null;
     private TextView mtestMsg = null;
 
+    private int mcrewBef = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,8 +100,10 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         crewInfoTv = findViewById(R.id.crew_info);
         if (forwardCls == VitalMeasureActivity.class) {
             crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
+            mcrewBef = 0;
         } else {
             crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
+            mcrewBef = 1;
         }
 
         setSpinnerAdapter();
@@ -137,6 +141,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         mAcoholHandlerMsg = new AcoholHandlerMsg(this);
         mAcoholHandlerMsg.initDeviceAdapter(categories, dataAdapter);
         mAcoholHandlerMsg.setCameraView(mCameraCom);
+        mAcoholHandlerMsg.setMcrewInfo(mcrewBef);
 
         alcoholSensorSpinner.setOnTouchListener(new View.OnTouchListener(){
 
