@@ -41,7 +41,7 @@ public class CameraCom {
 
     public CameraCom(Activity activity, CameraMaskView cameraView) {
 
-        Log.i(TAG, "CameraCom");
+        Log.d(TAG, "CameraCom");
 
         mActivity = activity;
         mCameraView = cameraView;
@@ -57,7 +57,7 @@ public class CameraCom {
 
     public void initCameraCom(HandlerUtil handler) {
 
-        Log.i(TAG, "initCameraCom");
+        Log.d(TAG, "initCameraCom");
 
         mHandlerUtil = handler;
 
@@ -121,7 +121,7 @@ public class CameraCom {
 
     public void cameraStart() {
 
-        Log.i(TAG, "cameraStart");
+        Log.d(TAG, "cameraStart");
 
         mCapImage = false;
 
@@ -134,7 +134,7 @@ public class CameraCom {
 
     public void cameraStop() {
 
-        Log.i(TAG, "cameraStop");
+        Log.d(TAG, "cameraStop");
 
         mCapImage = false;
 
@@ -147,7 +147,7 @@ public class CameraCom {
 
     public void cameraPause() {
 
-        Log.i(TAG, "cameraPause");
+        Log.d(TAG, "cameraPause");
 
         mCapImage = false;
         mCameraView.pause();

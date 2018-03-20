@@ -54,7 +54,7 @@ public class AcoholCmd extends BltComCmd {
 
 
     public AcoholCmd( HandlerUtil handler) {
-        Log.i(TAG, "BaseAcoholCmd");
+        Log.d(TAG, "BaseAcoholCmd");
 
         mHandlerUtil = handler;
 
@@ -62,7 +62,6 @@ public class AcoholCmd extends BltComCmd {
 
     @Override
     public void cmdProc( byte[] value) {
-        //Log.i(TAG, "AcoholCmdProc");
 
         String hexStr = HexUtil.formatHexString(value);
 
@@ -72,7 +71,7 @@ public class AcoholCmd extends BltComCmd {
         String cmd = hexStr.substring(0, 6).toUpperCase();
         String data = hexStr.substring(6, hexStr.length() -2);
 
-        Log.i(TAG, "cmd "+ cmd +"--"+ data);
+        Log.d(TAG, "cmd "+ cmd +"--"+ data);
 
         switch(cmd){
             case "EBE415": // Firmware Ver 0A
@@ -294,7 +293,7 @@ public class AcoholCmd extends BltComCmd {
         int cnt = value[3] & 0x00FF - 0x80;
         int alcohol = value[4] & 0x007F;
 
-        Log.i(TAG, "acoholCmdProcEAE512 cnt=" + cnt + " alcohol:" + alcohol );
+        Log.d(TAG, "acoholCmdProcEAE512 cnt=" + cnt + " alcohol:" + alcohol );
 
         /*・アプリ側で表示必要
         アルコールは　alcohol_Data　<＝ 5  -> 0　になる
@@ -518,7 +517,7 @@ public class AcoholCmd extends BltComCmd {
         if(msg == null) {
             mHandlerUtil.sendHandler(type);
         }else{
-            //Log.i(TAG, "AcoholCmdProc");
+            //Log.d(TAG, "AcoholCmdProc");
             mHandlerUtil.sendHandler(type, msg);
         }
     }

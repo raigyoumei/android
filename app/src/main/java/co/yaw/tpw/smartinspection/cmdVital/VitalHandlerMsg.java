@@ -40,7 +40,7 @@ public class VitalHandlerMsg extends HandlerUtil {
 
     public VitalHandlerMsg(Activity activity) {
 
-        Log.i(TAG, "VitalHandlerMsg");
+        Log.d(TAG, "VitalHandlerMsg");
 
         mActivity = activity;
 
@@ -55,7 +55,7 @@ public class VitalHandlerMsg extends HandlerUtil {
 
 
     public void initDeviceAdapter(List<String> deviceList, ArrayAdapter adapter ) {
-        Log.i(TAG, "initDeviceAdapter");
+        Log.d(TAG, "initDeviceAdapter");
 
         mDeviceList = deviceList;
         mArrayAdapter = adapter;

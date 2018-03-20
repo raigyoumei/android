@@ -54,24 +54,24 @@ public class BltCntReceiverUtil extends BroadcastReceiver {
             }
         } else if(action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)){
 
-            Log.i(TAG, "BluetoothDevice BluetoothDevice action="+action);
+            Log.d(TAG, "BluetoothDevice BluetoothDevice action="+action);
 
             switch (device.getBondState()) {
                 case BluetoothDevice.BOND_BONDING:
-                    Log.i(TAG, "BluetoothDevice.BOND_BONDING");
+                    Log.d(TAG, "BluetoothDevice.BOND_BONDING");
 
                     mHandlerUtil.sendHandler(BltDeviceUtil.MSG_DEVACE_PAIR_START);
 
                     break;
                 case BluetoothDevice.BOND_BONDED:
-                    Log.i(TAG, "BluetoothDevice.BOND_BONDED");
+                    Log.d(TAG, "BluetoothDevice.BOND_BONDED");
 
                     //mHandlerUtil.sendHandler(BltDeviceUtil.MSG_DEVACE_PAIR_END);
 
                     break;
                 case BluetoothDevice.BOND_NONE:
 
-                    Log.i(TAG, "BluetoothDevice.BOND_NONE");
+                    Log.d(TAG, "BluetoothDevice.BOND_NONE");
 
                     mHandlerUtil.sendHandler(BltDeviceUtil.MSG_DEVACE_PAIR_END);
 

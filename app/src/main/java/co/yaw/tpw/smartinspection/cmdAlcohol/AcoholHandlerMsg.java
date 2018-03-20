@@ -54,7 +54,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
     public AcoholHandlerMsg(Activity activity) {
 
-        Log.i(TAG, "AcoholHandlerMsg");
+        Log.d(TAG, "AcoholHandlerMsg");
 
         mActivity = activity;
 
@@ -68,7 +68,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
     public void initDeviceAdapter(List<String> deviceList,
                                  ArrayAdapter adapter ) {
-        Log.i(TAG, "initDeviceAdapter");
+        Log.d(TAG, "initDeviceAdapter");
 
         mDeviceList = deviceList;
         mArrayAdapter = adapter;
@@ -77,7 +77,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
     public void setCameraView(CameraCom cameraCom) {
 
-        Log.i(TAG, "setCameraView");
+        Log.d(TAG, "setCameraView");
 
         mCameraView = cameraCom;
         mCameraView.initCameraCom(this);

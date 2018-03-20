@@ -90,7 +90,7 @@ public class BltDeviceUtil {
     public boolean bltEnable() {
         boolean ret = true;
 
-        Log.i(TAG, "bltEnable call");
+        Log.d(TAG, "bltEnable call");
 
         if(!mBluetoothAdapter.isEnabled()) {
             ret = mBluetoothAdapter.enable();
@@ -107,7 +107,7 @@ public class BltDeviceUtil {
 
     public void clearReceiver() {
 
-        Log.i(TAG, "clearReceiver call");
+        Log.d(TAG, "clearReceiver call");
 
         if(mReceiverUtil != null) {
             mActivity.getBaseContext().unregisterReceiver(mReceiverUtil);
@@ -138,7 +138,7 @@ public class BltDeviceUtil {
 
     public boolean initBuleToothDevice(HandlerUtil handler, BltComCmd baseSensorCmd) {
 
-        Log.i(TAG, "initBuleToothDevice");
+        Log.d(TAG, "initBuleToothDevice");
 
         mBaseSensorCmd = baseSensorCmd;
         mHandlerUtil = handler;
