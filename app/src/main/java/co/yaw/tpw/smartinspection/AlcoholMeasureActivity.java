@@ -155,7 +155,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         alcoholSensorSpinner.setAdapter(dataAdapter);
 
         // アルコール一覧表示の初期化
-        CameraMaskView camera = (CameraMaskView) findViewById(R.id.camera);
+        CameraMaskView camera = findViewById(R.id.camera);
 
         mCameraCom= new CameraCom(this, camera);
         mCameraCom.setStopFlag(true);
@@ -164,7 +164,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         mAcoholHandlerMsg.initDeviceAdapter(categories, dataAdapter);
         mAcoholHandlerMsg.setCameraView(mCameraCom);
 
-        alcoholSensorSpinner.setOnTouchListener(new AdapterView.OnTouchListener(){
+        alcoholSensorSpinner.setOnTouchListener(new View.OnTouchListener(){
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {

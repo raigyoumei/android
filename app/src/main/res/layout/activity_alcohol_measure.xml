@@ -84,7 +84,7 @@
                         android:visibility="invisible" />
                 </LinearLayout>
 
-                <ImageView
+                <View
                     android:id="@+id/cameraMessage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

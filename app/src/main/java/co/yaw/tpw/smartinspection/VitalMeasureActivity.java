@@ -128,7 +128,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         vitalSensorSpinner.setAdapter(dataAdapter);
 
-        vitalSensorSpinner.setOnTouchListener(new AdapterView.OnTouchListener(){
+        vitalSensorSpinner.setOnTouchListener(new View.OnTouchListener(){
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
