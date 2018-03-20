@@ -199,6 +199,9 @@ public class BltDeviceUtil {
     public void scanLeDevice(final boolean enable) {
         if (enable) {
             if (!mScan){
+
+                Log.d(TAG, "scanLeDevice start");
+
                 mHandlerUtil.sendHandler(MSG_SCAN_START);
 
                 mBluetoothDeviceList.clear();
@@ -224,9 +227,21 @@ public class BltDeviceUtil {
             }
 
         } else {
-            mBluetoothAdapter.stopLeScan(mLeScanCallback);
+
+            Log.d(TAG, "scanLeDevice stop");
+
+            if(mScan) {
+
+                mHandlerUtil.removeCallbacks(mRunnable);
+
+                mBluetoothAdapter.stopLeScan(mLeScanCallback);
+
+                if(!mConnectStatus) {
+                    mHandlerUtil.sendHandler(MSG_DEVACE_SCAN_END);
+                }
+            }
+
             mScan = false;
-            //mHandlerUtil.sendHandler(MSG_DEVACE_SCAN_END);
 
         }
     }

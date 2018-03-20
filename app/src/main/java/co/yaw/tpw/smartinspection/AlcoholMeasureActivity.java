@@ -143,7 +143,13 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                Log.d(TAG, "setOnTouchListener onTouch call");
+                int action = event.getAction();
+
+                Log.d(TAG, "setOnTouchListener onTouch call action="+action);
+
+                if(action != MotionEvent.ACTION_UP){
+                    return false;
+                }
 
                 boolean ret = checkPermission(BltDeviceUtil.BLT_PRM_SCAN_START);
                 if(ret){
