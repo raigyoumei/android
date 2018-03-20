@@ -42,11 +42,15 @@ public class AcoholCmd extends BltComCmd {
     public static final int MSG_COMMAND_WARNNING_IC_READ = 118;
 
     public static final int MSG_COMMAND_TEST_END = 119;
+    public static final int MSG_COMMAND_TEST_STANDARD = 120;
 
-    public static final int MSG_COMMAND_POWER_OFF = 120;
+    public static final int MSG_COMMAND_POWER_OFF = 121;
 
     private HandlerUtil mHandlerUtil = null;
     private boolean mHowWarn = false;
+
+    private int mAltTestSTLow = 15;
+    private int mAltTestSTHigh = 25;
 
 
     public AcoholCmd( HandlerUtil handler) {
@@ -123,6 +127,10 @@ public class AcoholCmd extends BltComCmd {
                 acoholCmdProcEAE51A(value);
                 break;
 
+            case "EAE518": // 判断標準の範囲
+                acoholCmdProcEAE518(value);
+                break;
+
             case "EAE51F": // POWER OFF
                 acoholCmdProcEAE51F(value);
                 break;
@@ -165,7 +173,7 @@ public class AcoholCmd extends BltComCmd {
 
         int cnt = value[3]&0x00FF - 0x80;
 
-        Log.i(TAG, "acoholCmdProcEAE511 cnt="+cnt);
+        Log.d(TAG, "acoholCmdProcEAE511 cnt="+cnt);
 
               /*
         ・アプリ側で表示必要
@@ -213,7 +221,7 @@ public class AcoholCmd extends BltComCmd {
         int alcohol_Data = value[4] & 0x00FF;
         int p_Data = value[5] & 0x00FF;
 
-        Log.i(TAG, "acoholCmdProcEAE51D cnt=" + cnt + " Alcohol_Data:" + alcohol_Data + " P_Data:" + p_Data);
+        Log.d(TAG, "acoholCmdProcEAE51D cnt=" + cnt + " Alcohol_Data:" + alcohol_Data + " P_Data:" + p_Data);
 
         /*・アプリ側で表示必要
          加熱中の気圧検測値（P_Data）は0以外の時、警告必要
@@ -251,8 +259,8 @@ public class AcoholCmd extends BltComCmd {
         int p_Data_1 = value[5] & 0x007F;
         int p_Data_2 = value[13] & 0x007F;
 
-        Log.i(TAG, "acoholCmdProcEAE510 cnt1=" + cnt1 + " alcohol_Data1:" + alcohol_Data1 + " p_Data_1:" + p_Data_1);
-        Log.i(TAG, "acoholCmdProcEAE510 cnt2=" + cnt2 + " alcohol_Data2:" + alcohol_Data2 + " p_Data_2:" + p_Data_2);
+        Log.d(TAG, "acoholCmdProcEAE510 cnt1=" + cnt1 + " alcohol_Data1:" + alcohol_Data1 + " p_Data_1:" + p_Data_1);
+        Log.d(TAG, "acoholCmdProcEAE510 cnt2=" + cnt2 + " alcohol_Data2:" + alcohol_Data2 + " p_Data_2:" + p_Data_2);
 
 
         //気圧はp_Data <＝ 10  -> 0になる
@@ -297,10 +305,12 @@ public class AcoholCmd extends BltComCmd {
         sendMassage(MSG_COMMAND_VALUE_TEST_AL, alcoholStr);
 
         // 15以下は青   15~25は黄色  25以上は赤
-        String flag = "G";
-        if(alcohol < 15){
+        Log.d(TAG, "mAltTestSTLow=" + mAltTestSTLow + " mAltTestSTHigh=" + mAltTestSTHigh );
+
+        String flag = null;
+        if(alcohol < mAltTestSTLow){
             flag = "G";
-        } else if(alcohol <= 25){
+        } else if(alcohol <= mAltTestSTHigh){
             flag = "Y";
         }else{
             flag = "R";
@@ -355,10 +365,10 @@ public class AcoholCmd extends BltComCmd {
 
         int cnt = cntH + cntL;
 
-        Log.e(TAG, "acoholCmdProcEAE516 value[3] & 0x007F <<8 ="+cntH);
-        Log.e(TAG, "acoholCmdProcEAE516 value[4] ="+cntL);
+        Log.d(TAG, "acoholCmdProcEAE516 value[3] & 0x007F <<8 ="+cntH);
+        Log.d(TAG, "acoholCmdProcEAE516 value[4] ="+cntL);
 
-        Log.e(TAG, "acoholCmdProcEAE516 cnt ="+cnt);
+        Log.d(TAG, "acoholCmdProcEAE516 cnt ="+cnt);
 
         sendMassage(MSG_COMMAND_MSG_TEST_COUNT, cnt+"");
     }
@@ -460,6 +470,25 @@ public class AcoholCmd extends BltComCmd {
         }
 
         sendMassage(MSG_COMMAND_TEST_END, null);
+        mHowWarn = false;
+    }
+
+
+    //　判断標準範囲のコマンド
+    private void acoholCmdProcEAE518(byte[] value) {
+
+        if(value.length < 11){
+
+            Log.e(TAG, "acoholCmdProcEAE518 error ="+HexUtil.formatHexString(value));
+            return;
+        }
+
+        mAltTestSTLow = value[3] & 0x007F;
+        mAltTestSTHigh = value[4] & 0x007F;
+
+        Log.d(TAG, "acoholCmdProcEAE518 low="+mAltTestSTLow +" High="+mAltTestSTHigh);
+
+        //sendMassage(MSG_COMMAND_TEST_STANDARD, null);
         mHowWarn = false;
     }
 
