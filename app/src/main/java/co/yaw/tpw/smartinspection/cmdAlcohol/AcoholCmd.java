@@ -483,8 +483,8 @@ public class AcoholCmd extends BltComCmd {
             return;
         }
 
-        mAltTestSTLow = value[3] & 0x007F;
-        mAltTestSTHigh = value[4] & 0x007F;
+        mAltTestSTLow = value[3] == 0x8A ? 0x0A:value[3] & 0x00FF;
+        mAltTestSTHigh = value[4] == 0x8A ? 0x0A:value[4] & 0x00FF;
 
         Log.d(TAG, "acoholCmdProcEAE518 low="+mAltTestSTLow +" High="+mAltTestSTHigh);
 
