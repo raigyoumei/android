@@ -95,7 +95,13 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                Log.d(TAG, "setOnTouchListener onTouch call");
+                int action = event.getAction();
+
+                Log.d(TAG, "setOnTouchListener onTouch call action="+action);
+
+                if(action != MotionEvent.ACTION_UP){
+                    return false;
+                }
 
                 // 権限チェック
                 boolean ret = checkPermission(BltDeviceUtil.BLT_PRM_SCAN_START);
