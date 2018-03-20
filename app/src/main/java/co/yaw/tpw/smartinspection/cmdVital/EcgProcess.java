@@ -281,16 +281,16 @@ public class EcgProcess {
 
         String ret = null;
 
-        if(value > 80){
-            ret = mActivity.getString(R.string.vital_test_stress_highly);
-        }else if(value > 60) {
-            ret = mActivity.getString(R.string.vital_test_stress_stressed);
-        }else if(value > 40) {
-            ret = mActivity.getString(R.string.vital_test_stress_mod);
-        }else if(value > 20) {
-            ret = mActivity.getString(R.string.vital_test_stress_low);
-        }else{
+        if(value <= 20){
             ret = mActivity.getString(R.string.vital_test_stress_no);
+        }else if(value <= 40){
+            ret = mActivity.getString(R.string.vital_test_stress_low);
+        }else if(value <= 60){
+            ret = mActivity.getString(R.string.vital_test_stress_mod);
+        }else if(value <= 80){
+            ret = mActivity.getString(R.string.vital_test_stress_stressed);
+        }else{
+            ret = mActivity.getString(R.string.vital_test_stress_highly);
         }
 
         return ret;
@@ -301,24 +301,20 @@ public class EcgProcess {
 
         String ret = null;
 
-        if(value > 80){
-            ret = mActivity.getString(R.string.vital_test_mood_excited);
-        }else if(value > 60) {
-            ret = mActivity.getString(R.string.vital_test_mood_motivated);
-        }else if(value > 40) {
-            ret = mActivity.getString(R.string.vital_test_mood_balance);
-        }else if(value > 20) {
-            ret = mActivity.getString(R.string.vital_test_mood_relaxed);
-        }else{
+        if(value <= 20){
             ret = mActivity.getString(R.string.vital_test_mood_calm);
+        }else if(value <= 40){
+            ret = mActivity.getString(R.string.vital_test_mood_relaxed);
+        }else if(value <= 60){
+            ret = mActivity.getString(R.string.vital_test_mood_balance);
+        }else if(value <= 80){
+            ret = mActivity.getString(R.string.vital_test_mood_motivated);
+        }else{
+            ret = mActivity.getString(R.string.vital_test_mood_excited);
         }
 
         return ret;
     }
-
-
-
-
 
 }
 

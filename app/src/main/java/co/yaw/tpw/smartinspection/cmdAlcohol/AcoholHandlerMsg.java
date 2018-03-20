@@ -181,11 +181,11 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 String flag = ble.getString(HandlerUtil.INFO);
                 if(flag.equals("G")) {
-                    mArulValueView.setTextColor(0xFF00FF00);
+                    mArulValueView.setTextColor(mActivity.getResources().getColor(R.color.colorGreen));
                 }else if(flag.equals("Y")) {
-                    mArulValueView.setTextColor(0xFFFFCC00);
+                    mArulValueView.setTextColor(mActivity.getResources().getColor(R.color.colorYellow));
                 }else{
-                    mArulValueView.setTextColor(0xFFFF6600);
+                    mArulValueView.setTextColor(mActivity.getResources().getColor(R.color.colorAccent));
                 }
 
                 mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_end_ok));
