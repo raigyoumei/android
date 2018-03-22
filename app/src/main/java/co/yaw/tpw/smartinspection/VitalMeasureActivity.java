@@ -301,7 +301,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
 
     // 権限のチェック
-    private boolean checkPermission(int code) {
+    private boolean checkPermission(int reqCode) {
 
         String[] reqArray = new String[] {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -310,25 +310,9 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
                 Manifest.permission.BLUETOOTH_ADMIN
         };
 
-        mBltDeviceUtil.bltEnable();
+        boolean ret = mBltDeviceUtil.checkPerm(reqArray, reqCode);
 
-        List list = new ArrayList();
-        for(int i = 0; i < reqArray.length; i++){
-            if (PermissionChecker.checkSelfPermission(this, reqArray[i]) != PermissionChecker.PERMISSION_GRANTED) {
-                //権限がない場合はパーミッションを要求するメソッドを呼び出し
-                // 許諾が無い場合は表示
-                d(TAG, "permission=" +reqArray[i]);
-                list.add(reqArray[i]);
-            }
-        }
-
-        if(list.size() > 0){
-            String[] permissions = (String[])list.toArray(new String[list.size()]);
-            ActivityCompat.requestPermissions(this, permissions, code);
-            return false;
-        }
-
-        return true;
+        return ret;
     }
 
 

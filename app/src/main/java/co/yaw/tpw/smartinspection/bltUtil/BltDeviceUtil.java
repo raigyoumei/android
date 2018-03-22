@@ -14,12 +14,16 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.util.Log.d;
 
 
 public class BltDeviceUtil {
@@ -94,6 +98,19 @@ public class BltDeviceUtil {
 
         if(!mBluetoothAdapter.isEnabled()) {
             ret = mBluetoothAdapter.enable();
+        }
+
+        return ret;
+    }
+
+
+    public boolean bltDisable() {
+        boolean ret = true;
+
+        Log.d(TAG, "bltDisable call");
+
+        if(mBluetoothAdapter.isEnabled()) {
+            ret = mBluetoothAdapter.disable();
         }
 
         return ret;
@@ -590,5 +607,37 @@ public class BltDeviceUtil {
         mBluetoothGatt = null;
         mConnectStatus = false;
     }
+
+
+
+
+    public boolean checkPerm(String[] reqArray, int reqCode) {
+
+        Log.d(TAG, "checkPerm call");
+
+        bltEnable();
+
+        List list = new ArrayList();
+        for(int i = 0; i < reqArray.length; i++){
+            if (PermissionChecker.checkSelfPermission(mActivity, reqArray[i]) != PermissionChecker.PERMISSION_GRANTED) {
+                //権限がない場合はパーミッションを要求するメソッドを呼び出し
+                // 許諾が無い場合は表示
+                d(TAG, "permission=" +reqArray[i]);
+                list.add(reqArray[i]);
+            }
+        }
+
+        if(list.size() > 0){
+            String[] permissions = (String[])list.toArray(new String[list.size()]);
+            ActivityCompat.requestPermissions(mActivity, permissions, reqCode);
+            return false;
+        }
+
+        return true;
+
+
+    }
+
+
 
 }

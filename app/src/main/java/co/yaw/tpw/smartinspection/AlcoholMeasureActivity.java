@@ -380,7 +380,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
 
     // 権限のチェック
-    private boolean checkPermission(int bltScan) {
+    private boolean checkPermission(int reqCode) {
 
         String[] reqArray = new String[] {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -391,25 +391,9 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
                 Manifest.permission.RECORD_AUDIO,
                 Manifest.permission.CAMERA};
 
-        mBltDeviceUtil.bltEnable();
+        boolean ret = mBltDeviceUtil.checkPerm(reqArray, reqCode);
 
-        List list = new ArrayList();
-        for(int i = 0; i < reqArray.length; i++){
-            if (PermissionChecker.checkSelfPermission(this, reqArray[i]) != PermissionChecker.PERMISSION_GRANTED) {
-                //権限がない場合はパーミッションを要求するメソッドを呼び出し
-                // 許諾が無い場合は表示
-                d(TAG, "permission=" +reqArray[i]);
-                list.add(reqArray[i]);
-            }
-        }
-
-        if(list.size() > 0){
-            String[] permissions = (String[])list.toArray(new String[list.size()]);
-            ActivityCompat.requestPermissions(this, permissions, bltScan);
-            return false;
-        }
-
-        return true;
+        return ret;
     }
 
 
