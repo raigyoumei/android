@@ -223,6 +223,16 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
                 break;
 
+            case AcoholCmd.MSG_COMMAND_WARNNING_START_TEST_PRESS:
+
+                //value = ble.getString(HandlerUtil.INFO);
+                //value = String.format(mActivity.getString(R.string.test_count), (String)value);
+
+                mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_warnning_start_press));
+
+                break;
+
+
             case AcoholCmd.MSG_COMMAND_WARNNING_TEST_START_AHL:
 
                 //value = ble.getString(HandlerUtil.INFO);
@@ -231,6 +241,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_warnning_start_alcohol));
 
                 break;
+
 
             case AcoholCmd.MSG_COMMAND_WARNNING_BLOWING:
 

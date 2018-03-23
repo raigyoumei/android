@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neurosky.connection.ConnectionStates;
 import com.neurosky.connection.DataType.BodyDataType;
 import com.yaw.tpw.smartinspection.R;
@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
-import co.yaw.tpw.smartinspection.bltUtil.DateUtil;
 import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
 
 
@@ -311,11 +310,20 @@ public class VitalHandlerMsg extends HandlerUtil {
     }
 
 
-
     public void saveViteTestInfo(){
 
         Map<String, String> map = mEcgProcess.getVitalTestValue();
 
+        ObjectMapper mapper = new ObjectMapper();
+
+        String vitalStr = null;
+        try {
+            vitalStr = mapper.writeValueAsString(map);
+        } catch (Exception e) {
+            Log.e(TAG, "saveViteTestInfo Exception="+e.toString());
+        }
+
+        Log.d(TAG, "saveViteTestInfo="+vitalStr);
     }
 
 }

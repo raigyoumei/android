@@ -550,7 +550,7 @@ public class BltDeviceUtil {
             byte[] value = characteristic.getValue();
             String hexStr = HexUtil.formatHexString(value);
 
-            Log.d(TAG, "onDescriptorWrite hexStr=" + hexStr);
+            Log.d(TAG, "onCharacteristicChanged hexStr=" + hexStr);
 
             if (characteristic.getValue() != null) {
 

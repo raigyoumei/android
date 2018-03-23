@@ -19,7 +19,7 @@ public class AcoholCmd extends BltComCmd {
     public static final int MSG_COMMAND_MSG_VERSION = 103;
 
     public static final int MSG_COMMAND_TEST_WAITE = 104;
-    public static final int MSG_COMMAND_WARNNING_START_TEST_AL = 105;
+    public static final int MSG_COMMAND_WARNNING_START_TEST_PRESS = 105;
     public static final int MSG_COMMAND_VALUE_TEST_AL = 106;
     public static final int MSG_COMMAND_VALUE_TEST_START = 107;
     public static final int MSG_COMMAND_VALUE_TEST_END = 108;
@@ -226,7 +226,7 @@ public class AcoholCmd extends BltComCmd {
          加熱中の気圧検測値（P_Data）は0以外の時、警告必要
          */
         if (p_Data > 0){
-            sendMassage(MSG_COMMAND_WARNNING_START_TEST_AL,p_Data + "");
+            sendMassage(MSG_COMMAND_WARNNING_START_TEST_PRESS,p_Data + "");
         }
 
     }

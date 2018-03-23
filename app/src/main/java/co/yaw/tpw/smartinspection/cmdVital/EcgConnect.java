@@ -50,6 +50,8 @@ public class EcgConnect {
 
     private boolean mConnectStutas = false;
 
+
+
     public EcgConnect(Activity activity) {
         mActivity = activity;
     }
@@ -59,15 +61,23 @@ public class EcgConnect {
         return TgStreamReader.getVersion();
     }
 
+
     public boolean getConnectStatus() {
         return mConnectStutas;
     }
 
+
     public void initTgStream(){
 
-        TgStreamReader.redirectConsoleLogToDocumentFolder();
-        mSharePreferences = mActivity.getSharedPreferences(SHAREFILENAME, Activity.MODE_PRIVATE);
-        mShareEditor = mSharePreferences.edit();
+        try {
+
+            TgStreamReader.redirectConsoleLogToDocumentFolder();
+            mSharePreferences = mActivity.getSharedPreferences(SHAREFILENAME, Activity.MODE_PRIVATE);
+            mShareEditor = mSharePreferences.edit();
+
+        }catch (Exception e){
+            Log.e(TAG, "initTgStream Exception="+e.toString());
+        }
     }
 
 

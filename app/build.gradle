@@ -18,6 +18,8 @@ android {
     }
     productFlavors {
     }
+    compileOptions {
+    }
 }
 
 dependencies {
@@ -31,4 +33,10 @@ dependencies {
     compile files('libs/libNeuroSkyECG.jar')
     compile files('libs/libStreamSDK_v1.1.0.jar')
     compile 'com.wonderkiln:camerakit:0.13.1'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+    compile 'com.fasterxml.jackson.core:jackson-core:2.9.4'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.4'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.4'
 }
