@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
+import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
 import co.yaw.tpw.smartinspection.camera.CameraCom;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholCmd;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholHandlerMsg;
@@ -41,21 +42,20 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     private final static String TAG = AlcoholMeasureActivity.class.getSimpleName();
 
     final Context context = this;
-    private Button backBtn;
-    private Button nextBtn;
     private TextView crewInfoTv;
-    private Class<?> forwardCls = null;
     private Spinner alcoholSensorSpinner;
 
     private AcoholHandlerMsg mAcoholHandlerMsg = null;
     private BltDeviceUtil mBltDeviceUtil = null;
     private AcoholCmd mAcoholCmd = null;
-    //private Button mStartBtn = null;
-    //private String mSelectDevice = null;
+    private Button mBackBtn = null;
+
     private CameraCom mCameraCom = null;
     private TextView mtestMsg = null;
 
     private int mcrewBef = 0;
+    private String mForward = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,50 +63,39 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         setContentView(R.layout.activity_alcohol_measure);
 
         mtestMsg = findViewById(R.id.test_msg);
+        mBackBtn = findViewById(R.id.menu_button);
 
         final Bundle b = getIntent().getExtras();
         if(b != null) {
-            String forward = b.getString("forward");
-            if(forward.equals("beforeCrew")) {
-                //forwardCls = VitalSignMeasureActivity.class;
-                forwardCls = VitalMeasureActivity.class;
+
+            crewInfoTv = findViewById(R.id.crew_info);
+            mForward = b.getString(ConstUtil.FORWARD_KEY);
+
+            if(mForward.equals(ConstUtil.FORWARD_BEFORE_VALUE)) {
+                mcrewBef = 0;
+                crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
+                mBackBtn.setText(R.string.check_crew_back_before);
 
             } else {
-                forwardCls = CallConfirmActivity.class;
+                mcrewBef = 1;
+                crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
+                mBackBtn.setText(R.string.check_crew_back_after);
             }
         }
 
-        backBtn = findViewById(R.id.back_button);
-        nextBtn = findViewById(R.id.next_button);
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
+        mBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, MenuActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, forwardCls);
+                Intent intent = new Intent(context, CallMenuActivity.class);
+                Bundle b = new Bundle();
+                b.putString(ConstUtil.FORWARD_KEY, mForward);
                 intent.putExtras(b);
                 startActivity(intent);
             }
         });
 
-        crewInfoTv = findViewById(R.id.crew_info);
-        if (forwardCls == VitalMeasureActivity.class) {
-            crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
-            mcrewBef = 0;
-        } else {
-            crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
-            mcrewBef = 1;
-        }
-
         setSpinnerAdapter();
+
         setCameraMaskView();
 
         // bule tooth初期化

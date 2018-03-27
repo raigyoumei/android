@@ -46,6 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name="co.yaw.tpw.smartinspection.MenuActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.DayCheckStartActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.EngineActivity" />
@@ -57,7 +58,9 @@
         <activity android:name="co.yaw.tpw.smartinspection.CallConfirmActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.VitalMeasureActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.VitalSignMeasureActivity" />
-        <activity android:name="co.yaw.tpw.smartinspection.HealthStatusRegActivity"></activity>
+        <activity android:name="co.yaw.tpw.smartinspection.HealthStatusRegActivity" />
+        <activity android:name="co.yaw.tpw.smartinspection.CallMenuActivity" />
+
     </application>
 
 </manifest>

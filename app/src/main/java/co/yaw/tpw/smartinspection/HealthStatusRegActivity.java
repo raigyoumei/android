@@ -9,11 +9,15 @@ import android.widget.Button;
 
 import com.yaw.tpw.smartinspection.R;
 
+import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
+
 public class HealthStatusRegActivity extends AppCompatActivity {
 
     final Context context = this;
-    private Button backBtn;
-    private Button nextBtn;
+
+    private Button mBackBtn = null;
+    private String mForward = null;
+
 
 
     @Override
@@ -21,22 +25,27 @@ public class HealthStatusRegActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_status_reg);
 
-        backBtn = findViewById(R.id.back_button);
-        nextBtn = findViewById(R.id.next_button);
+        mBackBtn = findViewById(R.id.menu_button);
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, VitalSignMeasureActivity.class);
-                startActivity(intent);
+        final Bundle b = getIntent().getExtras();
+        if(b != null) {
+            mForward = b.getString(ConstUtil.FORWARD_KEY);
+
+            if(mForward.equals(ConstUtil.FORWARD_BEFORE_VALUE)) {
+                mBackBtn.setText(R.string.check_crew_back_before);
+            } else {
+                mBackBtn.setText(R.string.check_crew_back_after);
             }
-        });
+        }
 
-
-        nextBtn.setOnClickListener(new View.OnClickListener() {
+        mBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CallConfirmActivity.class);
+
+                Intent intent = new Intent(context, CallMenuActivity.class);
+                Bundle b = new Bundle();
+                b.putString(ConstUtil.FORWARD_KEY, mForward);
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });

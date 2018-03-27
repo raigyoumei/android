@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
+import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
 import co.yaw.tpw.smartinspection.cmdVital.EcgConnect;
 import co.yaw.tpw.smartinspection.cmdVital.EcgProcess;
 import co.yaw.tpw.smartinspection.cmdVital.VitalHandlerMsg;
@@ -39,8 +40,8 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
     private Spinner vitalSensorSpinner = null;
 
     private BltDeviceUtil mBltDeviceUtil = null;
-    //private Button mStartBtn = null;
-    //private String mSelectDevice = null;
+    private Button mBackBtn = null;
+    private String mForward = null;
 
     private VitalHandlerMsg mVitalHandlerMsg = null;
     private EcgConnect mEcgConnect = null;
@@ -55,12 +56,27 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
         setContentView(R.layout.activity_vital_measure);
 
         mTestmsg = findViewById(R.id.test_msg);
+        mBackBtn = findViewById(R.id.menu_button);
 
-        nextBtn = findViewById(R.id.next_button);
-        nextBtn.setOnClickListener(new View.OnClickListener() {
+        final Bundle b = getIntent().getExtras();
+        if(b != null) {
+            mForward = b.getString(ConstUtil.FORWARD_KEY);
+
+            if(mForward.equals(ConstUtil.FORWARD_BEFORE_VALUE)) {
+                mBackBtn.setText(R.string.check_crew_back_before);
+            } else {
+                mBackBtn.setText(R.string.check_crew_back_after);
+            }
+        }
+
+        mBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, VitalSignMeasureActivity.class);
+
+                Intent intent = new Intent(context, CallMenuActivity.class);
+                Bundle b = new Bundle();
+                b.putString(ConstUtil.FORWARD_KEY, mForward);
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });

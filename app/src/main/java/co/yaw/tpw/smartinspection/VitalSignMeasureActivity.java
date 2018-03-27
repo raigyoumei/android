@@ -9,22 +9,40 @@ import android.widget.Button;
 
 import com.yaw.tpw.smartinspection.R;
 
+import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
+
 public class VitalSignMeasureActivity extends AppCompatActivity {
 
     final Context context = this;
-    private Button nextBtn;
+    private Button mBackBtn = null;
+    private String mForward = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vital_sign_measure);
 
-        nextBtn = findViewById(R.id.next_button);
+        mBackBtn = findViewById(R.id.menu_button);
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
+        final Bundle b = getIntent().getExtras();
+        if(b != null) {
+            mForward = b.getString(ConstUtil.FORWARD_KEY);
+
+            if(mForward.equals(ConstUtil.FORWARD_BEFORE_VALUE)) {
+                mBackBtn.setText(R.string.check_crew_back_before);
+            } else {
+                mBackBtn.setText(R.string.check_crew_back_after);
+            }
+        }
+
+        mBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context , HealthStatusRegActivity.class);
+
+                Intent intent = new Intent(context, CallMenuActivity.class);
+                Bundle b = new Bundle();
+                b.putString(ConstUtil.FORWARD_KEY, mForward);
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });

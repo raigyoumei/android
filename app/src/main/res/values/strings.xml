@@ -116,6 +116,11 @@
     <string name="check_pain_title">怪我などの痛み</string>
     <string name="check_take_medicine_title"> 運転に悪影響のある\n薬を服用していくか</string>
 
+
+    <string name="check_crew_back_before">乗務前点呼メニュー</string>
+    <string name="check_crew_back_after">乗務後点呼メニュー</string>
+
+
     <!-- ログイン画面　-->
     <string name="login_title">ログイン</string>
     <string name="login_prompt_jgsid">事業者ID</string>
@@ -188,6 +193,7 @@
     <string name="alcohol_measure_title">アルコールチェック</string>
     <string name="alcohol_measure_crew_info_before">乗務前</string>
     <string name="alcohol_measure_crew_info_after">乗務後</string>
+
     <string name="alcohol_measure_title_before_crew">アルコールチェック（乗務前）</string>
     <string name="alcohol_measure_title_after_crew">アルコールチェック（乗務後）</string>
     <string name="alcohol_sensor_spinner_label">アルコールセンサー選択</string>
@@ -226,8 +232,18 @@
     <!--　アルコールメッセージ（雷）add　end -->
 
 
+    <!-- （乗務前）点呼menu確認画面　-->
+    <string name="call_menu_bef_title">乗務前点呼</string>
+    <string name="call_menu_aft_title">乗務後点呼</string>
+    <string name="call_menu_btn_check">測定</string>
+    <string name="call_menu_btn_check_end">測定済み</string>
+    <string name="call_menu_health_self_check">健康状態(自己申告)</string>
+    <string name="call_menu_heart_check">バイタルデータ測定</string>
+    <string name="call_menu_heart_self_check">バイタルデータ(自己申告)</string>
+    <string name="call_menu_call_method">点呼方式</string>
 
-
+    <string name="call_menu_call_method_face">対面</string>
+    <string name="call_menu_call_method_phone">電話</string>
 
     <!-- （乗務後）点呼結果確認画面　-->
     <string name="call_confirm_title">入力完了</string>

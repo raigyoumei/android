@@ -140,13 +140,12 @@
             android:gravity="center_horizontal">
 
             <Button
-                android:id="@+id/back_button"
-                style="@style/backButtonStyle" />
+                android:id="@+id/menu_button"
+                style="@style/bottomButtonStyle"
+                android:text="@string/action_menu" />
 
-            <Button
-                android:id="@+id/next_button"
-                style="@style/nextButtonStyle" />
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

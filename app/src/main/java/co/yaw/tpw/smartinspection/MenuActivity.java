@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.yaw.tpw.smartinspection.R;
 
+import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
+
 public class MenuActivity extends AppCompatActivity {
 
     final Context context = this;
@@ -42,13 +44,13 @@ public class MenuActivity extends AppCompatActivity {
         beforeCrewCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startNextActivity("beforeCrew");
+                startNextActivity(ConstUtil.FORWARD_BEFORE_VALUE);
             }
         });
         afterCrewCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startNextActivity("afterCrew");
+                startNextActivity(ConstUtil.FORWARD_AFTER_VALUE);
             }
         });
 
@@ -62,9 +64,9 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     protected void startNextActivity(String forward) {
-        Intent intent = new Intent(context , AlcoholMeasureActivity.class);
+        Intent intent = new Intent(context , CallMenuActivity.class);
         Bundle b = new Bundle();
-        b.putString("forward", forward);
+        b.putString(ConstUtil.FORWARD_KEY, forward);
         intent.putExtras(b);
         startActivity(intent);
     }
