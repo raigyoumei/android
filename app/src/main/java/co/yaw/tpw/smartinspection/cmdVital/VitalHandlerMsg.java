@@ -36,6 +36,8 @@ public class VitalHandlerMsg extends HandlerUtil {
 
     private EcgProcess mEcgProcess = null;
 
+    private boolean mCheckEndFlag = false;
+
 
     public VitalHandlerMsg(Activity activity) {
 
@@ -218,6 +220,7 @@ public class VitalHandlerMsg extends HandlerUtil {
                 //showToast("Connected", Toast.LENGTH_SHORT);
                 mPoorSignal = 0;
                 mPressCount = 0;
+                mCheckEndFlag = false;
 
                 //mMsgText.setText(mActivity.getString(R.string.starting));
                 //mTestStartBtn.setEnabled(false);
@@ -239,6 +242,7 @@ public class VitalHandlerMsg extends HandlerUtil {
 
                 mMsgText.setText(mActivity.getString(R.string.vital_test_end_ng));
                 //mTestStartBtn.setEnabled(true);
+                mCheckEndFlag = false;
 
                 break;
             case ConnectionStates.STATE_STOPPED:
@@ -260,8 +264,10 @@ public class VitalHandlerMsg extends HandlerUtil {
                 //mMsgText.setText(mActivity.getString(R.string.test_end));
                 if(mPressCount > 1){
                     mMsgText.setText(mActivity.getString(R.string.vital_test_end_ng));
+                    mCheckEndFlag = false;
                 }else{
                     mMsgText.setText(mActivity.getString(R.string.vital_test_end_ok));
+                    mCheckEndFlag = true;
                 }
 
                 //mTestStartBtn.setEnabled(true);
@@ -272,9 +278,12 @@ public class VitalHandlerMsg extends HandlerUtil {
                 int sq = mEcgProcess.getSQValue();
                 if(sq > 2) { // 3,4,5は正常
                     SQView.setText(mActivity.getString(R.string.vital_test_signal_ok));
+                    mCheckEndFlag = true;
+
                 }else{ // 1,2は再測定必要
                     SQView.setText(mActivity.getString(R.string.vital_test_signal_ng));
                     mMsgText.setText(mActivity.getString(R.string.vital_test_retest));
+                    mCheckEndFlag = false;
                 }
 
                 break;
@@ -282,6 +291,8 @@ public class VitalHandlerMsg extends HandlerUtil {
             case ConnectionStates.STATE_ERROR:
 
                 Log.d(TAG,"ConnectionStates is STATE_ERROR");
+
+
 
                 //mMsgText.setText("STATE_ERROR");
                 //showToast("STATE_ERROR", Toast.LENGTH_SHORT);
@@ -297,6 +308,8 @@ public class VitalHandlerMsg extends HandlerUtil {
 
                 mMsgText.setText(mActivity.getText(R.string.vital_test_connect_ng));
                 //mTestStartBtn.setEnabled(true);
+
+                mCheckEndFlag = false;
 
                 //showToast("Connect failed!", Toast.LENGTH_SHORT);
                 break;
@@ -324,6 +337,11 @@ public class VitalHandlerMsg extends HandlerUtil {
         }
 
         Log.d(TAG, "saveViteTestInfo="+vitalStr);
+    }
+
+
+    public boolean isChecked(){
+        return mCheckEndFlag;
     }
 
 }

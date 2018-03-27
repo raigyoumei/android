@@ -52,6 +52,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
     private CameraCom mCameraView = null;
 
     private int mcrewBef = 0;
+    private boolean mCheckEndFlag = false;
 
 
     public AcoholHandlerMsg(Activity activity) {
@@ -59,6 +60,7 @@ public class AcoholHandlerMsg extends HandlerUtil {
         Log.d(TAG, "AcoholHandlerMsg");
 
         mActivity = activity;
+        mCheckEndFlag = false;
 
         //mMsgVersionView = mActivity.findViewById(R.id.fw_version);
         mUsageCountView = mActivity.findViewById(R.id.usge_count);
@@ -198,6 +200,8 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_end_ok));
 
                 mCameraView.captureImageRandomEnd();
+
+                mCheckEndFlag = true;
 
                 break;
 
@@ -451,4 +455,8 @@ public class AcoholHandlerMsg extends HandlerUtil {
         mImageVal = null;
     }
 
+
+    public boolean isChecked(){
+        return mCheckEndFlag;
+    }
 }

@@ -76,6 +76,8 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
                 Intent intent = new Intent(context, CallMenuActivity.class);
                 Bundle b = new Bundle();
                 b.putString(ConstUtil.FORWARD_KEY, mForward);
+                b.putString(ConstUtil.HEART_CHECKED_KEY, mVitalHandlerMsg.isChecked()+"");
+
                 intent.putExtras(b);
                 startActivity(intent);
             }

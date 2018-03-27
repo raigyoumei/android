@@ -89,6 +89,8 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
                 Intent intent = new Intent(context, CallMenuActivity.class);
                 Bundle b = new Bundle();
                 b.putString(ConstUtil.FORWARD_KEY, mForward);
+                b.putString(ConstUtil.ALT_CHECKED_KEY, mAcoholHandlerMsg.isChecked()+"");
+
                 intent.putExtras(b);
                 startActivity(intent);
             }

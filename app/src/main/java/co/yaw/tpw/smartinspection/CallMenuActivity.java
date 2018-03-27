@@ -2,7 +2,9 @@ package co.yaw.tpw.smartinspection;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +31,8 @@ public class CallMenuActivity extends AppCompatActivity {
     private Button mMethodPhoneBtn = null;
 
     private String mForward = null;
+    private String altChecked = null;
+    private String heartChecked = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,8 @@ public class CallMenuActivity extends AppCompatActivity {
 
         if(b != null) {
             mForward = b.getString(ConstUtil.FORWARD_KEY);
+            altChecked = b.getString(ConstUtil.ALT_CHECKED_KEY);
+            heartChecked = b.getString(ConstUtil.HEART_CHECKED_KEY);
         }
 
         // 画面表示内容初期化
@@ -87,6 +93,15 @@ public class CallMenuActivity extends AppCompatActivity {
     private void initButtonAction(){
         // アルコール検測
         mAltCheckBtn = findViewById(R.id.alcohol_check_button);
+        if(altChecked != null){
+            if(Boolean.valueOf(altChecked)){
+                mAltCheckBtn.setText(R.string.call_menu_btn_check_end);
+                mAltCheckBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            }else{
+                mAltCheckBtn.setText(R.string.call_menu_btn_check);
+            }
+        }
+
         if(mAltCheckBtn != null){
             mAltCheckBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,6 +136,16 @@ public class CallMenuActivity extends AppCompatActivity {
 
         //バイタル検測
         mHeartCheckBtn = findViewById(R.id.heart_check_button);
+
+        if(heartChecked != null) {
+            if (Boolean.valueOf(heartChecked)) {
+                mHeartCheckBtn.setText(R.string.call_menu_btn_check_end);
+                mHeartCheckBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            } else {
+                mHeartCheckBtn.setText(R.string.call_menu_btn_check);
+            }
+        }
+
         if(mHeartCheckBtn != null){
             mHeartCheckBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
