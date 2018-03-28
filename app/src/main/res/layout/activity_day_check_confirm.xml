@@ -772,25 +772,40 @@
                         style="@style/ListTextViewNeedConfirmStyle"/>
                 </LinearLayout>
             </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal">
 
+                <Button
+                    android:id="@+id/back_button"
+                    style="@style/backButtonStyle"/>
+
+                <Button
+                    android:id="@+id/next_button"
+                    style="@style/nextButtonStyle"/>
+            </LinearLayout>
 
 
         </LinearLayout>
+
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:gravity="center_horizontal">-->
 
-        <Button
-            android:id="@+id/back_button"
-            style="@style/backButtonStyle"/>
+        <!--<Button-->
+            <!--android:id="@+id/back_button"-->
+            <!--style="@style/backButtonStyle"/>-->
 
-        <Button
-            android:id="@+id/next_button"
-            style="@style/nextButtonStyle"/>
-    </LinearLayout>
+        <!--<Button-->
+            <!--android:id="@+id/next_button"-->
+            <!--style="@style/nextButtonStyle"/>-->
+    <!--</LinearLayout>-->
 
 </LinearLayout>
