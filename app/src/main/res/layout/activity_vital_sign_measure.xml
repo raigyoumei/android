@@ -85,7 +85,7 @@
         <Button
             android:id="@+id/menu_button"
             style="@style/bottomButtonStyle"
-            android:text="@string/action_menu" />
+            android:text="@string/check_crew_back_before" />
 
     </LinearLayout>
 
