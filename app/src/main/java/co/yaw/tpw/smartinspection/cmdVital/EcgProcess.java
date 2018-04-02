@@ -4,6 +4,8 @@ package co.yaw.tpw.smartinspection.cmdVital;
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.neurosky.connection.TgStreamReader;
@@ -47,13 +49,13 @@ public class EcgProcess {
     private TextView mStressView = null;
     private TextView mMoodView = null;
     private TextView mSQView = null;
+    private ProgressBar mProgressBar = null;
 
     private int mRr_count = 0;
     private final int mRr_threshold = 32;
 
     private NeuroSkyECG mNskECG = null;
     private EcgConnect mEcgConnect = null;
-
 
 
     public EcgProcess(Activity activity) {
@@ -65,6 +67,8 @@ public class EcgProcess {
         mStressView = mActivity.findViewById(R.id.test_stress);
         mMoodView = mActivity.findViewById(R.id.test_mood);
         mSQView = mActivity.findViewById(R.id.test_signal_quality);
+        mProgressBar = mActivity.findViewById(R.id.test_progressbar);
+        mProgressBar.setVisibility(View.GONE);
 
         mNskECG = new NeuroSkyECG(mActivity, mEcgCallback);
         mNskECG.setupSDKProperty(EVALUATION_LICENSE_KEY, sampleRate,1);
@@ -114,6 +118,10 @@ public class EcgProcess {
         mNskECG.setStressOutputPoint(outputPoint);
 
         mRr_count = 0;
+
+        mProgressBar.setMax(mRr_threshold);
+        mProgressBar.setVisibility(View.VISIBLE);
+        mProgressBar.setProgress(0);
     }
 
 
@@ -149,9 +157,13 @@ public class EcgProcess {
                             mRr_count++;
                             //tv_rrinterval.setText(String.valueOf(this.getData()));
 
+                            mProgressBar.setProgress(mRr_count);
+
                             Log.d(TAG, "mHeartRate=" + mHeartRate +"  mRheartRate="+mRheartRate +" mRr_count="+mRr_count);
 
                             if(mRr_count >= mRr_threshold){
+
+                                mProgressBar.setVisibility(View.GONE);
 
                                 mEcgConnect.stopTgStreamReader();
 
