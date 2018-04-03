@@ -16,6 +16,12 @@
     <string name="action_normal">平常</string>
     <string name="action_go_up">高め</string>
 
+
+    <!--　共通項目　-->
+    <string name="prcessing_server">通信中</string>
+
+
+
     <!--　共通点検項目　-->
     <string name="check_brake_pedal_title">ブレーキペダル</string>
     <string name="check_brake_pedal_info">踏みしろ、ブレーキのきき</string>

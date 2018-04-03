@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
-                    android:id="@+id/jgsid"
+                    android:id="@+id/workerID"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/login_text_view_height"
                     android:background="@drawable/edit_bg"
@@ -44,7 +44,7 @@
                 android:layout_marginTop="10dp">
 
                 <AutoCompleteTextView
-                    android:id="@+id/email"
+                    android:id="@+id/userID"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/login_text_view_height"
                     android:background="@drawable/edit_bg"

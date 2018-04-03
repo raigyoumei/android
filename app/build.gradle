@@ -7,7 +7,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,6 +20,20 @@ android {
     }
     compileOptions {
     }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        development {
+            buildConfigField "String", "SERVER_URL", '"http://172.16.1.188:8080"'
+            versionName "Version : 1.0.0"
+        }
+        production {
+            buildConfigField "String", "SERVER_URL", '"http://localhost"'
+            versionName "Version : 1.0.0"
+        }
+    }
+
 }
 
 dependencies {
