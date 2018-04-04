@@ -12,6 +12,7 @@ import java.util.HashMap;
 import co.yaw.tpw.smartinspection.http.tasklistener.LoginListener;
 import co.yaw.tpw.smartinspection.http.taskloader.AjaxAsyncTaskLoader;
 import co.yaw.tpw.smartinspection.http.taskloader.BaseTaskLoader;
+import co.yaw.tpw.smartinspection.http.util.ConstHttp;
 
 
 /**
@@ -58,11 +59,10 @@ public class HTTP {
         params.put("userID", userID);
         params.put("password", password);
 
-        String reqPath = BaseTaskLoader.LOGIN_PATH;
+        String reqPath = ConstHttp.LOGIN_PATH;
 
         ajax(reqPath, params, new LoginListener(mActivity));
     }
-
 
 
 
