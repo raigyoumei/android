@@ -152,8 +152,9 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
             //con.setRequestProperty("Charset", "UTF-8");
 
             con.setRequestProperty("User-Agent", "smartinspection "+AppConfigUtil.getVersion());
-            con.setRequestProperty("Content-Type","application/json;charset=UTF-8");
 
+            con.setRequestProperty("Content-Type","application/json;charset=UTF-8");
+            //con.addRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
             //con.addRequestProperty("X-Requested-With", "XMLHttpRequest");
 
             con.setInstanceFollowRedirects(false);
@@ -166,12 +167,18 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
                 ObjectMapper mapper = new ObjectMapper();
                 parameter = mapper.writeValueAsString(params);
 
+//                for (String key : params.keySet()) {
+//                    Object v = params.get(key);
+//                    if (v != null) {
+//                        parameter += key + "=" + params.get(key) + "&";
+//                    }
+//                }
+
                 Log.d(TAG, "postBody parameter="+parameter);
 
-                OutputStream out = con.getOutputStream();
-                out.write(parameter.getBytes());
-                out.flush();
-                out.close();
+                PrintStream ps = new PrintStream(con.getOutputStream());
+                ps.print(parameter);
+                ps.close();
             }
 
             con.getResponseMessage();
