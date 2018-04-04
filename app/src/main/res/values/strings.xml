@@ -20,7 +20,6 @@
     <!--　共通項目　-->
     <string name="prcessing_server">通信中</string>
     <string name="network_error">ネットワークエラーが発生しました</string>
-    <string name="login_error">ユーザーIDまたはパスワードが正しくありません</string>
 
     <!--　共通点検項目　-->
     <string name="check_brake_pedal_title">ブレーキペダル</string>
@@ -133,6 +132,7 @@
     <string name="login_prompt_car_number">車両番号</string>
     <string name="login_prompt_userid">ユーザーID</string>
     <string name="login_prompt_password">パスワード</string>
+    <string name="login_error">ユーザーIDまたはパスワードが正しくありません</string>
 
     <!-- 認証画面　-->
     <string name="auth_title">認証のために免許証を撮影してください</string>

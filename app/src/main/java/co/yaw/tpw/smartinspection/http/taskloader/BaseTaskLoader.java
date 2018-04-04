@@ -25,6 +25,7 @@ import co.yaw.tpw.smartinspection.bltUtil.AppConfigUtil;
 import co.yaw.tpw.smartinspection.http.pojo.LoginRespPojo;
 import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
 import co.yaw.tpw.smartinspection.http.userInfo.UserEntry;
+import co.yaw.tpw.smartinspection.http.util.ConstHttp;
 import co.yaw.tpw.smartinspection.http.util.Json2PojoUtil;
 import co.yaw.tpw.smartinspection.http.util.RespCheckUtil;
 
@@ -42,8 +43,6 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
     private String mPathUrl = null;
 
     private HashMap<String, String> mParams = null;
-
-    public final static String LOGIN_PATH = "/pioneer/LoginTest";
 
 
     public BaseTaskLoader(Context context, Bundle bundle, String pathUrl, HashMap<String, String> params) {
@@ -218,40 +217,42 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
         params.put("userID", su.getUserID());
         params.put("password", su.getPassword());
 
-        String result = postBody(LOGIN_PATH, params);
+        String result = postBody(ConstHttp.LOGIN_PATH, params);
 
-        if (result != null) {
+        if (result == null) {
+            return;
+        }
 
-            try {
+        try {
 
-                JSONObject json = Json2PojoUtil.getJSONObject(result);
+            JSONObject json = Json2PojoUtil.getJSONObject(result);
 
-                LoginRespPojo pojo = (LoginRespPojo) Json2PojoUtil.fromJsonToBasePojo(json, LoginRespPojo.class);
+            LoginRespPojo pojo = (LoginRespPojo) Json2PojoUtil.fromJsonToBasePojo(json, LoginRespPojo.class);
 
-                String sessionId = pojo.getSessionID();
-                String userID = pojo.getUserID();
-                String workerID = pojo.getWorkerID();
-                String userName = pojo.getUserName();
-                String workerName = pojo.getWorkerName();
+            String sessionId = pojo.getSessionID();
+            String userID = pojo.getUserID();
+            String workerID = pojo.getWorkerID();
+            String userName = pojo.getUserName();
+            String workerName = pojo.getWorkerName();
 
-                Log.d(TAG, "sessionId="+sessionId);
-                Log.d(TAG, "userID="+userID);
-                Log.d(TAG, "workerID="+workerID);
-                Log.d(TAG, "userName="+userName);
-                Log.d(TAG, "workerName="+workerName);
+            Log.d(TAG, "sessionId="+sessionId);
+            Log.d(TAG, "userID="+userID);
+            Log.d(TAG, "workerID="+workerID);
+            Log.d(TAG, "userName="+userName);
+            Log.d(TAG, "workerName="+workerName);
 
-                su.setSession(sessionId);
-                su.setUserID(userID);
-                su.setWorkerID(workerID);
-                su.setUserName(userName);
+            su.setSession(sessionId);
+            su.setUserID(userID);
+            su.setWorkerID(workerID);
+            su.setUserName(userName);
 
-                mSession = sessionId;
+            mSession = sessionId;
 
-                EntryUtil.setEntry(context, su);
+            EntryUtil.setEntry(context, su);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            Log.e(TAG, "Exception="+e.toString());
+            e.printStackTrace();
         }
     }
 }
