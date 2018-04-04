@@ -16,6 +16,7 @@ import co.yaw.tpw.smartinspection.http.HTTP;
 import co.yaw.tpw.smartinspection.http.pojo.LoginRespPojo;
 import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
 import co.yaw.tpw.smartinspection.http.userInfo.UserEntry;
+import co.yaw.tpw.smartinspection.http.util.ConstHttp;
 import co.yaw.tpw.smartinspection.http.util.Json2PojoUtil;
 import co.yaw.tpw.smartinspection.http.util.TooltipUtil;
 
@@ -46,7 +47,7 @@ public class LoginListener implements HTTP.AjaxListener {
 
         if (result == null) {
 
-            if(err == HTTP.CONNECTION_ERROR){
+            if(err == ConstHttp.CONNECTION_ERROR){
                 TooltipUtil.showToast(mActivity, mActivity.getString(R.string.network_error));
                 Log.d(TAG, "result is NULL");
             }
@@ -65,12 +66,16 @@ public class LoginListener implements HTTP.AjaxListener {
             String workerID = pojo.getWorkerID();
             String userName = pojo.getUserName();
             String workerName = pojo.getWorkerName();
+            int isStatus = pojo.isStatus();
+            String msg = pojo.getMsg();
 
             Log.d(TAG, "sessionId="+sessionId);
             Log.d(TAG, "userID="+userID);
             Log.d(TAG, "workerID="+workerID);
             Log.d(TAG, "userName="+userName);
             Log.d(TAG, "workerName="+workerName);
+            Log.d(TAG, "isStatus="+isStatus);
+            Log.d(TAG, "msg="+msg);
 
             UserEntry su = EntryUtil.getEntry(mActivity);
             su.setSession(sessionId);

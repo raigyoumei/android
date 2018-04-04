@@ -18,9 +18,8 @@ public class LoginRespPojo extends BasePojo {
     private String workerName;
 
     //Isaccess
-    private boolean status;
-    private String msg;
-
+    public int status;
+    public String msg;
 
     public String getSessionID() {
         return sessionID;
@@ -62,11 +61,12 @@ public class LoginRespPojo extends BasePojo {
         this.workerName = workerName;
     }
 
-    public boolean isStatus() {
+
+    public int isStatus() {
         return status;
     }
 
-    public void setStatus( boolean status ) {
+    public void setStatus( int status ) {
         this.status = status;
     }
 
@@ -78,11 +78,9 @@ public class LoginRespPojo extends BasePojo {
         this.msg = msg;
     }
 
-
     public static List<Class<?>> getInternalClsTypes() {
         List<Class<?>> internalClsTypes = new ArrayList<Class<?>>();
         return internalClsTypes;
     }
-
 
 }

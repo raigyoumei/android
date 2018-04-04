@@ -20,9 +20,7 @@ import co.yaw.tpw.smartinspection.http.util.ConstHttp;
  * via:http://qiita.com/ux_design_tokyo/items/d07bc5953b7611ce7523
  */
 public class HTTP {
-    // StatusCode
-    public final static int CONNECTION_SUCCESS = 1;
-    public final static int CONNECTION_ERROR = CONNECTION_SUCCESS + 1;
+
     private final static String TAG = HTTP.class.getSimpleName();
 
     private static int mNotificationNumber = 0; //通知領域の識別番号
@@ -82,16 +80,16 @@ public class HTTP {
             public void onLoadFinished(Loader<String> loader, String result) {
                 Log.i(TAG, "ajax onLoadFinished: path=" + pathUrl + "/result=" + result);
                 if (result != null) {
-                    listener.doFinished(CONNECTION_SUCCESS, result);
+                    listener.doFinished(ConstHttp.CONNECTION_SUCCESS, result);
                 } else {
-                    listener.doFinished(CONNECTION_ERROR, null);
+                    listener.doFinished(ConstHttp.CONNECTION_ERROR, null);
                 }
             }
 
             @Override
             public void onLoaderReset(Loader<String> loader) {
                 Log.i(TAG, "onLoaderReset");
-                listener.doFinished(CONNECTION_SUCCESS, null);
+                listener.doFinished(ConstHttp.CONNECTION_SUCCESS, null);
             }
         });
     }
