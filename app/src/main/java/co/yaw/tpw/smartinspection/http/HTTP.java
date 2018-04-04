@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 import co.yaw.tpw.smartinspection.http.tasklistener.LoginListener;
 import co.yaw.tpw.smartinspection.http.taskloader.AjaxAsyncTaskLoader;
+import co.yaw.tpw.smartinspection.http.taskloader.BaseTaskLoader;
 
 
 /**
@@ -57,7 +58,7 @@ public class HTTP {
         params.put("userID", userID);
         params.put("password", password);
 
-        String reqPath = "/pioneer/LoginTest";
+        String reqPath = BaseTaskLoader.LOGIN_PATH;
 
         ajax(reqPath, params, new LoginListener(mActivity));
     }

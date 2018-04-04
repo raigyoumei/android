@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +22,11 @@ import java.net.URL;
 import java.util.HashMap;
 
 import co.yaw.tpw.smartinspection.bltUtil.AppConfigUtil;
+import co.yaw.tpw.smartinspection.http.pojo.LoginRespPojo;
 import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
+import co.yaw.tpw.smartinspection.http.userInfo.UserEntry;
+import co.yaw.tpw.smartinspection.http.util.Json2PojoUtil;
+import co.yaw.tpw.smartinspection.http.util.RespCheckUtil;
 
 
 public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
@@ -36,6 +42,8 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
     private String mPathUrl = null;
 
     private HashMap<String, String> mParams = null;
+
+    public final static String LOGIN_PATH = "/pioneer/LoginTest";
 
 
     public BaseTaskLoader(Context context, Bundle bundle, String pathUrl, HashMap<String, String> params) {
@@ -117,10 +125,10 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
 
         String responseData = postBody(pathUrl, params);
 
-//        if (ResponseCheckUtil.isSessionTImeOut(responseData)) {
-//            reLogin(getContext());
-//            responseData = postBody(pathUrl, params);
-//        }
+        if (RespCheckUtil.isSessionTImeOut(responseData)) {
+            reLogin(getContext());
+            responseData = postBody(pathUrl, params);
+        }
 
         return responseData;
     }
@@ -142,7 +150,7 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
 
             con.setRequestProperty("Cookie", cookieStr);
             con.setRequestMethod("POST");
-            con.setRequestProperty("Charset", "UTF-8");
+            //con.setRequestProperty("Charset", "UTF-8");
 
             con.setRequestProperty("User-Agent", "smartinspection "+AppConfigUtil.getVersion());
             con.setRequestProperty("Content-Type","application/json;charset=UTF-8");
@@ -193,38 +201,57 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
 
             Log.e(TAG,"Exception=" + e.toString());
 
+            e.printStackTrace();
+
             // エラーの場合nullを返す
             return null;
         }
     }
 
-//    protected void reLogin(Context context) {
-//        NBoxSUEntry su = NBoxUtil.getNNBoxSU(context);
-//        HashMap<String, String> params = new HashMap<String, String>();
-//        params.put("lang", "jpn");
-//        params.put("id", su.getUser());
-//        params.put("password", su.getPassword());
-//        String result = postBody("/app/pb/auth/login", params);
-//
-//        if (result != null) {
-//            Class pojoClsType = LoginResponsePojo.class;
-//            try {
-//                JSONObject json = Json2PojoUtil.getJSONObject(result);
-//
-//                LoginResponsePojo pojo = (LoginResponsePojo) Json2PojoUtil.fromJsonToBasePojo(json, pojoClsType);
-//                String sessionId = pojo.getSession_id();
-//                String userID = pojo.getUser_id();
-//                String userName = pojo.getUser_name();
-//
-//                su.setSession(sessionId);
-//                su.setUser(userID);
-//                su.setUserName(userName);
-//
-//                mNBoxSession = sessionId;
-//                NBoxUtil.setNBoxSU(context, su);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+    protected void reLogin(Context context) {
+
+        UserEntry su = EntryUtil.getEntry(context);
+
+        HashMap<String, String> params = new HashMap<String, String>();
+
+        params.put("workerID", su.getWorkerID());
+        params.put("userID", su.getUserID());
+        params.put("password", su.getPassword());
+
+        String result = postBody(LOGIN_PATH, params);
+
+        if (result != null) {
+
+            try {
+
+                JSONObject json = Json2PojoUtil.getJSONObject(result);
+
+                LoginRespPojo pojo = (LoginRespPojo) Json2PojoUtil.fromJsonToBasePojo(json, LoginRespPojo.class);
+
+                String sessionId = pojo.getSessionID();
+                String userID = pojo.getUserID();
+                String workerID = pojo.getWorkerID();
+                String userName = pojo.getUserName();
+                String workerName = pojo.getWorkerName();
+
+                Log.d(TAG, "sessionId="+sessionId);
+                Log.d(TAG, "userID="+userID);
+                Log.d(TAG, "workerID="+workerID);
+                Log.d(TAG, "userName="+userName);
+                Log.d(TAG, "workerName="+workerName);
+
+                su.setSession(sessionId);
+                su.setUserID(userID);
+                su.setWorkerID(workerID);
+                su.setUserName(userName);
+
+                mSession = sessionId;
+
+                EntryUtil.setEntry(context, su);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

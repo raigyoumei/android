@@ -8,7 +8,17 @@ public class UserEntry {
     private String session;
     private String userID;
     private String workerID;
+    private String userName;
     private String password;
+
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName( String userName ) {
+        this.userName = userName;
+    }
 
     public String getSession() {
         return session;

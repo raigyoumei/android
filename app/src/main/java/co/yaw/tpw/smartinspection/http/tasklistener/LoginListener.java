@@ -13,6 +13,11 @@ import co.yaw.tpw.smartinspection.LoginActivity;
 import co.yaw.tpw.smartinspection.MenuActivity;
 import co.yaw.tpw.smartinspection.dialog.DialogUtils;
 import co.yaw.tpw.smartinspection.http.HTTP;
+import co.yaw.tpw.smartinspection.http.pojo.LoginRespPojo;
+import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
+import co.yaw.tpw.smartinspection.http.userInfo.UserEntry;
+import co.yaw.tpw.smartinspection.http.util.Json2PojoUtil;
+import co.yaw.tpw.smartinspection.http.util.TooltipUtil;
 
 
 /**
@@ -37,48 +42,64 @@ public class LoginListener implements HTTP.AjaxListener {
 
         DialogUtils.closeDialog(mDialog);
 
-        Intent intent = new Intent(mActivity.getApplication() , MenuActivity.class);
-        mActivity.startActivity(intent);
+        Log.d(TAG, "LoginListener doFinished result="+result);
 
+        if (result == null) {
 
-//        if (result != null) {
-//            Class pojoClsType = LoginResponsePojo.class;
-//            try {
-//                JSONObject json = Json2PojoUtil.getJSONObject(result);
-//
-//                LoginResponsePojo pojo = (LoginResponsePojo) Json2PojoUtil.fromJsonToBasePojo(json, pojoClsType);
-//                String sessionId = pojo.getSession_id();
-//                String userID = pojo.getUser_id();
-//                String userName = pojo.getUser_name();
-//
-//                NBoxSUEntry su = NBoxUtil.getNNBoxSU(mActivity);
-//                su.setSession(sessionId);
-//                su.setUser(userID);
-//                su.setUserName(userName);
-//
-//                NBoxUtil.setNBoxSU(mActivity, su);
-//
-//                if (sessionId != null && !sessionId.isEmpty()) {
-//                    Intent intent = new Intent(mActivity.getApplication(), MainActivity.class);
-//                    mActivity.startActivity(intent);
-//                    Log.d(TAG, "login sucess");
-//                } else {
-//                    if (mActivity instanceof LoginActivity) {
-//
-//                    } else {
-//                        Intent intent = new Intent(mActivity.getApplication(), LoginActivity.class);
-//                        mActivity.startActivity(intent);
-//                    }
-//                    TooltipUtil.showToast(mActivity, mActivity.getString(R.string.login_error));
-//                    Log.d(TAG, "login fail");
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            Log.d(TAG, result.toString());
-//        } else if(err == GIGAPOD.CONNECTION_ERROR){
-//            TooltipUtil.showToast(mActivity, mActivity.getString(R.string.network_error));
-//            Log.d(TAG, "result is NULL");
-//        }
+            if(err == HTTP.CONNECTION_ERROR){
+                TooltipUtil.showToast(mActivity, mActivity.getString(R.string.network_error));
+                Log.d(TAG, "result is NULL");
+            }
+
+            return;
+        }
+
+        try {
+
+            JSONObject json = Json2PojoUtil.getJSONObject(result);
+
+            LoginRespPojo pojo = (LoginRespPojo) Json2PojoUtil.fromJsonToBasePojo(json, LoginRespPojo.class);
+
+            String sessionId = pojo.getSessionID();
+            String userID = pojo.getUserID();
+            String workerID = pojo.getWorkerID();
+            String userName = pojo.getUserName();
+            String workerName = pojo.getWorkerName();
+
+            Log.d(TAG, "sessionId="+sessionId);
+            Log.d(TAG, "userID="+userID);
+            Log.d(TAG, "workerID="+workerID);
+            Log.d(TAG, "userName="+userName);
+            Log.d(TAG, "workerName="+workerName);
+
+            UserEntry su = EntryUtil.getEntry(mActivity);
+            su.setSession(sessionId);
+            su.setUserID(userID);
+            su.setWorkerID(workerID);
+            su.setUserName(userName);
+
+            EntryUtil.setEntry(mActivity, su);
+
+            if (sessionId != null && !sessionId.isEmpty()) {
+
+                Intent intent = new Intent(mActivity.getApplication() , MenuActivity.class);
+                mActivity.startActivity(intent);
+
+                Log.d(TAG, "login sucess");
+            } else {
+
+                if (!(mActivity instanceof LoginActivity)) {
+                    Intent intent = new Intent(mActivity.getApplication(), LoginActivity.class);
+                    mActivity.startActivity(intent);
+                }
+
+                TooltipUtil.showToast(mActivity, mActivity.getString(R.string.login_error));
+                Log.d(TAG, "login fail");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
