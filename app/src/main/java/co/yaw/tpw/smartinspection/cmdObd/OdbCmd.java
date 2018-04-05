@@ -7,12 +7,11 @@ import android.util.Log;
 import co.yaw.tpw.smartinspection.bltUtil.BltComCmd;
 import co.yaw.tpw.smartinspection.bltUtil.HandlerUtil;
 import co.yaw.tpw.smartinspection.bltUtil.HexUtil;
-import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholCmd;
 
 
 public class OdbCmd extends BltComCmd {
 
-    private final static String TAG = AcoholCmd.class.getSimpleName();
+    private final static String TAG = OdbCmd.class.getSimpleName();
 
     // Stops scanning after 5 seconds.
     public static final int MSG_COMMAND_STR = 101;
