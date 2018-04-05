@@ -54,7 +54,7 @@ public class AcoholCmd extends BltComCmd {
 
 
     public AcoholCmd( HandlerUtil handler) {
-        Log.d(TAG, "BaseAcoholCmd");
+        Log.d(TAG, "AcoholCmd");
 
         mHandlerUtil = handler;
 

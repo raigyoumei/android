@@ -557,7 +557,6 @@ public class BltDeviceUtil {
                 if(mBaseSensorCmd != null) {
                     mBaseSensorCmd.cmdProc(value);
                 }
-
             }
         }
 

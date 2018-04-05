@@ -161,6 +161,13 @@
     <string name="car_spinner_prompt">OBD端末に設定した車両番号</string>
     <string name="car_diag_info">OBDとのペアリング結果を表示する。\n\n「データ取得中。\n目視点検を開始してください」\n\n等の表示を行う。</string>
 
+    <string name="car_test_scan_start">OBDセンサー検索中</string>
+    <string name="car_test_scan_end">検索完了</string>
+    <string name="car_test_connect_ng">接続失敗</string>
+    <string name="car_test_connect">接続中</string>
+    <string name="car_test_start">診断中</string>
+
+
     <!-- 車両確認ポップアップ画面-->
     <string name="car_selector_title">以下の車両を選択します。\nよろしいですか？</string>
     <string name="car_selector_content">車両番号：xxxx\nが選択されています。</string>

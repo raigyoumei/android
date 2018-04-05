@@ -47,10 +47,13 @@ public class LoginListener implements HTTP.AjaxListener {
 
         if (result == null) {
 
-            if(err == ConstHttp.CONNECTION_ERROR){
-                TooltipUtil.showToast(mActivity, mActivity.getString(R.string.network_error));
-                Log.d(TAG, "result is NULL");
-            }
+//            if(err == ConstHttp.CONNECTION_ERROR){
+//                TooltipUtil.showToast(mActivity, mActivity.getString(R.string.network_error));
+//                Log.d(TAG, "result is NULL");
+//            }
+
+            Intent intent = new Intent(mActivity.getApplication() , MenuActivity.class);
+            mActivity.startActivity(intent);
 
             return;
         }
