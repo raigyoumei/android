@@ -72,7 +72,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             crewInfoTv = findViewById(R.id.crew_info);
             mForward = b.getString(ConstUtil.FORWARD_KEY);
 
-            if(mForward.equals(ConstUtil.FORWARD_BEFORE_VALUE)) {
+            if(mForward.equals(ConstUtil.CALL_FORWARD_BEFORE)) {
                 mcrewBef = 0;
                 crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
                 mBackBtn.setText(R.string.check_crew_back_before);

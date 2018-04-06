@@ -31,7 +31,7 @@ public class HealthStatusRegActivity extends AppCompatActivity {
         if(b != null) {
             mForward = b.getString(ConstUtil.FORWARD_KEY);
 
-            if(mForward.equals(ConstUtil.FORWARD_BEFORE_VALUE)) {
+            if(mForward.equals(ConstUtil.CALL_FORWARD_BEFORE)) {
                 mBackBtn.setText(R.string.check_crew_back_before);
             } else {
                 mBackBtn.setText(R.string.check_crew_back_after);

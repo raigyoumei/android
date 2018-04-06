@@ -58,7 +58,7 @@ public class MenuActivity extends AppCompatActivity {
                 Bundle bundle = EntryUtil.getBundle(context);
                 mHTTP = new HTTP((Activity) context, bundle);
 
-                mHTTP.getCallInfo(ConstUtil.FORWARD_BEFORE_VALUE);
+                mHTTP.getCallInfo(ConstUtil.CALL_FORWARD_BEFORE);
 
             }
         });
@@ -68,7 +68,12 @@ public class MenuActivity extends AppCompatActivity {
         afterCrewCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startNextActivity(ConstUtil.FORWARD_AFTER_VALUE);
+                //startNextActivity(ConstUtil.FORWARD_AFTER_VALUE);
+
+                Bundle bundle = EntryUtil.getBundle(context);
+                mHTTP = new HTTP((Activity) context, bundle);
+
+                mHTTP.getCallInfo(ConstUtil.CALL_FORWARD_AFTER);
             }
         });
 

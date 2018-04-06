@@ -176,7 +176,7 @@ public class CallMenuActivity extends AppCompatActivity {
 
         mForward = b.getString(ConstUtil.FORWARD_KEY);
 
-        if(mForward != null && mForward.equals(ConstUtil.FORWARD_AFTER_VALUE)) {
+        if(mForward != null && mForward.equals(ConstUtil.CALL_FORWARD_AFTER)) {
 
             crewInfoTv.setText(R.string.call_menu_aft_title);
 
