@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import co.yaw.tpw.smartinspection.http.pojo.AlcoholRespPojo;
 import co.yaw.tpw.smartinspection.http.pojo.CallRespPojo;
 
 /**
@@ -76,6 +77,30 @@ public class RespCheckUtil {
         return pojo;
     }
 
+
+    // 応答情報解析
+    public static AlcoholRespPojo getAlcoholRespPojo( String result){
+
+        AlcoholRespPojo pojo = null;
+
+        if(result == null){
+            return pojo;
+        }
+
+        try{
+
+            JSONObject json = Json2PojoUtil.getJSONObject(result);
+
+            pojo = (AlcoholRespPojo) Json2PojoUtil.fromJsonToBasePojo(json, AlcoholRespPojo.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
+
+        return pojo;
+    }
 
 
 

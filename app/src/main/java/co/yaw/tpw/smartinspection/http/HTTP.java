@@ -10,6 +10,7 @@ import android.util.Log;
 import java.util.HashMap;
 
 import co.yaw.tpw.smartinspection.bltUtil.DateUtil;
+import co.yaw.tpw.smartinspection.http.tasklistener.GetAlcoholInfoListener;
 import co.yaw.tpw.smartinspection.http.tasklistener.GetCallInfoListener;
 import co.yaw.tpw.smartinspection.http.tasklistener.LoginListener;
 import co.yaw.tpw.smartinspection.http.taskloader.AjaxAsyncTaskLoader;
@@ -67,7 +68,6 @@ public class HTTP {
     }
 
 
-
     public void getCallInfo(String checkType) {
 
         Log.d(TAG, "getCallInfo");
@@ -76,6 +76,18 @@ public class HTTP {
         HashMap<String, String> params = getComReqParm(checkType);
 
         ajax(reqPath, params, new GetCallInfoListener(mActivity,checkType));
+    }
+
+
+
+    public void getaAlcohol(String checkType) {
+
+        Log.d(TAG, "getaAlcohol");
+
+        String reqPath = ConstHttp.GET_ALCOHOL_INFO_PATH;
+        HashMap<String, String> params = getComReqParm(checkType);
+
+        ajax(reqPath, params, new GetAlcoholInfoListener(mActivity,checkType));
     }
 
 

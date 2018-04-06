@@ -173,6 +173,15 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 mAcoholVal = ble.getString(HandlerUtil.INFO);
 
                 mArulValueView.setText(mAcoholVal);
+                double alcohol = Double.parseDouble(mAcoholVal);
+
+                if(alcohol < AcoholCmd.AltTestSTLow/100){
+                    mArulValueView.setTextColor(mActivity.getResources().getColor(R.color.colorGreen));
+                } else if(alcohol <= AcoholCmd.AltTestSTHigh/100){
+                    mArulValueView.setTextColor(mActivity.getResources().getColor(R.color.colorYellow));
+                }else{
+                    mArulValueView.setTextColor(mActivity.getResources().getColor(R.color.colorAccent));
+                }
 
                 mCameraView.captureImageRandom();
 
@@ -187,15 +196,6 @@ public class AcoholHandlerMsg extends HandlerUtil {
                 break;
 
             case AcoholCmd.MSG_COMMAND_VALUE_TEST_END:
-
-                String flag = ble.getString(HandlerUtil.INFO);
-                if(flag.equals("G")) {
-                    mArulValueView.setTextColor(mActivity.getResources().getColor(R.color.colorGreen));
-                }else if(flag.equals("Y")) {
-                    mArulValueView.setTextColor(mActivity.getResources().getColor(R.color.colorYellow));
-                }else{
-                    mArulValueView.setTextColor(mActivity.getResources().getColor(R.color.colorAccent));
-                }
 
                 mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_end_ok));
 

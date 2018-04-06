@@ -53,6 +53,8 @@ public class LoginListener implements HTTP.AjaxListener {
 //                Log.d(TAG, "result is NULL");
 //            }
 
+            Log.d(TAG, "doFinished result is null");
+
             Intent intent = new Intent(mActivity.getApplication() , MenuActivity.class);
             mActivity.startActivity(intent);
 
@@ -65,7 +67,7 @@ public class LoginListener implements HTTP.AjaxListener {
             if(pojo == null){
 
                 TooltipUtil.showToast(mActivity, mActivity.getString(R.string.login_error));
-                Log.d(TAG, "login fail");
+                Log.d(TAG, "doFinished pojo is null");
 
                 return;
             }
@@ -77,7 +79,7 @@ public class LoginListener implements HTTP.AjaxListener {
                 Intent intent = new Intent(mActivity.getApplication() , MenuActivity.class);
                 mActivity.startActivity(intent);
 
-                Log.d(TAG, "login sucess");
+                Log.d(TAG, "doFinished sucess");
             } else {
 
                 if (!(mActivity instanceof LoginActivity)) {
@@ -86,7 +88,7 @@ public class LoginListener implements HTTP.AjaxListener {
                 }
 
                 TooltipUtil.showToast(mActivity, mActivity.getString(R.string.login_error));
-                Log.d(TAG, "login fail");
+                Log.d(TAG, "doFinished fail");
             }
 
         } catch (Exception e) {

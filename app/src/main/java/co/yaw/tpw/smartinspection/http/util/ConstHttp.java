@@ -18,6 +18,9 @@ public class ConstHttp {
     // 乗務点呼結果取得
     public final static String GET_CALL_INFO_PATH = "/pioneer/getcallinfo";
 
+    // アルコール測定結果取得
+    public final static String GET_ALCOHOL_INFO_PATH = "/pioneer/getalcohol";
+
 
     // HTTP response
     public final static int RESP_STATUS_OK = 0;

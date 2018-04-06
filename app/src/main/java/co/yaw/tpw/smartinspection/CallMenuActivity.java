@@ -1,5 +1,6 @@
 package co.yaw.tpw.smartinspection;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,7 +16,9 @@ import android.widget.TextView;
 import com.yaw.tpw.smartinspection.R;
 
 import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
+import co.yaw.tpw.smartinspection.http.HTTP;
 import co.yaw.tpw.smartinspection.http.pojo.CallRespPojo;
+import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
 import co.yaw.tpw.smartinspection.http.util.RespCheckUtil;
 
 import static android.util.Log.d;
@@ -35,6 +38,8 @@ public class CallMenuActivity extends AppCompatActivity {
     private Button mMethodPhoneBtn = null;
 
     private String mForward = null;
+    private HTTP mHTTP = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +68,10 @@ public class CallMenuActivity extends AppCompatActivity {
             mAltCheckBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Bundle bundle = EntryUtil.getBundle(context);
+                    mHTTP = new HTTP((Activity) context, bundle);
 
-                    Intent intent = new Intent(context , AlcoholMeasureActivity.class);
-                    Bundle b = new Bundle();
-                    b.putString(ConstUtil.FORWARD_KEY, mForward);
-                    intent.putExtras(b);
-
-                    startActivity(intent);
+                    mHTTP.getaAlcohol(mForward);
                 }
             });
         }
@@ -158,10 +160,10 @@ public class CallMenuActivity extends AppCompatActivity {
         mMenuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(context, MenuActivity.class);
                 startActivity(intent);
 
-                finish();
             }
         });
 

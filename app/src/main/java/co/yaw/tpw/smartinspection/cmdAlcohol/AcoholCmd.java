@@ -49,8 +49,8 @@ public class AcoholCmd extends BltComCmd {
     private HandlerUtil mHandlerUtil = null;
     private boolean mHowWarn = false;
 
-    private int mAltTestSTLow = 15;
-    private int mAltTestSTHigh = 25;
+    public static final int AltTestSTLow = 15;
+    public static final int AltTestSTHigh = 25;
 
 
     public AcoholCmd( HandlerUtil handler) {
@@ -304,18 +304,9 @@ public class AcoholCmd extends BltComCmd {
         sendMassage(MSG_COMMAND_VALUE_TEST_AL, alcoholStr);
 
         // 15以下は青   15~25は黄色  25以上は赤
-        Log.d(TAG, "mAltTestSTLow=" + mAltTestSTLow + " mAltTestSTHigh=" + mAltTestSTHigh );
+        Log.d(TAG, "mAltTestSTLow=" + AltTestSTLow + " mAltTestSTHigh=" + AltTestSTHigh );
 
-        String flag = null;
-        if(alcohol < mAltTestSTLow){
-            flag = "G";
-        } else if(alcohol <= mAltTestSTHigh){
-            flag = "Y";
-        }else{
-            flag = "R";
-        }
-
-        sendMassage(MSG_COMMAND_VALUE_TEST_END,flag);
+        sendMassage(MSG_COMMAND_VALUE_TEST_END,null);
 
     }
 
@@ -482,10 +473,10 @@ public class AcoholCmd extends BltComCmd {
             return;
         }
 
-        mAltTestSTLow = value[3] == 0x8A ? 0x0A:value[3] & 0x00FF;
-        mAltTestSTHigh = value[4] == 0x8A ? 0x0A:value[4] & 0x00FF;
+        int altTestSTLow = value[3] == 0x8A ? 0x0A:value[3] & 0x00FF;
+        int altTestSTHigh = value[4] == 0x8A ? 0x0A:value[4] & 0x00FF;
 
-        Log.d(TAG, "acoholCmdProcEAE518 low="+mAltTestSTLow +" High="+mAltTestSTHigh);
+        Log.d(TAG, "acoholCmdProcEAE518 low="+altTestSTLow +" High="+altTestSTHigh);
 
         //sendMassage(MSG_COMMAND_TEST_STANDARD, null);
         mHowWarn = false;

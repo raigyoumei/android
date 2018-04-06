@@ -99,6 +99,8 @@ public class Json2PojoUtil {
                     field.set(obj, json.getString(name));
                 } else if (clsType.equals(Double.class) || clsType.equals(double.class)) {
                     field.set(obj, Double.parseDouble(json.getString(name)));
+                } else if (clsType.equals(Float.class) || clsType.equals(float.class)) {
+                    field.set(obj, Float.parseFloat(json.getString(name)));
                 } else if (clsType.equals(Integer.class) || clsType.equals(int.class)) {
                     field.set(obj, Integer.parseInt(json.getString(name)));
                 } else if (clsType.equals(Date.class)) {

@@ -34,6 +34,9 @@ import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
 import co.yaw.tpw.smartinspection.camera.CameraCom;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholCmd;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholHandlerMsg;
+import co.yaw.tpw.smartinspection.http.pojo.AlcoholRespPojo;
+import co.yaw.tpw.smartinspection.http.pojo.CallRespPojo;
+import co.yaw.tpw.smartinspection.http.util.RespCheckUtil;
 import co.yaw.tpw.smartinspection.maskview.CameraMaskView;
 
 import static android.util.Log.d;
@@ -54,7 +57,6 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     private CameraCom mCameraCom = null;
     private TextView mtestMsg = null;
 
-    private int mcrewBef = 0;
     private String mForward = null;
 
 
@@ -65,24 +67,6 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         mtestMsg = findViewById(R.id.test_msg);
         mBackBtn = findViewById(R.id.menu_button);
-
-        final Bundle b = getIntent().getExtras();
-        if(b != null) {
-
-            crewInfoTv = findViewById(R.id.crew_info);
-            mForward = b.getString(ConstUtil.FORWARD_KEY);
-
-            if(mForward.equals(ConstUtil.CALL_FORWARD_BEFORE)) {
-                mcrewBef = 0;
-                crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
-                mBackBtn.setText(R.string.check_crew_back_before);
-
-            } else {
-                mcrewBef = 1;
-                crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
-                mBackBtn.setText(R.string.check_crew_back_after);
-            }
-        }
 
         mBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +87,8 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
         // bule tooth初期化
         initBltDeviceInfo();
+
+        initView();
 
         // 必要な権限チェック
         checkPermission(BltDeviceUtil.BLT_PRM_SCAN_NO);
@@ -133,7 +119,6 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         mAcoholHandlerMsg = new AcoholHandlerMsg(this);
         mAcoholHandlerMsg.initDeviceAdapter(categories, dataAdapter);
         mAcoholHandlerMsg.setCameraView(mCameraCom);
-        mAcoholHandlerMsg.setMcrewInfo(mcrewBef);
 
         alcoholSensorSpinner.setOnTouchListener(new View.OnTouchListener(){
 
@@ -165,8 +150,8 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     }
 
     private void setCameraMaskView() {
-        LayerDrawable layerDrawable = (LayerDrawable) getResources()
-                .getDrawable(R.drawable.fg_round_image);
+        LayerDrawable layerDrawable = (LayerDrawable) getResources().getDrawable(R.drawable.fg_round_image);
+
         ScaleDrawable scaleDraw = (ScaleDrawable) layerDrawable
                 .findDrawableByLayerId(R.id.bg_camera_scale);
         scaleDraw.setLevel(1);
@@ -226,7 +211,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         Log.d(TAG, "mBltDeviceUtil.connectDevice="+select);
 
         //画面表示を初期化する
-        initView();
+        resetView();
 
         // 接続中表示
         mtestMsg.setText(getString(R.string.alcohol_test_connect));
@@ -259,7 +244,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     protected void onStop() {
         super.onStop();
 
-        initView();
+        resetView();
     }
 
 
@@ -356,7 +341,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
 
     // VIEW 初期化
-    private void initView() {
+    private void resetView() {
 
         //TextView fwVersion = findViewById(R.id.fw_version);
         TextView usageCount = findViewById(R.id.usge_count);
@@ -369,6 +354,49 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         mCameraCom.cameraStop();
 
     }
+
+
+
+
+    // VIEW 初期化
+    private void initView() {
+
+        final Bundle b = getIntent().getExtras();
+        if(b == null) {
+            return;
+        }
+
+        crewInfoTv = findViewById(R.id.crew_info);
+        mForward = b.getString(ConstUtil.FORWARD_KEY);
+
+        if(mForward.equals(ConstUtil.CALL_FORWARD_BEFORE)) {
+            mAcoholHandlerMsg.setMcrewInfo(0);
+
+            crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
+            mBackBtn.setText(R.string.check_crew_back_before);
+
+        } else {
+            mAcoholHandlerMsg.setMcrewInfo(1);
+
+            crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
+            mBackBtn.setText(R.string.check_crew_back_after);
+        }
+
+
+        String data = b.getString(ConstUtil.RESP_DATA_KEY);
+
+        AlcoholRespPojo pojo = RespCheckUtil.getAlcoholRespPojo(data);
+        if(pojo != null){
+
+            double alcohol = pojo.getAlcoholResult();
+            int usageCnt = pojo.getUsageCount();
+
+            mAcoholHandlerMsg.sendHandler(AcoholCmd.MSG_COMMAND_VALUE_TEST_AL,alcohol+"");
+            mAcoholHandlerMsg.sendHandler(AcoholCmd.MSG_COMMAND_MSG_TEST_COUNT,usageCnt+"");
+        }
+
+    }
+
 
 
     // 権限のチェック
