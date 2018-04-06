@@ -15,6 +15,10 @@ import android.widget.TextView;
 import com.yaw.tpw.smartinspection.R;
 
 import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
+import co.yaw.tpw.smartinspection.http.pojo.CallRespPojo;
+import co.yaw.tpw.smartinspection.http.util.RespCheckUtil;
+
+import static android.util.Log.d;
 
 public class CallMenuActivity extends AppCompatActivity {
 
@@ -31,8 +35,6 @@ public class CallMenuActivity extends AppCompatActivity {
     private Button mMethodPhoneBtn = null;
 
     private String mForward = null;
-    private String altChecked = null;
-    private String heartChecked = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,65 +44,20 @@ public class CallMenuActivity extends AppCompatActivity {
 
         final Bundle b = getIntent().getExtras();
 
-        if(b != null) {
-            mForward = b.getString(ConstUtil.FORWARD_KEY);
-            altChecked = b.getString(ConstUtil.ALT_CHECKED_KEY);
-            heartChecked = b.getString(ConstUtil.HEART_CHECKED_KEY);
-        }
-
-        // 画面表示内容初期化
-        initView(mForward);
-
         //ボタンaction押下動作設定
         initButtonAction();
 
-    }
-
-
-    private void initView(String forward){
-
-        TextView crewInfoTv = findViewById(R.id.call_menu_title);
-
-        if(forward != null && forward.equals(ConstUtil.FORWARD_AFTER_VALUE)) {
-
-            crewInfoTv.setText(R.string.call_menu_aft_title);
-
-            View healthCheckLayout = findViewById(R.id.health_check_self_layout);
-            View healthCheckSeparator = findViewById(R.id.heart_check_separator);
-
-            View heartLayout = findViewById(R.id.heart_check_layout);
-            View heartSeparator= findViewById(R.id.heart_check_self_separator);
-
-            View heartSelfLayout = findViewById(R.id.heart_check_self_layout);
-            View heartSelfSeparator= findViewById(R.id.call_method_separator);
-
-            ViewGroup vg = (ViewGroup)(healthCheckLayout.getParent());
-            vg.removeView(healthCheckLayout);
-            vg.removeView(healthCheckSeparator);
-            vg.removeView(heartLayout);
-            vg.removeView(heartSeparator);
-            vg.removeView(heartSelfLayout);
-            vg.removeView(heartSelfSeparator);
-
-        }else{
-            crewInfoTv.setText(R.string.call_menu_bef_title);
-        }
+        // 画面表示内容初期化
+        initView(b);
 
     }
 
 
     //ボタンaction押下動作設定
     private void initButtonAction(){
+
         // アルコール検測
         mAltCheckBtn = findViewById(R.id.alcohol_check_button);
-        if(altChecked != null){
-            if(Boolean.valueOf(altChecked)){
-                mAltCheckBtn.setText(R.string.call_menu_btn_check_end);
-                mAltCheckBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
-            }else{
-                mAltCheckBtn.setText(R.string.call_menu_btn_check);
-            }
-        }
 
         if(mAltCheckBtn != null){
             mAltCheckBtn.setOnClickListener(new View.OnClickListener() {
@@ -136,16 +93,6 @@ public class CallMenuActivity extends AppCompatActivity {
 
         //バイタル検測
         mHeartCheckBtn = findViewById(R.id.heart_check_button);
-
-        if(heartChecked != null) {
-            if (Boolean.valueOf(heartChecked)) {
-                mHeartCheckBtn.setText(R.string.call_menu_btn_check_end);
-                mHeartCheckBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
-            } else {
-                mHeartCheckBtn.setText(R.string.call_menu_btn_check);
-            }
-        }
-
         if(mHeartCheckBtn != null){
             mHeartCheckBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -185,6 +132,8 @@ public class CallMenuActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "mMethodFaceBtn onClick");
+                    //点呼方式のボタン文字列設定
+                    setCallTypeBtn(1);
                 }
             });
         }
@@ -197,6 +146,8 @@ public class CallMenuActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "mMethodPhoneBtn onClick");
+                    //点呼方式のボタン文字列設定
+                    setCallTypeBtn(2);
                 }
             });
         }
@@ -209,9 +160,226 @@ public class CallMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(context, MenuActivity.class);
                 startActivity(intent);
+
+                finish();
             }
         });
 
+    }
+
+
+
+    //initView初期化
+    private void initView(Bundle b){
+
+        TextView crewInfoTv = findViewById(R.id.call_menu_title);
+
+        mForward = b.getString(ConstUtil.FORWARD_KEY);
+
+        if(mForward != null && mForward.equals(ConstUtil.FORWARD_AFTER_VALUE)) {
+
+            crewInfoTv.setText(R.string.call_menu_aft_title);
+
+            View healthCheckLayout = findViewById(R.id.health_check_self_layout);
+            View healthCheckSeparator = findViewById(R.id.heart_check_separator);
+
+            View heartLayout = findViewById(R.id.heart_check_layout);
+            View heartSeparator= findViewById(R.id.heart_check_self_separator);
+
+            View heartSelfLayout = findViewById(R.id.heart_check_self_layout);
+            View heartSelfSeparator= findViewById(R.id.call_method_separator);
+
+            ViewGroup vg = (ViewGroup)(healthCheckLayout.getParent());
+            vg.removeView(healthCheckLayout);
+            vg.removeView(healthCheckSeparator);
+            vg.removeView(heartLayout);
+            vg.removeView(heartSeparator);
+            vg.removeView(heartSelfLayout);
+            vg.removeView(heartSelfSeparator);
+
+        }else{
+            crewInfoTv.setText(R.string.call_menu_bef_title);
+        }
+
+
+        String data = b.getString(ConstUtil.RESP_DATA_KEY);
+
+        CallRespPojo pojo = RespCheckUtil.getCallRespPojo(data);
+        if(pojo != null){
+
+            //アルコール測定button文字列表示設定
+            int altcheck = pojo.getAlcoholResult();
+            int checkCount = pojo.getTestCount();
+            setAltBtn(altcheck, checkCount);
+
+            //健康状態（自己申告）button文字列表示設定
+            int healthSelf = pojo.getHealthSelfResult();
+            setHealthSelfBtn(healthSelf);
+
+            //バイタル測定button文字列表示設定
+            int vital = pojo.getVitalResult();
+            setVitalBtn(vital);
+
+
+            //バイタル測定(自己申告)button文字列表示設定
+            int vitalSelf = pojo.getVitalSelfResult();
+            setVitalSelfBtn(vitalSelf);
+
+            //点呼方式button文字列表示設定
+            int callType = pojo.getCallType();
+            setCallTypeBtn(callType);
+
+
+            // 承認済み、全部ボタン無効
+            int admit = pojo.getAdmit();
+            if(admit != 0){
+
+                mAltCheckBtn.setEnabled(false);
+                mHealthSelfBtn.setEnabled(false);
+                mHeartCheckBtn.setEnabled(false);
+                mHeartSelfBtn.setEnabled(false);
+                mMethodFaceBtn.setEnabled(false);
+                mMethodPhoneBtn.setEnabled(false);
+
+                TextView msgText = findViewById(R.id.msg);
+                msgText.setText(getString(R.string.call_menu_admit_end));
+            }
+        }
+    }
+
+
+
+    //アルコールボタン文字列設定
+    private void setAltBtn(int altVal, int testCnt){
+
+        switch(altVal){
+            case 0: // 未測定
+                mAltCheckBtn.setText(getString(R.string.call_menu_btn_check));
+                break;
+            case 1: // 異常なし（測定値は0）　
+                mAltCheckBtn.setText(getString(R.string.call_menu_btn_check_ok));
+                mAltCheckBtn.setTextColor(ContextCompat.getColor(this, android.R.color.background_light));
+                mAltCheckBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+
+                break;
+            case 2: // 要確認（測定値は0以上）　
+                mAltCheckBtn.setText(getString(R.string.call_menu_btn_check_ng));
+                mAltCheckBtn.setTextColor(ContextCompat.getColor(this, android.R.color.background_light));
+                mAltCheckBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent));
+                break;
+            default:
+                break;
+        }
+
+        if(testCnt >= 3){
+            mAltCheckBtn.setEnabled(false);
+        }
+
+    }
+
+
+
+
+    //健康状態（自己申告）ボタン文字列設定
+    private void setHealthSelfBtn(int healthSelf){
+
+        switch(healthSelf){
+            case 0: // 未測定
+                mHealthSelfBtn.setText(getString(R.string.call_menu_btn_check));
+                break;
+            case 1: // 異常なし（測定値は0）　
+                mHealthSelfBtn.setText(getString(R.string.call_menu_btn_check_ok));
+                mHealthSelfBtn.setTextColor(ContextCompat.getColor(this, android.R.color.background_light));
+                mHealthSelfBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+
+                break;
+            case 2: // 要確認（測定値は0以上）　
+                mHealthSelfBtn.setText(getString(R.string.call_menu_btn_check_ng));
+                mHealthSelfBtn.setTextColor(ContextCompat.getColor(this, android.R.color.background_light));
+                mHealthSelfBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent));
+                break;
+            default:
+                break;
+        }
+
+    }
+
+
+    //バイタル測定ボタン文字列設定
+    private void setVitalBtn(int vital){
+        switch(vital) {
+            case 0: // 未測定
+                mHeartCheckBtn.setText(getString(R.string.call_menu_btn_check));
+                break;
+            case 1: // 実施済み
+                mHeartCheckBtn.setText(getString(R.string.call_menu_btn_check_ok));
+                mHeartCheckBtn.setTextColor(ContextCompat.getColor(this, android.R.color.background_light));
+                mHeartCheckBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+    //バイタル（自己申告）ボタン文字列設定
+    private void setVitalSelfBtn(int vitalSelf){
+        switch(vitalSelf){
+            case 0: // 未測定
+                mHeartSelfBtn.setText(getString(R.string.call_menu_btn_check));
+                break;
+            case 1: // 実施済み
+                mHeartSelfBtn.setText(getString(R.string.call_menu_btn_check_ok));
+                mHeartSelfBtn.setTextColor(ContextCompat.getColor(this, android.R.color.background_light));
+                mHeartSelfBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+    //点呼方式のボタン文字列設定
+    private void setCallTypeBtn(int callType){
+
+        switch(callType){
+            case 1: // 点呼（対面）　
+                mMethodFaceBtn.setTextColor(ContextCompat.getColor(this, android.R.color.background_light));
+                mMethodFaceBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+
+                mMethodPhoneBtn.setTextColor(ContextCompat.getColor(this, android.R.color.black));
+                mMethodPhoneBtn.setBackgroundResource(android.R.drawable.btn_default);
+
+                break;
+            case 2: // 点呼（電話）
+                mMethodPhoneBtn.setTextColor(ContextCompat.getColor(this, android.R.color.background_light));
+                mMethodPhoneBtn.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+
+                mMethodFaceBtn.setTextColor(ContextCompat.getColor(this, android.R.color.black));
+                mMethodFaceBtn.setBackgroundResource(android.R.drawable.btn_default);
+
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    @Override
+    public void onResume() {
+        d(TAG, "onResume");
+        super.onResume();
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
 

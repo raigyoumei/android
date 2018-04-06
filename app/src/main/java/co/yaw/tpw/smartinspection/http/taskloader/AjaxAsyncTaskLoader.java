@@ -24,6 +24,8 @@ public class AjaxAsyncTaskLoader extends BaseTaskLoader<String> {
 
             return post(getPathUrl(), getParams());
         } catch (Exception e) {
+
+            Log.e(TAG, "loadInBackground error="+e.toString());
             e.printStackTrace();
 
             // エラーの場合nullを返す

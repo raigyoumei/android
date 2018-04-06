@@ -248,8 +248,10 @@
     <!-- （乗務前）点呼menu確認画面　-->
     <string name="call_menu_bef_title">乗務前点呼</string>
     <string name="call_menu_aft_title">乗務後点呼</string>
-    <string name="call_menu_btn_check">測定</string>
-    <string name="call_menu_btn_check_end">測定済み</string>
+    <string name="call_menu_btn_check">未測定</string>
+    <string name="call_menu_btn_check_ok">測定済み</string>
+    <string name="call_menu_btn_check_ng">要確認</string>
+
     <string name="call_menu_health_self_check">健康状態(自己申告)</string>
     <string name="call_menu_heart_check">バイタルデータ測定</string>
     <string name="call_menu_heart_self_check">バイタルデータ(自己申告)</string>
@@ -257,6 +259,9 @@
 
     <string name="call_menu_call_method_face">対面</string>
     <string name="call_menu_call_method_phone">電話</string>
+
+    <string name="call_menu_admit_end">既に承認済みました</string>
+
 
     <!-- （乗務後）点呼結果確認画面　-->
     <string name="call_confirm_title">入力完了</string>

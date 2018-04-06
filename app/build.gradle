@@ -20,9 +20,7 @@ android {
     }
     compileOptions {
     }
-
     flavorDimensions "default"
-
     productFlavors {
         development {
             buildConfigField "String", "SERVER_URL", '"http://172.16.1.188:8080"'
@@ -33,7 +31,6 @@ android {
             versionName "Version : 1.0.0"
         }
     }
-
 }
 
 dependencies {

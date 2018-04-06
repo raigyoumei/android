@@ -15,12 +15,13 @@ public class ConstHttp {
     // ログイン認証
     public final static String LOGIN_PATH = "/pioneer/LoginTest";
 
-    // 乗務前点呼結果取得
-    public final static String GET_CALL_BEFORE_PATH = "/pioneer/getcallbefore";
+    // 乗務点呼結果取得
+    public final static String GET_CALL_INFO_PATH = "/pioneer/getcallinfo";
 
 
-
-
-
+    // HTTP response
+    public final static int RESP_STATUS_OK = 0;
+    public final static int RESP_STATUS_TIMEOUT = RESP_STATUS_OK + 1;
+    public final static int RESP_STATUS_NG = RESP_STATUS_TIMEOUT + 1;
 
 }

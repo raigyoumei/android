@@ -1,5 +1,6 @@
 package co.yaw.tpw.smartinspection;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import com.yaw.tpw.smartinspection.R;
 
 import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
+import co.yaw.tpw.smartinspection.http.HTTP;
+import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
+import co.yaw.tpw.smartinspection.http.util.ConstHttp;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -19,6 +23,9 @@ public class MenuActivity extends AppCompatActivity {
     private TextView beforeCrewCallBtn;
     private TextView afterCrewCallBtn;
     private TextView logoutBtn;
+
+    private HTTP mHTTP = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +48,31 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
         beforeCrewCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startNextActivity(ConstUtil.FORWARD_BEFORE_VALUE);
+                //startNextActivity(ConstUtil.FORWARD_BEFORE_VALUE);
+
+                Bundle bundle = EntryUtil.getBundle(context);
+                mHTTP = new HTTP((Activity) context, bundle);
+
+                mHTTP.getCallInfo(ConstUtil.FORWARD_BEFORE_VALUE);
+
             }
         });
+
+
+
         afterCrewCallBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startNextActivity(ConstUtil.FORWARD_AFTER_VALUE);
             }
         });
+
+
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override

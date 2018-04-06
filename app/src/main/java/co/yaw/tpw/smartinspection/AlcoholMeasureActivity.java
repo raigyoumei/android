@@ -1,6 +1,7 @@
 package co.yaw.tpw.smartinspection;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -41,7 +42,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
     private final static String TAG = AlcoholMeasureActivity.class.getSimpleName();
 
-    final Context context = this;
+    final Activity context = this;
     private TextView crewInfoTv;
     private Spinner alcoholSensorSpinner;
 
@@ -86,7 +87,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         mBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CallMenuActivity.class);
+                Intent intent = new Intent(context.getApplication(), CallMenuActivity.class);
                 Bundle b = new Bundle();
                 b.putString(ConstUtil.FORWARD_KEY, mForward);
                 b.putString(ConstUtil.ALT_CHECKED_KEY, mAcoholHandlerMsg.isChecked()+"");

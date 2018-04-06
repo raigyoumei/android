@@ -83,4 +83,17 @@ public class LoginRespPojo extends BasePojo {
         return internalClsTypes;
     }
 
+
+    @Override
+    public String toString() {
+        return "LoginRespPojo{" +
+                "sessionID='" + sessionID + '\'' +
+                ", workerID='" + workerID + '\'' +
+                ", userID='" + userID + '\'' +
+                ", userName='" + userName + '\'' +
+                ", workerName='" + workerName + '\'' +
+                ", status=" + status +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

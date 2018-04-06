@@ -72,7 +72,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/action_need_confirm" />
+                        android:text="@string/call_menu_btn_check" />
 
                 </LinearLayout>
 
@@ -127,7 +127,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/call_menu_btn_check_end" />
+                        android:text="@string/call_menu_btn_check" />
 
                 </LinearLayout>
 
@@ -175,6 +175,7 @@
     </ScrollView>
 
     <TextView
+        android:id="@+id/msg"
         style="@style/MessageStyle"
         android:text="@string/input_completed" />
 

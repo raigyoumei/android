@@ -1,7 +1,13 @@
 package co.yaw.tpw.smartinspection.http.util;
 
+import android.util.Log;
+
+import org.json.JSONObject;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import co.yaw.tpw.smartinspection.http.pojo.CallRespPojo;
 
 /**
  * Created by leixiaoming on 2018/04/04.
@@ -42,4 +48,35 @@ public class RespCheckUtil {
         }
         return false;
     }
+
+
+
+
+    // 応答情報解析
+    public static CallRespPojo getCallRespPojo(String result){
+
+        CallRespPojo pojo = null;
+
+        if(result == null){
+            return pojo;
+        }
+
+        try{
+
+            JSONObject json = Json2PojoUtil.getJSONObject(result);
+
+            pojo = (CallRespPojo) Json2PojoUtil.fromJsonToBasePojo(json, CallRespPojo.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
+
+        return pojo;
+    }
+
+
+
+
 }

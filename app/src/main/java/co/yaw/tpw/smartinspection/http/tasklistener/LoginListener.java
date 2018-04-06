@@ -16,7 +16,6 @@ import co.yaw.tpw.smartinspection.http.HTTP;
 import co.yaw.tpw.smartinspection.http.pojo.LoginRespPojo;
 import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
 import co.yaw.tpw.smartinspection.http.userInfo.UserEntry;
-import co.yaw.tpw.smartinspection.http.util.ConstHttp;
 import co.yaw.tpw.smartinspection.http.util.Json2PojoUtil;
 import co.yaw.tpw.smartinspection.http.util.TooltipUtil;
 
@@ -33,10 +32,12 @@ public class LoginListener implements HTTP.AjaxListener {
     private Dialog mDialog = null;
 
     public LoginListener(Activity activity) {
+
         this.mActivity = activity;
 
         mDialog = DialogUtils.createLoadingDialog(activity, mActivity.getString(R.string.prcessing_server));
     }
+
 
     @Override
     public void doFinished(int err, String result) {
@@ -60,33 +61,16 @@ public class LoginListener implements HTTP.AjaxListener {
 
         try {
 
-            JSONObject json = Json2PojoUtil.getJSONObject(result);
+            LoginRespPojo pojo = getRespPojo(result);
+            if(pojo == null){
 
-            LoginRespPojo pojo = (LoginRespPojo) Json2PojoUtil.fromJsonToBasePojo(json, LoginRespPojo.class);
+                TooltipUtil.showToast(mActivity, mActivity.getString(R.string.login_error));
+                Log.d(TAG, "login fail");
+
+                return;
+            }
 
             String sessionId = pojo.getSessionID();
-            String userID = pojo.getUserID();
-            String workerID = pojo.getWorkerID();
-            String userName = pojo.getUserName();
-            String workerName = pojo.getWorkerName();
-            int isStatus = pojo.isStatus();
-            String msg = pojo.getMsg();
-
-            Log.d(TAG, "sessionId="+sessionId);
-            Log.d(TAG, "userID="+userID);
-            Log.d(TAG, "workerID="+workerID);
-            Log.d(TAG, "userName="+userName);
-            Log.d(TAG, "workerName="+workerName);
-            Log.d(TAG, "isStatus="+isStatus);
-            Log.d(TAG, "msg="+msg);
-
-            UserEntry su = EntryUtil.getEntry(mActivity);
-            su.setSession(sessionId);
-            su.setUserID(userID);
-            su.setWorkerID(workerID);
-            su.setUserName(userName);
-
-            EntryUtil.setEntry(mActivity, su);
 
             if (sessionId != null && !sessionId.isEmpty()) {
 
@@ -110,4 +94,46 @@ public class LoginListener implements HTTP.AjaxListener {
         }
 
     }
+
+
+    // 応答情報解析
+    private LoginRespPojo getRespPojo(String result){
+
+        LoginRespPojo pojo = null;
+
+        try{
+
+            JSONObject json = Json2PojoUtil.getJSONObject(result);
+
+            pojo = (LoginRespPojo) Json2PojoUtil.fromJsonToBasePojo(json, LoginRespPojo.class);
+
+            String sessionId = pojo.getSessionID();
+            String userID = pojo.getUserID();
+            String workerID = pojo.getWorkerID();
+            String userName = pojo.getUserName();
+            String workerName = pojo.getWorkerName();
+
+            Log.d(TAG, pojo.toString());
+
+            UserEntry su = EntryUtil.getEntry(mActivity);
+            su.setSession(sessionId);
+            su.setUserID(userID);
+            su.setWorkerID(workerID);
+            su.setUserName(userName);
+            su.setWorkerName(workerName);
+
+            EntryUtil.setEntry(mActivity, su);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
+
+        return pojo;
+    }
+
+
+
+
 }

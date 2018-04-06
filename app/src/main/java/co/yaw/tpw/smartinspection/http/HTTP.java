@@ -9,9 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import java.util.HashMap;
 
+import co.yaw.tpw.smartinspection.bltUtil.DateUtil;
+import co.yaw.tpw.smartinspection.http.tasklistener.GetCallInfoListener;
 import co.yaw.tpw.smartinspection.http.tasklistener.LoginListener;
 import co.yaw.tpw.smartinspection.http.taskloader.AjaxAsyncTaskLoader;
 import co.yaw.tpw.smartinspection.http.taskloader.BaseTaskLoader;
+import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
+import co.yaw.tpw.smartinspection.http.userInfo.UserEntry;
 import co.yaw.tpw.smartinspection.http.util.ConstHttp;
 
 
@@ -64,6 +68,18 @@ public class HTTP {
 
 
 
+    public void getCallInfo(String checkType) {
+
+        Log.d(TAG, "getCallInfo");
+
+        String reqPath = ConstHttp.GET_CALL_INFO_PATH;
+        HashMap<String, String> params = getComReqParm(checkType);
+
+        ajax(reqPath, params, new GetCallInfoListener(mActivity,checkType));
+    }
+
+
+
 
     private void ajax(final String pathUrl, final HashMap<String, String> params, final AjaxListener listener) {
 
@@ -105,6 +121,30 @@ public class HTTP {
         loader.forceLoad();
         this.mLoader = loader;
         return loader;
+    }
+
+
+
+    private HashMap<String, String> getComReqParm( String checkType){
+
+        UserEntry su = EntryUtil.getEntry(mActivity);
+
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("workerID", su.getWorkerID());
+        params.put("userID", su.getUserID());
+
+        String date = DateUtil.getCustomYMD(DateUtil.Y_M_D);
+        String time = DateUtil.getCustomYMD(DateUtil.H_M_S);
+
+        params.put("date", date);
+        params.put("time", time);
+
+        if(checkType != null) {
+            params.put("checkType", checkType);
+        }
+
+        return params;
+
     }
 
 

@@ -9,8 +9,17 @@ public class UserEntry {
     private String userID;
     private String workerID;
     private String userName;
+    private String workerName;
     private String password;
 
+
+    public String getWorkerName() {
+        return workerName;
+    }
+
+    public void setWorkerName( String workerName ) {
+        this.workerName = workerName;
+    }
 
     public String getUserName() {
         return userName;

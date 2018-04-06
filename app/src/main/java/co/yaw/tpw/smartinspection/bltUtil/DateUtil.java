@@ -12,6 +12,8 @@ public class DateUtil {
     public static final String YMD_HM = "yyyyMMdd-HHmm";
     public static final String YMD_HMS = "yyyyMMdd-HHmmss";
     public static final String YMDHMSS = "yyyyMMddHHmmss";
+    public static final String Y_M_D = "yyyy-MM-dd";
+    public static final String H_M_S = "HH:mm:ss";
 
     public static String getYear() {
         Calendar calendar = getCalendar();
@@ -62,6 +64,7 @@ public class DateUtil {
         return time;
     }
 
+
     public static String getCustomTime(String timePattern, Long ms) {
         String time = "";
         if(ms != null){
@@ -77,6 +80,23 @@ public class DateUtil {
 
         return time;
     }
+
+
+    public static String getCustomYMD(String timePattern) {
+        SimpleDateFormat sdf = new SimpleDateFormat(timePattern);
+        String time = sdf.format(new java.util.Date());
+
+        return time;
+    }
+
+
+    public static String getCustomHMS(String timePattern) {
+        SimpleDateFormat sdf = new SimpleDateFormat(timePattern);
+        String time = sdf.format(new java.util.Date());
+
+        return time;
+    }
+
 
     private static Calendar getCalendar() {
         return Calendar.getInstance();
