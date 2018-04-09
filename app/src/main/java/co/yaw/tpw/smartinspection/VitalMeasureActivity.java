@@ -41,7 +41,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
     private BltDeviceUtil mBltDeviceUtil = null;
     private Button mBackBtn = null;
-    private String mForward = null;
+    private int mForward = 0;
 
     private VitalHandlerMsg mVitalHandlerMsg = null;
     private EcgConnect mEcgConnect = null;
@@ -60,9 +60,9 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
         final Bundle b = getIntent().getExtras();
         if(b != null) {
-            mForward = b.getString(ConstUtil.FORWARD_KEY);
+            mForward = b.getInt(ConstUtil.FORWARD_KEY);
 
-            if(mForward.equals(ConstUtil.CALL_FORWARD_BEFORE)) {
+            if(mForward == ConstUtil.CALL_FORWARD_BEFORE) {
                 mBackBtn.setText(R.string.check_crew_back_before);
             } else {
                 mBackBtn.setText(R.string.check_crew_back_after);
@@ -75,8 +75,7 @@ public class VitalMeasureActivity extends AppCompatActivity implements AdapterVi
 
                 Intent intent = new Intent(context, CallMenuActivity.class);
                 Bundle b = new Bundle();
-                b.putString(ConstUtil.FORWARD_KEY, mForward);
-                b.putString(ConstUtil.HEART_CHECKED_KEY, mVitalHandlerMsg.isChecked()+"");
+                b.putInt(ConstUtil.FORWARD_KEY, mForward);
 
                 intent.putExtras(b);
                 startActivity(intent);

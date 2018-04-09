@@ -9,6 +9,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -34,8 +35,10 @@ import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
 import co.yaw.tpw.smartinspection.camera.CameraCom;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholCmd;
 import co.yaw.tpw.smartinspection.cmdAlcohol.AcoholHandlerMsg;
+import co.yaw.tpw.smartinspection.http.HTTP;
 import co.yaw.tpw.smartinspection.http.pojo.AlcoholRespPojo;
 import co.yaw.tpw.smartinspection.http.pojo.CallRespPojo;
+import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
 import co.yaw.tpw.smartinspection.http.util.RespCheckUtil;
 import co.yaw.tpw.smartinspection.maskview.CameraMaskView;
 
@@ -57,8 +60,8 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
     private CameraCom mCameraCom = null;
     private TextView mtestMsg = null;
 
-    private String mForward = null;
-
+    private int mForward = 0;
+    private HTTP mHTTP = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +76,16 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
             public void onClick(View v) {
                 Intent intent = new Intent(context.getApplication(), CallMenuActivity.class);
                 Bundle b = new Bundle();
-                b.putString(ConstUtil.FORWARD_KEY, mForward);
-                b.putString(ConstUtil.ALT_CHECKED_KEY, mAcoholHandlerMsg.isChecked()+"");
+                b.putInt(ConstUtil.FORWARD_KEY, mForward);
 
                 intent.putExtras(b);
                 startActivity(intent);
             }
         });
+
+        //サーバーに保存する処理
+        Bundle bundle = EntryUtil.getBundle(context);
+        mHTTP = new HTTP(context, bundle);
 
         setSpinnerAdapter();
 
@@ -119,6 +125,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         mAcoholHandlerMsg = new AcoholHandlerMsg(this);
         mAcoholHandlerMsg.initDeviceAdapter(categories, dataAdapter);
         mAcoholHandlerMsg.setCameraView(mCameraCom);
+        mAcoholHandlerMsg.setHttp(mHTTP);
 
         alcoholSensorSpinner.setOnTouchListener(new View.OnTouchListener(){
 
@@ -350,6 +357,7 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         //fwVersion.setText("");
         usageCount.setText("");
         testValue.setText(getString(R.string.alcohol_test_default_value));
+        testValue.setTextColor(ContextCompat.getColor(context, android.R.color.black));
 
         mCameraCom.cameraStop();
 
@@ -367,9 +375,9 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         }
 
         crewInfoTv = findViewById(R.id.crew_info);
-        mForward = b.getString(ConstUtil.FORWARD_KEY);
+        mForward = b.getInt(ConstUtil.FORWARD_KEY);
 
-        if(mForward.equals(ConstUtil.CALL_FORWARD_BEFORE)) {
+        if(mForward == ConstUtil.CALL_FORWARD_BEFORE) {
             mAcoholHandlerMsg.setMcrewInfo(0);
 
             crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
@@ -393,6 +401,9 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
 
             mAcoholHandlerMsg.sendHandler(AcoholCmd.MSG_COMMAND_VALUE_TEST_AL,alcohol+"");
             mAcoholHandlerMsg.sendHandler(AcoholCmd.MSG_COMMAND_MSG_TEST_COUNT,usageCnt+"");
+
+            mAcoholHandlerMsg.setTestCountBef(pojo.getTestCount());
+
         }
 
     }

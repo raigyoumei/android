@@ -394,8 +394,10 @@ public class BltDeviceUtil {
             switch (newState){
                 case BluetoothProfile.STATE_CONNECTING:
 
+                    String devName = gatt.getDevice().getName();
+
                     Log.d(TAG, "STATE_CONNECTING");
-                    mHandlerUtil.sendHandler(MSG_DEVACE_CONNECTING);
+                    mHandlerUtil.sendHandler(MSG_DEVACE_CONNECTING, devName);
 
                     break;
 

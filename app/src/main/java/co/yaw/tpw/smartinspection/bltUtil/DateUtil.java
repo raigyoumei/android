@@ -14,6 +14,7 @@ public class DateUtil {
     public static final String YMDHMSS = "yyyyMMddHHmmss";
     public static final String Y_M_D = "yyyy-MM-dd";
     public static final String H_M_S = "HH:mm:ss";
+    public static final String Y_M_D_H_M_S = "yyyy-MM-dd HH:mm:ss";
 
     public static String getYear() {
         Calendar calendar = getCalendar();

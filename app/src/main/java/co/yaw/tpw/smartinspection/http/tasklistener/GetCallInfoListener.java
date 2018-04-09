@@ -36,9 +36,9 @@ public class GetCallInfoListener implements HTTP.AjaxListener {
 
     private Activity mActivity = null;
     private Dialog mDialog = null;
-    private String mCallType = null;
+    private int mCallType = 0;
 
-    public GetCallInfoListener( Activity activity, String callType) {
+    public GetCallInfoListener( Activity activity, int callType) {
 
         this.mActivity = activity;
         mCallType = callType;
@@ -65,7 +65,7 @@ public class GetCallInfoListener implements HTTP.AjaxListener {
 
             Intent intent = new Intent(mActivity.getApplication(), CallMenuActivity.class);
             Bundle b = new Bundle();
-            b.putString(ConstUtil.FORWARD_KEY, mCallType);
+            b.putInt(ConstUtil.FORWARD_KEY, mCallType);
             intent.putExtras(b);
             mActivity.startActivity(intent);
 
@@ -90,7 +90,7 @@ public class GetCallInfoListener implements HTTP.AjaxListener {
 
                 Intent intent = new Intent(mActivity.getApplication(), CallMenuActivity.class);
                 Bundle b = new Bundle();
-                b.putString(ConstUtil.FORWARD_KEY, mCallType);
+                b.putInt(ConstUtil.FORWARD_KEY, mCallType);
                 b.putString(ConstUtil.RESP_DATA_KEY, result);
 
                 intent.putExtras(b);

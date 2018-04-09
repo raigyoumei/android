@@ -16,7 +16,7 @@ public class HealthStatusRegActivity extends AppCompatActivity {
     final Context context = this;
 
     private Button mBackBtn = null;
-    private String mForward = null;
+    private int mForward = 0;
 
 
 
@@ -29,9 +29,9 @@ public class HealthStatusRegActivity extends AppCompatActivity {
 
         final Bundle b = getIntent().getExtras();
         if(b != null) {
-            mForward = b.getString(ConstUtil.FORWARD_KEY);
+            mForward = b.getInt(ConstUtil.FORWARD_KEY);
 
-            if(mForward.equals(ConstUtil.CALL_FORWARD_BEFORE)) {
+            if(mForward == ConstUtil.CALL_FORWARD_BEFORE) {
                 mBackBtn.setText(R.string.check_crew_back_before);
             } else {
                 mBackBtn.setText(R.string.check_crew_back_after);
@@ -44,7 +44,7 @@ public class HealthStatusRegActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(context, CallMenuActivity.class);
                 Bundle b = new Bundle();
-                b.putString(ConstUtil.FORWARD_KEY, mForward);
+                b.putInt(ConstUtil.FORWARD_KEY, mForward);
                 intent.putExtras(b);
                 startActivity(intent);
             }

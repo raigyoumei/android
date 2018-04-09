@@ -1,23 +1,25 @@
 package co.yaw.tpw.smartinspection.http.taskloader;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -28,6 +30,13 @@ import co.yaw.tpw.smartinspection.http.userInfo.UserEntry;
 import co.yaw.tpw.smartinspection.http.util.ConstHttp;
 import co.yaw.tpw.smartinspection.http.util.Json2PojoUtil;
 import co.yaw.tpw.smartinspection.http.util.RespCheckUtil;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
@@ -42,10 +51,10 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
     private String mWorkerID = null;
     private String mPathUrl = null;
 
-    private HashMap<String, String> mParams = null;
+    private HashMap<String, Object> mParams = null;
 
 
-    public BaseTaskLoader(Context context, Bundle bundle, String pathUrl, HashMap<String, String> params) {
+    public BaseTaskLoader(Context context, Bundle bundle, String pathUrl, HashMap<String, Object> params) {
 
         super(context);
 
@@ -100,7 +109,7 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
         return mPathUrl;
     }
 
-    public HashMap<String, String> getParams() {
+    public HashMap<String, Object> getParams() {
         return mParams;
     }
 
@@ -120,7 +129,7 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
 
 
 
-    protected String post(String pathUrl, HashMap<String, String> params) {
+    protected String post(String pathUrl, HashMap<String, Object> params) {
 
         String responseData = postBody(pathUrl, params);
 
@@ -133,7 +142,7 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
     }
 
 
-    private String postBody(String pathUrl, HashMap<String, String> params) {
+    private String postBody(String pathUrl, HashMap<String, Object> params) {
         try {
             Log.i(TAG, "start http post");
 
@@ -141,6 +150,10 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
             URL url = new URL(urltmp);
 
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+            con.setConnectTimeout(10000);
+            con.setReadTimeout(10000);
+
             con.setRequestProperty("Referer", url.toString());
 
             String cookieStr = "sessionID=" + getSession()
@@ -175,13 +188,14 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
 //                }
 
                 Log.d(TAG, "postBody parameter="+parameter);
+                Log.d(TAG, "postBody parameter size="+parameter.length());
 
                 PrintStream ps = new PrintStream(con.getOutputStream());
                 ps.print(parameter);
                 ps.close();
             }
 
-            con.getResponseMessage();
+            //con.getResponseMessage();
 
             int statusCode = con.getResponseCode();
 
@@ -218,7 +232,7 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
 
         UserEntry su = EntryUtil.getEntry(context);
 
-        HashMap<String, String> params = new HashMap<String, String>();
+        HashMap<String, Object> params = new HashMap<String, Object>();
 
         params.put("workerID", su.getWorkerID());
         params.put("userID", su.getUserID());
@@ -262,4 +276,128 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
             e.printStackTrace();
         }
     }
+
+
+
+    protected String okHttp(String pathUrl, HashMap<String, Object> params) {
+
+        String urltmp = AppConfigUtil.getServerUrl() + pathUrl;
+
+        OkHttpClient client = new OkHttpClient();
+        FormBody.Builder formBody = new FormBody.Builder();
+
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+        try {
+            String parameter = "";
+            ObjectMapper mapper = new ObjectMapper();
+            parameter = mapper.writeValueAsString(params);
+
+            Log.d(TAG,"okHttp request=="+parameter);
+
+            RequestBody body = RequestBody.create(JSON, parameter);
+
+            String cookieStr = "sessionID=" + getSession()
+                    + "; " + "workerID=" + getWorkerID()
+                    + "; " + "userID=" + getUserID();
+
+            Request request = new Request.Builder()
+                    .url(urltmp)
+                    .header("User-Agent", "smartinspection "+AppConfigUtil.getVersion())
+                    .addHeader("Referer", urltmp)
+                    .addHeader("Cookie", cookieStr)
+                    .post(body)
+                    .build();
+
+            Response response = null;
+            response = client.newCall(request).execute();
+
+            String result = null;
+            if (response.isSuccessful()) {
+                Log.d(TAG,"response.code()=="+response.code());
+                Log.d(TAG,"response.message()=="+response.message());
+                result = response.body().string();
+                //Log.d(TAG,"res=="+result);
+            }
+
+            return result;
+
+        }catch (Exception e){
+
+            Log.e(TAG,"Exception=" + e.toString());
+            e.printStackTrace();
+
+            return null;
+        }
+
+    }
+
+
+
+
+    protected String okHttpMtil(String pathUrl, HashMap<String, Object> params) {
+
+        String urltmp = AppConfigUtil.getServerUrl() + pathUrl;
+
+        OkHttpClient client = new OkHttpClient();
+        FormBody.Builder formBody = new FormBody.Builder();
+
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+        try {
+            String parameter = "";
+            ObjectMapper mapper = new ObjectMapper();
+            parameter = mapper.writeValueAsString(params);
+
+            Log.d(TAG,"okHttp request=="+parameter);
+
+            String path = (String)params.get("imagePath");
+
+            MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+
+            File f=new File(path);
+            builder.addFormDataPart("image", f.getName(), RequestBody.create(MediaType.parse("image/*"), f));
+            builder.addFormDataPart("other",parameter);
+
+            MultipartBody multipartBody = builder.build();
+
+            String cookieStr = "sessionID=" + getSession()
+                    + "; " + "workerID=" + getWorkerID()
+                    + "; " + "userID=" + getUserID();
+
+            Request request = new Request.Builder()
+                    .url(urltmp)
+                    .header("User-Agent", "smartinspection "+AppConfigUtil.getVersion())
+                    .addHeader("Referer", urltmp)
+                    .addHeader("Cookie", cookieStr)
+                    .post(multipartBody)
+                    .build();
+
+            Response response = null;
+            response = client.newCall(request).execute();
+
+            String result = null;
+            if (response.isSuccessful()) {
+                Log.d(TAG,"response.code()=="+response.code());
+                Log.d(TAG,"response.message()=="+response.message());
+                result = response.body().string();
+                //Log.d(TAG,"res=="+result);
+            }
+
+            return result;
+
+        }catch (Exception e){
+
+            Log.e(TAG,"Exception=" + e.toString());
+            e.printStackTrace();
+
+            return null;
+        }
+
+    }
+
+
 }
+
+
+

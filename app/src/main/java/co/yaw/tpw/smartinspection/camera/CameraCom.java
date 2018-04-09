@@ -77,6 +77,11 @@ public class CameraCom {
 
                 Bitmap bitmap = event.getBitmap();
 
+                mImagePath = getImageName();
+                if(mImagePath == null){
+                    return;
+                }
+
                 File mediaFile = new File(mImagePath);
 
                 Uri uri = Uri.fromFile(mediaFile);
@@ -107,7 +112,8 @@ public class CameraCom {
                         null
                 );
 
-                mHandlerUtil.sendHandler(MSG_IMAGE_CAPTURE, mImageData);
+                //mHandlerUtil.sendHandler(MSG_IMAGE_CAPTURE, mImageData);
+                mHandlerUtil.sendHandler(MSG_IMAGE_CAPTURE, mImagePath);
 
                 if (mStopFlag){
                     cameraPause();
@@ -154,25 +160,25 @@ public class CameraCom {
     }
 
 
-    public String captureImageRandom() {
+    public void captureImageRandom() {
 
         long time = System.currentTimeMillis();
 
         if(mCapImage) {
-            return null;
+            return;
+        }
+
+
+        if(mRandomNum == 0){
+            return;
         }
 
         // ランダム撮影、だ撮影しない場合
         if(time% mRandomNum!= 0){
-            return null;
+            return;
         }
 
         mCapImage = true;
-        mImagePath = getImageName();
-        if(mImagePath == null){
-            return null;
-        }
-
         try{
             mCameraView.captureImage(mCamerCallBack);
 
@@ -180,23 +186,18 @@ public class CameraCom {
             Log.e(TAG, "Exception="+e.toString());
         }
 
-        return mImagePath;
+        return;
     }
 
 
 
-    public String captureImageRandomEnd() {
+    public void captureImageRandomEnd() {
 
         if(mCapImage) {
-            return null;
+            return;
         }
 
         mCapImage = true;
-        mImagePath = getImageName();
-        if(mImagePath == null){
-            return null;
-        }
-
         try{
             mCameraView.captureImage(mCamerCallBack);
 
@@ -204,17 +205,12 @@ public class CameraCom {
             Log.e(TAG, "Exception="+e.toString());
         }
 
-        return mImagePath;
+        return;
     }
 
 
 
-    public String captureImage() {
-
-        mImagePath = getImageName();
-        if(mImagePath == null){
-            return null;
-        }
+    public void captureImage() {
 
         try{
             mCameraView.captureImage(mCamerCallBack);
@@ -223,7 +219,7 @@ public class CameraCom {
             Log.e(TAG, "Exception="+e.toString());
         }
 
-        return mImagePath;
+        return;
     }
 
 

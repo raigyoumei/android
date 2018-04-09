@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.yaw.tpw.smartinspection.R;
 
+import java.util.HashMap;
+
 import co.yaw.tpw.smartinspection.http.HTTP;
 import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
 import co.yaw.tpw.smartinspection.http.userInfo.UserEntry;
@@ -56,7 +58,14 @@ public class LoginActivity extends AppCompatActivity {
 
                 Bundle bundle = EntryUtil.getBundle(context);
                 mHTTP = new HTTP((Activity) context, bundle);
-                mHTTP.doLogin(workerID, userID, password);
+
+                HashMap<String, Object> params = new HashMap<String, Object>();
+                params.put("workerID", workerID);
+                params.put("userID", userID);
+                params.put("password", password);
+
+
+                mHTTP.doLogin(params);
             }
         });
     }

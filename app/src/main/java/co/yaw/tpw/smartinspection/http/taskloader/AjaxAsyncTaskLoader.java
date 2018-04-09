@@ -11,7 +11,7 @@ public class AjaxAsyncTaskLoader extends BaseTaskLoader<String> {
 
     private final static String TAG = AjaxAsyncTaskLoader.class.getSimpleName();
 
-    public AjaxAsyncTaskLoader(Context context, Bundle bundle, String pathUrl, HashMap<String, String> params) {
+    public AjaxAsyncTaskLoader(Context context, Bundle bundle, String pathUrl, HashMap<String, Object> params) {
         //super(context);
         super(context, bundle, pathUrl, params);
     }

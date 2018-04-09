@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.yaw.tpw.smartinspection.R;
 
+import java.util.HashMap;
+
 import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
 import co.yaw.tpw.smartinspection.http.HTTP;
 import co.yaw.tpw.smartinspection.http.pojo.CallRespPojo;
@@ -37,7 +39,7 @@ public class CallMenuActivity extends AppCompatActivity {
     private Button mMethodFaceBtn = null;
     private Button mMethodPhoneBtn = null;
 
-    private String mForward = null;
+    private int mForward = 0;
     private HTTP mHTTP = null;
 
 
@@ -71,7 +73,10 @@ public class CallMenuActivity extends AppCompatActivity {
                     Bundle bundle = EntryUtil.getBundle(context);
                     mHTTP = new HTTP((Activity) context, bundle);
 
-                    mHTTP.getaAlcohol(mForward);
+                    HashMap<String, Object> params = new HashMap<String, Object>();
+                    params.put("checkType", mForward);
+
+                    mHTTP.getAlcohol(params);
                 }
             });
         }
@@ -85,7 +90,7 @@ public class CallMenuActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(context , HealthStatusRegActivity.class);
                     Bundle b = new Bundle();
-                    b.putString(ConstUtil.FORWARD_KEY, mForward);
+                    b.putInt(ConstUtil.FORWARD_KEY, mForward);
                     intent.putExtras(b);
 
                     startActivity(intent);
@@ -102,7 +107,7 @@ public class CallMenuActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(context , VitalMeasureActivity.class);
                     Bundle b = new Bundle();
-                    b.putString(ConstUtil.FORWARD_KEY, mForward);
+                    b.putInt(ConstUtil.FORWARD_KEY, mForward);
                     intent.putExtras(b);
 
                     startActivity(intent);
@@ -119,7 +124,7 @@ public class CallMenuActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(context , VitalSignMeasureActivity.class);
                     Bundle b = new Bundle();
-                    b.putString(ConstUtil.FORWARD_KEY, mForward);
+                    b.putInt(ConstUtil.FORWARD_KEY, mForward);
                     intent.putExtras(b);
 
                     startActivity(intent);
@@ -176,9 +181,9 @@ public class CallMenuActivity extends AppCompatActivity {
 
         TextView crewInfoTv = findViewById(R.id.call_menu_title);
 
-        mForward = b.getString(ConstUtil.FORWARD_KEY);
+        mForward = b.getInt(ConstUtil.FORWARD_KEY);
 
-        if(mForward != null && mForward.equals(ConstUtil.CALL_FORWARD_AFTER)) {
+        if(mForward ==ConstUtil.CALL_FORWARD_AFTER) {
 
             crewInfoTv.setText(R.string.call_menu_aft_title);
 

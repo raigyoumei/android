@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.yaw.tpw.smartinspection.R;
 
+import java.util.HashMap;
+
 import co.yaw.tpw.smartinspection.bltUtil.ConstUtil;
 import co.yaw.tpw.smartinspection.http.HTTP;
 import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
@@ -58,7 +60,10 @@ public class MenuActivity extends AppCompatActivity {
                 Bundle bundle = EntryUtil.getBundle(context);
                 mHTTP = new HTTP((Activity) context, bundle);
 
-                mHTTP.getCallInfo(ConstUtil.CALL_FORWARD_BEFORE);
+                HashMap<String, Object> params = new HashMap<String, Object>();
+                params.put("checkType", ConstUtil.CALL_FORWARD_BEFORE);
+
+                mHTTP.getCallInfo(params);
 
             }
         });
@@ -73,7 +78,10 @@ public class MenuActivity extends AppCompatActivity {
                 Bundle bundle = EntryUtil.getBundle(context);
                 mHTTP = new HTTP((Activity) context, bundle);
 
-                mHTTP.getCallInfo(ConstUtil.CALL_FORWARD_AFTER);
+                HashMap<String, Object> params = new HashMap<String, Object>();
+                params.put("checkType", ConstUtil.CALL_FORWARD_AFTER);
+
+                mHTTP.getCallInfo(params);
             }
         });
 

@@ -14,7 +14,7 @@ import co.yaw.tpw.smartinspection.http.tasklistener.GetAlcoholInfoListener;
 import co.yaw.tpw.smartinspection.http.tasklistener.GetCallInfoListener;
 import co.yaw.tpw.smartinspection.http.tasklistener.LoginListener;
 import co.yaw.tpw.smartinspection.http.taskloader.AjaxAsyncTaskLoader;
-import co.yaw.tpw.smartinspection.http.taskloader.BaseTaskLoader;
+import co.yaw.tpw.smartinspection.http.taskloader.SaveAlcoholInfoTaskLoader;
 import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
 import co.yaw.tpw.smartinspection.http.userInfo.UserEntry;
 import co.yaw.tpw.smartinspection.http.util.ConstHttp;
@@ -53,14 +53,9 @@ public class HTTP {
     }
 
 
-    public void doLogin(String workerID, String userID, String password) {
+    public void doLogin(HashMap<String, Object> params) {
 
         Log.d(TAG, "doLogin");
-
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("workerID", workerID);
-        params.put("userID", userID);
-        params.put("password", password);
 
         String reqPath = ConstHttp.LOGIN_PATH;
 
@@ -68,32 +63,72 @@ public class HTTP {
     }
 
 
-    public void getCallInfo(String checkType) {
+    public void getCallInfo(HashMap<String, Object> params) {
 
         Log.d(TAG, "getCallInfo");
 
         String reqPath = ConstHttp.GET_CALL_INFO_PATH;
-        HashMap<String, String> params = getComReqParm(checkType);
+        params = getComReqParm(params);
 
-        ajax(reqPath, params, new GetCallInfoListener(mActivity,checkType));
+        ajax(reqPath, params, new GetCallInfoListener(mActivity,(int)params.get("checkType")));
     }
 
 
 
-    public void getaAlcohol(String checkType) {
+    public void getAlcohol(HashMap<String, Object> params) {
 
         Log.d(TAG, "getaAlcohol");
 
         String reqPath = ConstHttp.GET_ALCOHOL_INFO_PATH;
-        HashMap<String, String> params = getComReqParm(checkType);
+        params = getComReqParm(params);
 
-        ajax(reqPath, params, new GetAlcoholInfoListener(mActivity,checkType));
+        ajax(reqPath, params, new GetAlcoholInfoListener(mActivity,(int)params.get("checkType")));
     }
 
 
 
+    public void saveAlcohol(HashMap<String, Object> params, final AjaxListener listener) {
 
-    private void ajax(final String pathUrl, final HashMap<String, String> params, final AjaxListener listener) {
+        Log.d(TAG, "saveAlcohol");
+
+        final String reqPath = ConstHttp.SAVE_ALCOHOL_INFO_PATH;
+        final HashMap<String, Object> comParm = getComReqParm(params);
+
+        //ajax(reqPath, params, new SaveAlcoholInfoListener(mActivity,(int)params.get("checkType")));
+
+        // 既にローダーがある場合は破棄される
+        mLoaderManager.restartLoader(mTaskLoaderId, null, new LoaderManager.LoaderCallbacks<String>() {
+            @Override
+            public Loader<String> onCreateLoader(int i, Bundle bundle) {
+                Log.i(TAG, "onCreateLoader");
+                return getSaveAlcoholAsyncTaskLoader(mActivity, mBundle, reqPath, comParm);
+            }
+
+            @Override
+            public void onLoadFinished(Loader<String> loader, String result) {
+                Log.i(TAG, "onLoadFinished: result = " + result);
+                if (result != null) {
+                    listener.doFinished(ConstHttp.CONNECTION_SUCCESS, result);
+                }
+                // エラー時処理
+                else {
+                    listener.doFinished(ConstHttp.CONNECTION_ERROR, null);
+                }
+            }
+
+            @Override
+            public void onLoaderReset(Loader<String> loader) {
+                Log.i(TAG, "onLoaderReset");
+                listener.doFinished(ConstHttp.CONNECTION_SUCCESS, null);
+            }
+        });
+
+
+    }
+
+
+
+    private void ajax(final String pathUrl, final HashMap<String, Object> params, final AjaxListener listener) {
 
         Log.w(TAG, "ajax");
 
@@ -106,7 +141,7 @@ public class HTTP {
 
             @Override
             public void onLoadFinished(Loader<String> loader, String result) {
-                Log.i(TAG, "ajax onLoadFinished: path=" + pathUrl + "/result=" + result);
+                //Log.i(TAG, "ajax onLoadFinished: path=" + pathUrl + "/result=" + result);
                 if (result != null) {
                     listener.doFinished(ConstHttp.CONNECTION_SUCCESS, result);
                 } else {
@@ -127,7 +162,7 @@ public class HTTP {
     private AjaxAsyncTaskLoader getAjaxAsyncTaskLoader( Activity activity,
                                                         Bundle bundle,
                                                         String pathUrl,
-                                                        HashMap<String, String> params) {
+                                                        HashMap<String, Object> params) {
 
         AjaxAsyncTaskLoader loader = new AjaxAsyncTaskLoader(activity, bundle, pathUrl, params);
         loader.forceLoad();
@@ -137,11 +172,23 @@ public class HTTP {
 
 
 
-    private HashMap<String, String> getComReqParm( String checkType){
+    private SaveAlcoholInfoTaskLoader getSaveAlcoholAsyncTaskLoader( Activity activity,
+                                                                     Bundle bundle,
+                                                                     String pathUrl,
+                                                                     HashMap<String, Object> params) {
+        Log.i(TAG, "getSaveAlcoholAsyncTaskLoader");
+        SaveAlcoholInfoTaskLoader loader = new SaveAlcoholInfoTaskLoader(activity, bundle, pathUrl, params);
+        loader.forceLoad();
+        this.mLoader = loader;
+        return loader;
+    }
+
+
+
+    private HashMap<String, Object> getComReqParm( HashMap<String, Object> params){
 
         UserEntry su = EntryUtil.getEntry(mActivity);
 
-        HashMap<String, String> params = new HashMap<String, String>();
         params.put("workerID", su.getWorkerID());
         params.put("userID", su.getUserID());
 
@@ -150,10 +197,6 @@ public class HTTP {
 
         params.put("date", date);
         params.put("time", time);
-
-        if(checkType != null) {
-            params.put("checkType", checkType);
-        }
 
         return params;
 

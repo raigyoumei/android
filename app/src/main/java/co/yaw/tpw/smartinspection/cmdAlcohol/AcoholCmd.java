@@ -65,7 +65,7 @@ public class AcoholCmd extends BltComCmd {
 
         String hexStr = HexUtil.formatHexString(value);
 
-        mHandlerUtil.sendHandler(MSG_COMMAND_STR, hexStr);
+        //mHandlerUtil.sendHandler(MSG_COMMAND_STR, hexStr);
 
         //
         String cmd = hexStr.substring(0, 6).toUpperCase();
@@ -290,6 +290,8 @@ public class AcoholCmd extends BltComCmd {
             return;
         }
 
+        sendMassage(MSG_COMMAND_VALUE_TEST_END,null);
+
         int cnt = value[3] & 0x00FF - 0x80;
         int alcohol = value[4] & 0x007F;
 
@@ -301,12 +303,10 @@ public class AcoholCmd extends BltComCmd {
         alcohol = alcohol <= 5 ? 0:alcohol;
         String alcoholStr = String.format("%.2f", alcohol/100.0).toString();
 
-        sendMassage(MSG_COMMAND_VALUE_TEST_AL, alcoholStr);
-
         // 15以下は青   15~25は黄色  25以上は赤
         Log.d(TAG, "mAltTestSTLow=" + AltTestSTLow + " mAltTestSTHigh=" + AltTestSTHigh );
 
-        sendMassage(MSG_COMMAND_VALUE_TEST_END,null);
+        sendMassage(MSG_COMMAND_VALUE_TEST_AL, alcoholStr);
 
     }
 

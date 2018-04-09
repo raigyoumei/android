@@ -58,9 +58,7 @@
         <activity android:name="co.yaw.tpw.smartinspection.VitalMeasureActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.VitalSignMeasureActivity" />
         <activity android:name="co.yaw.tpw.smartinspection.HealthStatusRegActivity" />
-        <activity
-            android:name="co.yaw.tpw.smartinspection.CallMenuActivity"
-            android:launchMode="singleTask"/>
+        <activity android:name="co.yaw.tpw.smartinspection.CallMenuActivity" />
 
     </application>
 

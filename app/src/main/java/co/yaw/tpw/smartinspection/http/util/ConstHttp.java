@@ -20,6 +20,7 @@ public class ConstHttp {
 
     // アルコール測定結果取得
     public final static String GET_ALCOHOL_INFO_PATH = "/pioneer/getalcohol";
+    public final static String SAVE_ALCOHOL_INFO_PATH = "/pioneer/savealcohol";
 
 
     // HTTP response
