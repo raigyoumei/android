@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.yaw.tpw.smartinspection.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import co.yaw.tpw.smartinspection.bltUtil.BltDeviceUtil;
@@ -74,12 +75,15 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         mBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context.getApplication(), CallMenuActivity.class);
-                Bundle b = new Bundle();
-                b.putInt(ConstUtil.FORWARD_KEY, mForward);
 
-                intent.putExtras(b);
-                startActivity(intent);
+                Bundle bundle = EntryUtil.getBundle(context);
+                mHTTP = new HTTP((Activity) context, bundle);
+
+                HashMap<String, Object> params = new HashMap<String, Object>();
+                params.put("checkType", mForward);
+
+                mHTTP.getCallInfo(params);
+
             }
         });
 
@@ -378,18 +382,15 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         mForward = b.getInt(ConstUtil.FORWARD_KEY);
 
         if(mForward == ConstUtil.CALL_FORWARD_BEFORE) {
-            mAcoholHandlerMsg.setMcrewInfo(0);
-
             crewInfoTv.setText(R.string.alcohol_measure_crew_info_before);
             mBackBtn.setText(R.string.check_crew_back_before);
 
         } else {
-            mAcoholHandlerMsg.setMcrewInfo(1);
-
             crewInfoTv.setText(R.string.alcohol_measure_crew_info_after);
             mBackBtn.setText(R.string.check_crew_back_after);
         }
 
+        mAcoholHandlerMsg.setMcrewInfo(mForward);
 
         String data = b.getString(ConstUtil.RESP_DATA_KEY);
 
@@ -407,7 +408,6 @@ public class AlcoholMeasureActivity extends AppCompatActivity implements Adapter
         }
 
     }
-
 
 
     // 権限のチェック

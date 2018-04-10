@@ -21,7 +21,9 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import co.yaw.tpw.smartinspection.bltUtil.AppConfigUtil;
 import co.yaw.tpw.smartinspection.http.pojo.LoginRespPojo;
@@ -338,26 +340,27 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
     protected String okHttpMtil(String pathUrl, HashMap<String, Object> params) {
 
         String urltmp = AppConfigUtil.getServerUrl() + pathUrl;
+        String userAgent = "smartinspection "+AppConfigUtil.getVersion();
 
         OkHttpClient client = new OkHttpClient();
-        FormBody.Builder formBody = new FormBody.Builder();
-
-        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
         try {
-            String parameter = "";
-            ObjectMapper mapper = new ObjectMapper();
-            parameter = mapper.writeValueAsString(params);
-
-            Log.d(TAG,"okHttp request=="+parameter);
-
-            String path = (String)params.get("imagePath");
 
             MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
 
-            File f=new File(path);
-            builder.addFormDataPart("image", f.getName(), RequestBody.create(MediaType.parse("image/*"), f));
-            builder.addFormDataPart("other",parameter);
+            String json = (String)params.get(ConstHttp.HTTP_PARM_JSON);
+            Log.d(TAG,"okHttpMtil json=" +json);
+
+            builder.addFormDataPart(ConstHttp.HTTP_PARM_JSON, json);
+
+            List<String> fileList = (List<String>)params.get(ConstHttp.HTTP_PARM_FILE);
+            for (String file : fileList) {
+
+                Log.d(TAG,"okHttpMtil file=" +file);
+
+                File f=new File(file);
+                builder.addFormDataPart("image", f.getName(), RequestBody.create(MediaType.parse("image/*"), f));
+            }
 
             MultipartBody multipartBody = builder.build();
 
@@ -365,9 +368,13 @@ public abstract class BaseTaskLoader<T> extends AsyncTaskLoader<T> {
                     + "; " + "workerID=" + getWorkerID()
                     + "; " + "userID=" + getUserID();
 
+            Log.d(TAG,"okHttpMtil cookieStr=" +cookieStr);
+            Log.d(TAG,"okHttpMtil urltmp=" +urltmp);
+            Log.d(TAG,"okHttpMtil userAgent=" +userAgent);
+
             Request request = new Request.Builder()
                     .url(urltmp)
-                    .header("User-Agent", "smartinspection "+AppConfigUtil.getVersion())
+                    .header("User-Agent", userAgent)
                     .addHeader("Referer", urltmp)
                     .addHeader("Cookie", cookieStr)
                     .post(multipartBody)

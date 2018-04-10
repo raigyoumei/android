@@ -14,10 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yaw.tpw.smartinspection.R;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,7 @@ import co.yaw.tpw.smartinspection.http.HTTP;
 import co.yaw.tpw.smartinspection.http.tasklistener.SaveAlcoholInfoListener;
 import co.yaw.tpw.smartinspection.http.userInfo.EntryUtil;
 import co.yaw.tpw.smartinspection.http.userInfo.UserEntry;
+import co.yaw.tpw.smartinspection.http.util.ConstHttp;
 
 
 public class AcoholHandlerMsg extends HandlerUtil {
@@ -112,15 +115,9 @@ public class AcoholHandlerMsg extends HandlerUtil {
         mTestCountBef = countBef;
     }
 
-    public int getTestCountBef(){
-        return mTestCountBef;
-    }
-
-
     public void setHttp(HTTP http){
         mHTTP = http;
     }
-
 
     @Override
     public void handleMessage(Message msg){
@@ -389,8 +386,6 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
             case BltDeviceUtil.MSG_DEVACE_CONNECTING:
 
-                mDevName = ble.getString(HandlerUtil.INFO);
-
                 mMsgTextView.setText(mActivity.getString(R.string.alcohol_test_connect));
 
                 initTestInfo();
@@ -407,6 +402,10 @@ public class AcoholHandlerMsg extends HandlerUtil {
 //                if(mTestStartBtn != null) {
 //                    mTestStartBtn.setEnabled(false);
 //                }
+
+                mDevName = ble.getString(HandlerUtil.INFO);
+
+                Log.d(TAG, "MSG_DEVACE_CONNECT mDevName=" + mDevName);
 
                 break;
 
@@ -460,16 +459,6 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
     public void saveAcoholTestInfo(){
 
-        String time = DateUtil.getCustomTime(DateUtil.YMDHMSS);
-
-        Log.d(TAG, "saveAcoholTestInfo mFwVersion=" + mFwVersion);
-        Log.d(TAG, "saveAcoholTestInfo mUsageVal=" + mUsageVal);
-        Log.d(TAG, "saveAcoholTestInfo mVoltageVal=" + mVoltageVal);
-        Log.d(TAG, "saveAcoholTestInfo mAcoholVal=" + mAcoholVal);
-        Log.d(TAG, "saveAcoholTestInfo mImageVal=" + mImageVal);
-        Log.d(TAG, "saveAcoholTestInfo mcrewBef=" + mcrewBef);
-        Log.d(TAG, "saveAcoholTestInfo mDevName=" + mDevName);
-
         Log.d(TAG, "saveAcoholTestInfo mImageOk=" + mImageOk);
         Log.d(TAG, "saveAcoholTestInfo mCheckEndFlag=" + mCheckEndFlag);
 
@@ -480,9 +469,20 @@ public class AcoholHandlerMsg extends HandlerUtil {
         mImageOk = false;
         mCheckEndFlag = false;
 
+        String time = DateUtil.getCustomTime(DateUtil.YMDHMSS);
+
+        Log.d(TAG, "saveAcoholTestInfo mFwVersion=" + mFwVersion);
+        Log.d(TAG, "saveAcoholTestInfo mUsageVal=" + mUsageVal);
+        Log.d(TAG, "saveAcoholTestInfo mVoltageVal=" + mVoltageVal);
+        Log.d(TAG, "saveAcoholTestInfo mAcoholVal=" + mAcoholVal);
+        Log.d(TAG, "saveAcoholTestInfo mImageVal=" + mImageVal);
+        Log.d(TAG, "saveAcoholTestInfo mcrewBef=" + mcrewBef);
+        Log.d(TAG, "saveAcoholTestInfo mDevName=" + mDevName);
+
         try{
 
             HashMap<String, Object> params = new HashMap<String, Object>();
+
             params.put("serialNo", mDevName);
             params.put("fwVersion", mFwVersion);
             params.put("checkType", mcrewBef);
@@ -495,8 +495,10 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
             params.put("alcoholResult", Double.parseDouble(mAcoholVal));
 
+            params = mHTTP.getComReqParm(params);
+
             //params.put("image", Base64.encodeToString(mImageVal, Base64.DEFAULT));
-            params.put("imagePath", mImageVal);
+            //params.put("imagePath", mImageVal);
 
             //Bitmap bitmap = BitmapFactory.decodeFile(mImageVal);
             //String string=null;
@@ -507,6 +509,17 @@ public class AcoholHandlerMsg extends HandlerUtil {
             //string=Base64.encodeToString(bytes,Base64.DEFAULT);
             //ssparams.put("image", string);
 
+            String parameter = "";
+            ObjectMapper mapper = new ObjectMapper();
+            parameter = mapper.writeValueAsString(params);
+
+            Log.d(TAG,"okHttp request=="+parameter);
+            params.clear();
+            params.put(ConstHttp.HTTP_PARM_JSON, parameter);
+
+            List<String> fileList = new ArrayList<String>();
+            fileList.add(mImageVal);
+            params.put(ConstHttp.HTTP_PARM_FILE, fileList);
 
             mHTTP.saveAlcohol(params, new SaveAlcoholInfoListener(mActivity, mcrewBef));
 
@@ -535,8 +548,4 @@ public class AcoholHandlerMsg extends HandlerUtil {
 
     }
 
-
-    public boolean isChecked(){
-        return mCheckEndFlag;
-    }
 }

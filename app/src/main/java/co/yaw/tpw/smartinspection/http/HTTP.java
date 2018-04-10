@@ -185,7 +185,7 @@ public class HTTP {
 
 
 
-    private HashMap<String, Object> getComReqParm( HashMap<String, Object> params){
+    public HashMap<String, Object> getComReqParm( HashMap<String, Object> params){
 
         UserEntry su = EntryUtil.getEntry(mActivity);
 

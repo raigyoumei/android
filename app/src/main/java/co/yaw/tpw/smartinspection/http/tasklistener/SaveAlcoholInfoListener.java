@@ -35,7 +35,7 @@ public class SaveAlcoholInfoListener implements HTTP.AjaxListener {
         this.mActivity = activity;
         mCallType = callType;
 
-        mDialog = DialogUtils.createLoadingDialog(activity, mActivity.getString(R.string.prcessing_server));
+        mDialog = DialogUtils.createLoadingDialog(activity, mActivity.getString(R.string.alcohol_measure_save));
     }
 
 

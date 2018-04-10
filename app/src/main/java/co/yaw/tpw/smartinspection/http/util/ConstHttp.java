@@ -28,4 +28,9 @@ public class ConstHttp {
     public final static int RESP_STATUS_TIMEOUT = RESP_STATUS_OK + 1;
     public final static int RESP_STATUS_NG = RESP_STATUS_TIMEOUT + 1;
 
+
+
+    public final static String HTTP_PARM_JSON = "data";
+    public final static String HTTP_PARM_FILE = "file";
+
 }

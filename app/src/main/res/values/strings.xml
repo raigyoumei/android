@@ -213,6 +213,7 @@
     <string name="alcohol_sensor_spinner_prompt">アルコールセンサーの任意番号</string>
     <string name="alcohol_measure_camera_message">カメラ表示</string>
     <string name="alcohol_measure_info">測定結果を表示する。\n\n表示項目\n    ・撮影画像\n    ・アルコールデータ\n    ・チェック日時</string>
+    <string name="alcohol_measure_save">保存中</string>
 
     <!--add sato-->
     <string name="alcohol_unit">mg/L</string>
